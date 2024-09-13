@@ -363,6 +363,7 @@ MigrationBackup/
 FodyWeavers.xsd
 
 #Report folders
-.html
-.zip
-.png
+*.html
+*.zip
+*.png
+
