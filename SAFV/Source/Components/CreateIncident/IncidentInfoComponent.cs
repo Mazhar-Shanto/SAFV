@@ -1,9 +1,6 @@
-﻿using NUnit.Framework;
-using OpenQA.Selenium;
-using System;
-using static NUnit.Framework.Constraints.Tolerance;
+﻿using OpenQA.Selenium;
 
-namespace SAFV.Source.Components
+namespace SAFV.Source.Components.CreateIncident
 {
     public class IncidentInfoComponent : BaseComponent
     {

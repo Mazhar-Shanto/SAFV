@@ -1,6 +1,6 @@
 ﻿using OpenQA.Selenium;
 
-namespace SAFV.Source.Components
+namespace SAFV.Source.Components.CreateIncident
 {
     public class CreateIncidentComponent : BaseComponent
     {
