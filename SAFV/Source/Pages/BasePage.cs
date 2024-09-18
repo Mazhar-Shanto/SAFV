@@ -3,11 +3,7 @@ using OpenQA.Selenium;
 using SAFV.Source.Components;
 using OpenQA.Selenium.Interactions;
 using SAFV.Drivers;
-using AngleSharp.Dom;
-using System.Reflection.Emit;
-using System.Xml.Linq;
 using SAFV.Utility;
-using System.Buffers;
 
 namespace SAFV.Source.Pages
 {
@@ -64,7 +60,7 @@ namespace SAFV.Source.Pages
             }
 
             // If we exit the loop without clicking, throw an exception
-            Reporting.SetStepStatusFail("Click button failed", _driver);
+            Reporting.SetStepStatusFail($"Click <b style=\"color:blue;\">{label}</b> failed", _driver);
             throw new Exception("Failed to click the element after multiple attempts");
         }
 
@@ -301,7 +297,7 @@ namespace SAFV.Source.Pages
                         actions.Perform();
                         Thread.Sleep(250);
                         elementList.ElementAt(j).FindElement(By.XPath(childXpath)).Click();
-                        Reporting.SetStepStatusPass($"Select option <b>{searchValue}</b>", _driver);
+                        Reporting.SetStepStatusPass($"Select option <b>{searchValue.ElementAt(i)}</b>", _driver);
                     }
                 }
             }
@@ -325,7 +321,7 @@ namespace SAFV.Source.Pages
                         actions.Perform();
                         Thread.Sleep(250);
                         elementList.ElementAt(j).Click();
-                        Reporting.SetStepStatusPass($"Select option <b>{searchValue}</b>", _driver);
+                        Reporting.SetStepStatusPass($"Select option <b>{searchValue.ElementAt(i)}</b>", _driver);
                     }
                 }
             }

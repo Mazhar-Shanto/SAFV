@@ -30,6 +30,14 @@ namespace SAFV.Drivers
             // Dispose of the driver after each test
             if (_driver != null)
             {
+                if (TestContext.CurrentContext.Result.Outcome.Status.ToString() == "Failed")
+                {
+                    Reporting.SetTestStatusFail();
+                }
+                else if (TestContext.CurrentContext.Result.Outcome.Status.ToString() == "Passed")
+                {
+                    Reporting.SetTestStatusPass();
+                }
                 Reporting.Close();
                 _driver.Quit();
                 _driver.Dispose();

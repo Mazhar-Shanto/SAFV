@@ -209,7 +209,7 @@ namespace SAFV.Source.Pages
             if (!String.IsNullOrEmpty(peopleData["Address1"]))
             {
                 Click(PeopleComponent.AddNewAddress);
-                Click(PeopleComponent.AddressGroup);
+                //Click(PeopleComponent.AddressGroup);
                 SelectOption(PeopleComponent.LstAddressGroup, peopleData["AddressGroup"]);
                 SendKeys(PeopleComponent.Address1, peopleData["Address1"]);
                 SendKeys(PeopleComponent.Address2, peopleData["Address2"]);
