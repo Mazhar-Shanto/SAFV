@@ -1,4 +1,5 @@
-﻿using OpenQA.Selenium;
+﻿using AventStack.ExtentReports.Gherkin.Model;
+using OpenQA.Selenium;
 
 namespace SAFV.Source.Components.CreateIncident
 {
@@ -17,7 +18,7 @@ namespace SAFV.Source.Components.CreateIncident
         public static IWebElement OtherNotInvolved => WaitAndFindElement(By.XPath("//*[@id=\"createbasicinfoform\"]/div/div[1]/div[6]/div/div[4]/span"));
         public static IWebElement VictimWouldLikeToUsePseudonym => WaitAndFindElement(By.XPath("//*[@id=\"createbasicinfoform\"]/div/div[1]/div[8]/div[1]/div/span[1]"));
         public static IWebElement EditRealName => WaitAndFindElement(By.XPath("//*[@id=\"displayoreditrealname\"]/div[2]/button"));
-        public static IWebElement Confirm => WaitAndFindElement(By.XPath("//*[@id=\"warningForPrivateData\"]/div[2]/div[2]/button"));
+        public static IWebElement ConfirmPseudonym => WaitAndFindElement(By.XPath("//*[@id=\"warningForPrivateData\"]/div[2]/div[2]/button"));
         public static IWebElement VictimRealFirstName => WaitAndFindElement(By.Id("VictimRealFirstName"));
         public static IWebElement VictimRealLastName => WaitAndFindElement(By.Id("VictimRealLastName"));
         public static IWebElement VictimRealMiddleName => WaitAndFindElement(By.Id("VictimRealMiddleName"));
@@ -35,8 +36,11 @@ namespace SAFV.Source.Components.CreateIncident
 
         // more info
         public static IWebElement Ethnicity => WaitAndFindElement(By.XPath("//*[@id=\"createbasicinfoform\"]/div/div[2]/div/span"));
+        public static IList<IWebElement> LstEthnicity => WaitAndFindElements(By.XPath("//*[@id=\"EthnicityId_listbox\"]/li"));
         public static IWebElement EyeColor => WaitAndFindElement(By.XPath("//*[@id=\"createbasicinfoform\"]/div/div[3]/div/span"));
+        public static IList<IWebElement> LstEyeColor => WaitAndFindElements(By.XPath("//*[@id=\"EyeColorId_listbox\"]/li"));
         public static IWebElement HairColor => WaitAndFindElement(By.XPath("//*[@id=\"createbasicinfoform\"]/div/div[4]/div/span"));
+        public static IList<IWebElement> LstHairColor => WaitAndFindElements(By.XPath("//*[@id=\"HairColorId_listbox\"]/li"));
         public static IWebElement HeightFeet => WaitAndFindElement(By.Id("HeightFt"));
         public static IWebElement HeightInches => WaitAndFindElement(By.Id("HeightIn"));
         public static IWebElement Weight => WaitAndFindElement(By.Id("Weight"));
@@ -46,23 +50,31 @@ namespace SAFV.Source.Components.CreateIncident
         public static IWebElement PrimaryLanguage => WaitAndFindElement(By.XPath("//*[@id=\"createbasicinfoform\"]/div/div[8]/div/span"));
         public static IList<IWebElement> LstPrimaryLanguage => WaitAndFindElements(By.XPath("//*[@id=\"PrimaryLanguage_listbox\"]/li"));
         public static IWebElement PersonIdType => WaitAndFindElement(By.XPath("//*[@id=\"createbasicinfoform\"]/div/div[9]/div/span"));
-        public static IList<IWebElement> LstPPersonIdType => WaitAndFindElements(By.XPath("//*[@id=\"PersonIDTypeId_listbox\"]/li"));
+        public static IList<IWebElement> LstPersonIdType => WaitAndFindElements(By.XPath("//*[@id=\"PersonIDTypeId_listbox\"]/li"));
         public static IWebElement IdNumber => WaitAndFindElement(By.Id("IDCardNo"));
         public static IWebElement IdState => WaitAndFindElement(By.Id("IDCardNoState"));
-        public static IWebElement IdDate => WaitAndFindElement(By.Id("IDExpirationDate"));
+        public static IWebElement IdExpirationDate => WaitAndFindElement(By.Id("IDExpirationDate"));
         public static IWebElement Email => WaitAndFindElement(By.Id("EmailAddress"));
         public static IWebElement SafeToContactViaEmail => WaitAndFindElement(By.XPath("//*[@id=\"createbasicinfoform\"]/div/div[14]/div/span"));
         public static IWebElement Occupation => WaitAndFindElement(By.Id("Occupation"));
         public static IWebElement PlaceOfBirth => WaitAndFindElement(By.Id("PlaceOfBirth"));
-        public static IWebElement NameOfEmployment => WaitAndFindElement(By.Id("PlaceOfEmployment"));
+        public static IWebElement NameOfEmployer => WaitAndFindElement(By.Id("PlaceOfEmployment"));
         public static IWebElement ScarsMarks => WaitAndFindElement(By.Id("ScarsMarks"));
         public static IWebElement TxSid => WaitAndFindElement(By.Id("TxSID"));
         public static IWebElement SpecialNeeds => WaitAndFindElement(By.Id("SpecialNeeds"));
         public static IWebElement HandcuffedPriorToArrest => WaitAndFindElement(By.XPath("//*[@id=\"createbasicinfoform\"]/div/div[19]/div[1]/div[3]/div/span[1]"));
+        public static IWebElement HandcuffReason => WaitAndFindElement(By.Id("RestraintPriorToArrestDesc"));
         public static IWebElement IsPersonChild => WaitAndFindElement(By.XPath("//*[@id=\"createbasicinfoform\"]/div/div[19]/div[1]/div[5]/div/span[1]"));
-        public static IWebElement PersonGivenMirandaWarning => WaitAndFindElement(By.XPath("//*[@id=\"createbasicinfoform\"]/div/div[19]/div[1]/div[7]/div/span[1]"));
-        public static IWebElement IsPersonElderly => WaitAndFindElement(By.XPath("//*[@id=\"createbasicinfoform\"]/div/div[19]/div[1]/div[9]/div/span[1]"));
-        public static IWebElement IsPersonDisabled => WaitAndFindElement(By.XPath("//*[@id=\"createbasicinfoform\"]/div/div[19]/div[1]/div[11]/div/span[1]"));
+        public static IWebElement WasThisChildPresent => WaitAndFindElement(By.XPath("//*[@id=\"createbasicinfoform\"]/div/div[19]/div[1]/div[6]/div/span[1]"));
+        public static IWebElement DidTheyAttemptToIntervene => WaitAndFindElement(By.XPath("//*[@id=\"createbasicinfoform\"]/div/div[19]/div[1]/div[7]/div[1]/div/span[1]"));
+        public static IWebElement PrimaryCaretakerOfChild => WaitAndFindElement(By.XPath("//*[@id=\"createbasicinfoform\"]/div/div[19]/div[1]/div[7]/div[2]/div/span[1]"));
+        public static IWebElement LstPrimaryCaretakerOfChild => WaitAndFindElement(By.XPath("//*[@id=\"PrimaryCareGiverId_listbox\"]/li[1]"));
+        public static IWebElement PersonGivenMirandaWarning => WaitAndFindElement(By.XPath("//*[@id=\"createbasicinfoform\"]/div/div[19]/div[1]/div[9]/div/span[1]"));
+        public static IWebElement MirandaWarningDate => WaitAndFindElement(By.Id("MirandaWhenDate"));
+        public static IWebElement MirandaWarningTime => WaitAndFindElement(By.Id("MirandaWhenTime"));
+        public static IWebElement StatementsMadeAfterMiranda => WaitAndFindElement(By.Id("StatementsAfter"));
+        public static IWebElement IsPersonElderly => WaitAndFindElement(By.XPath("//*[@id=\"createbasicinfoform\"]/div/div[19]/div[1]/div[11]/div/span[1]"));
+        public static IWebElement IsPersonDisabled => WaitAndFindElement(By.XPath("//*[@id=\"createbasicinfoform\"]/div/div[19]/div[1]/div[12]/div/span[1]"));
 
 
         // add phone number
@@ -91,6 +103,8 @@ namespace SAFV.Source.Components.CreateIncident
 
 
         // search people from master
+        public static IWebElement SavePeople => WaitAndFindElement(By.XPath("//*[@id=\"createbasicinfoform\"]/div/div[20]/div/div/button"));
+        public static IWebElement CancelPeople => WaitAndFindElement(By.XPath("//*[@id=\"createbasicinfoform\"]/div/div[20]/div/div/a"));
 
 
         public PeopleComponent(IWebDriver driver) : base(driver)

@@ -53,12 +53,12 @@ namespace SAFV.Drivers
 
         public static void SetTestStatusPass()
         {
-            Test.Pass("<p><b>Test Executed Successfully!</b></p>");
+            Test.Pass("<p style=\"color:green;\"><b>Test Executed Successfully!</b></p>");
         }
 
         public static void SetTestStatusFail(string message = null)
         {
-            var printMessage = "<p><b>Test FAILED!</b></p>";
+            var printMessage = "<p style=\"color:red;\"><b>Test FAILED!</b></p>";
             if (!string.IsNullOrEmpty(message))
             {
                 printMessage += $"Message: <br>{message}<br>";

@@ -28,7 +28,7 @@ namespace SAFV.Helper
             incidentInfoColumnList.AddColumn("DispatchedTime", "DispatchedTime");
 
             var projectRoot = Utils.GetProjectRoot();
-            var filePath = Path.Combine(projectRoot, "Helper/TestData/CreteIncident/incident info data.xlsx");
+            var filePath = Path.Combine(projectRoot, "Helper/TestData/CreateIncident/incident info data.xlsx");
 
             Console.WriteLine(filePath);
             var dataSet = new DataSet(incidentInfoColumnList);

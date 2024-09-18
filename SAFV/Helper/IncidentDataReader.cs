@@ -16,7 +16,7 @@ namespace SAFV.Helper
             incidentColumnList.AddColumn("CaseType", "CaseType");
 
             var projectRoot = Utils.GetProjectRoot();
-            var filePath = Path.Combine(projectRoot, "Helper/TestData/CreteIncident/create incident data.xlsx");
+            var filePath = Path.Combine(projectRoot, "Helper/TestData/CreateIncident/create incident data.xlsx");
 
             Console.WriteLine(filePath);
             var dataSet = new DataSet(incidentColumnList);

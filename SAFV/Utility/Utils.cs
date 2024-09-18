@@ -64,6 +64,29 @@ namespace SAFV.Utility
                 }
             }
 
+            // First try: Find label from a sibling's child element
+            try
+            {
+                label = element.FindElement(By.XPath("./../div[1]/label")).Text;
+            }
+            catch (Exception)
+            {
+                // Ignoring the exception, move to the next attempt
+            }
+
+            // If label is still empty, try getting the label from parent's sibling's child element
+            if (string.IsNullOrEmpty(label))
+            {
+                try
+                {
+                    label = element.FindElement(By.XPath("./../../div[1]/label")).Text;
+                }
+                catch (Exception)
+                {
+                    // Ignoring the exception, move to the next attempt
+                }
+            }
+
             // If label is still empty, try getting the element's "value" attribute
             if (string.IsNullOrEmpty(label))
             {

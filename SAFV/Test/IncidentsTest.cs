@@ -12,6 +12,11 @@ namespace SAFV.Test
             // Read data
             var loginDataList = LoginDataReader.ReadLoginData();
             var incidentDataList = IncidentDataReader.ReadIncidentData();
+            var incidentInfoDataList = IncidentInfoDataReader.ReadIncidentInfoData();
+            var victimDataList = PeopleDataReader.ReadVictimData();
+            var suspectDataList = PeopleDataReader.ReadSuspectData();
+            var witnessDataList = PeopleDataReader.ReadWitnessData();
+            var otherPeopleDataList = PeopleDataReader.ReadOtherPeopleData();
 
             int loginDataCount = loginDataList.Count();
 
@@ -20,6 +25,12 @@ namespace SAFV.Test
             {
                 var loginData = loginDataList[i];
                 var incidentData = incidentDataList[i];
+                var incidentInfoData = incidentInfoDataList[i];
+                var victimData = victimDataList[i];
+                var suspectData = suspectDataList[i];
+                var witnessData = witnessDataList[i];
+                var optherPeopleData = otherPeopleDataList[i];
+
                 Reporting.CreateTest("IncidentTest");
 
                 LoginPage loginPage = new LoginPage(_driver);
@@ -32,6 +43,14 @@ namespace SAFV.Test
                 incidentsPage.GoToIncidentPage();
 
                 incidentsPage.CreateIncident(incidentData);
+                incidentsPage.CreateIncidentInfo(incidentInfoData);
+                incidentsPage.CreatePeople(victimData);
+                incidentsPage.GoToPeoplePage();
+                incidentsPage.CreatePeople(suspectData);
+                incidentsPage.GoToPeoplePage();
+                incidentsPage.CreatePeople(witnessData);
+                incidentsPage.GoToPeoplePage();
+                incidentsPage.CreatePeople(optherPeopleData);
             }
         }
     }
