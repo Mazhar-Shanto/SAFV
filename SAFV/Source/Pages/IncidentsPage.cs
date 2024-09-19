@@ -2,6 +2,7 @@
 using SAFV.Drivers;
 using SAFV.Source.Components;
 using SAFV.Source.Components.CreateIncident;
+using SAFV.Source.Components.CreateIncident.People;
 
 namespace SAFV.Source.Pages
 {
@@ -39,6 +40,14 @@ namespace SAFV.Source.Pages
             Toggle(CreateIncidentComponent.ConfidentialMode, incidentData["ConfidentialMode"]);
             Click(CreateIncidentComponent.CaseType);
             SelectOption(CreateIncidentComponent.LstCaseType, incidentData["CaseType"]);
+
+            if (incidentData["CaseType"].ToLower() == "supplement")
+            {
+                Click(CreateIncidentComponent.MainCase);
+                SendKeys(CreateIncidentComponent.SearchMainCase, incidentData["MainCase"]);
+                Thread.Sleep(2000);
+                SelectOption(CreateIncidentComponent.LstMainCase, incidentData["MainCase"]);
+            }
 
             Click(CreateIncidentComponent.CreateButton);
         }

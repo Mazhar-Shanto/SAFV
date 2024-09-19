@@ -5,7 +5,7 @@ namespace SAFV.Helper
 {
     internal class IncidentDataReader
     {
-        public static List<Dictionary<string, string>> ReadIncidentData()
+        public static List<Dictionary<string, string>> ReadIncidentData(string incidentType)
         {
             // Read dataset
             var incidentColumnList = new ColumnList();
@@ -16,7 +16,20 @@ namespace SAFV.Helper
             incidentColumnList.AddColumn("CaseType", "CaseType");
 
             var projectRoot = Utils.GetProjectRoot();
-            var filePath = Path.Combine(projectRoot, "Helper/TestData/CreateIncident/create incident data.xlsx");
+            var filePath = "";
+            if (incidentType == "Main")
+            {
+                filePath = Path.Combine(projectRoot, "Helper/TestData/CreateIncident/create incident data - main.xlsx");
+            }
+            else if (incidentType == "Supplement")
+            {
+                incidentColumnList.AddColumn("MainCase", "MainCase");
+                filePath = Path.Combine(projectRoot, "Helper/TestData/CreateIncident/create incident data - supplement.xlsx");
+            }
+            else if (incidentType == "Confidential")
+            {
+                filePath = Path.Combine(projectRoot, "Helper/TestData/CreateIncident/create incident data - confidential.xlsx");
+            }
 
             Console.WriteLine(filePath);
             var dataSet = new DataSet(incidentColumnList);

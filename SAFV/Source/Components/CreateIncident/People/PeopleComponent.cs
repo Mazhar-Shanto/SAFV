@@ -1,7 +1,6 @@
-﻿using AventStack.ExtentReports.Gherkin.Model;
-using OpenQA.Selenium;
+﻿using OpenQA.Selenium;
 
-namespace SAFV.Source.Components.CreateIncident
+namespace SAFV.Source.Components.CreateIncident.People
 {
     public class PeopleComponent : BaseComponent
     {

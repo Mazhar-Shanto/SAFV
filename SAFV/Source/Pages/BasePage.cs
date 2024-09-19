@@ -256,6 +256,15 @@ namespace SAFV.Source.Pages
                     elementList.ElementAt(i).Click();
                     Reporting.SetStepStatusPass($"Select option <b>{searchValue}</b>", _driver);
                 }
+                else if (elementList.ElementAt(i).Text.ToLower().Contains(searchValue.ToLower()))
+                {
+                    Actions actions = new Actions(_driver);
+                    actions.ScrollToElement(elementList.ElementAt(i));
+                    actions.Perform();
+                    Thread.Sleep(250);
+                    elementList.ElementAt(i).Click();
+                    Reporting.SetStepStatusPass($"Select option <b>{searchValue}</b>", _driver);
+                }
             }
             Thread.Sleep(2000);
         }

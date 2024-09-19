@@ -82,7 +82,7 @@ namespace SAFV.Helper
 
 
             var projectRoot = Utils.GetProjectRoot();
-            var filePath = Path.Combine(projectRoot, "Helper/TestData/CreateIncident/create other people data.xlsx");
+            var filePath = Path.Combine(projectRoot, "Helper/TestData/CreateIncident/People/create people data - other.xlsx");
 
             Console.WriteLine(filePath);
             var dataSet = new DataSet(peopleColumnList);
@@ -99,7 +99,7 @@ namespace SAFV.Helper
 
 
             var projectRoot = Utils.GetProjectRoot();
-            var filePath = Path.Combine(projectRoot, "Helper/TestData/CreateIncident/create victim data.xlsx");
+            var filePath = Path.Combine(projectRoot, "Helper/TestData/CreateIncident/People/create people data - victim.xlsx");
 
             Console.WriteLine(filePath);
             var dataSet = new DataSet(peopleColumnList);
@@ -116,7 +116,7 @@ namespace SAFV.Helper
 
 
             var projectRoot = Utils.GetProjectRoot();
-            var filePath = Path.Combine(projectRoot, "Helper/TestData/CreateIncident/create suspect data.xlsx");
+            var filePath = Path.Combine(projectRoot, "Helper/TestData/CreateIncident/People/create people data - suspect.xlsx");
 
             Console.WriteLine(filePath);
             var dataSet = new DataSet(peopleColumnList);
@@ -133,7 +133,7 @@ namespace SAFV.Helper
 
 
             var projectRoot = Utils.GetProjectRoot();
-            var filePath = Path.Combine(projectRoot, "Helper/TestData/CreateIncident/create witness data.xlsx");
+            var filePath = Path.Combine(projectRoot, "Helper/TestData/CreateIncident/People/create people data - witness.xlsx");
 
             Console.WriteLine(filePath);
             var dataSet = new DataSet(peopleColumnList);
