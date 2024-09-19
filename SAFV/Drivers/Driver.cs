@@ -32,6 +32,8 @@ namespace SAFV.Drivers
             {
                 if (TestContext.CurrentContext.Result.Outcome.Status.ToString() == "Failed")
                 {
+                    //Reporting.SetStepStatusFail(TestContext.Error.ToString(), _driver);
+                    //Reporting.SetStepStatusFail(TestContext.CurrentContext.Result.Outcome.ToString(), _driver);
                     Reporting.SetTestStatusFail();
                 }
                 else if (TestContext.CurrentContext.Result.Outcome.Status.ToString() == "Passed")
