@@ -1,6 +1,7 @@
 ﻿using SAFV.Drivers;
 using SAFV.Helper;
 using SAFV.Source.Pages;
+using SAFV.Source.Pages.CreateIncident;
 
 namespace SAFV.Test
 {
@@ -25,7 +26,6 @@ namespace SAFV.Test
 
                 LoginPage loginPage = new LoginPage(_driver);
                 IncidentsPage incidentsPage = new IncidentsPage(_driver);
-                HomePage homePage = new HomePage(_driver);
 
                 loginPage.GoToLoginPage();
 
@@ -56,7 +56,6 @@ namespace SAFV.Test
 
                 LoginPage loginPage = new LoginPage(_driver);
                 IncidentsPage incidentsPage = new IncidentsPage(_driver);
-                HomePage homePage = new HomePage(_driver);
 
                 loginPage.GoToLoginPage();
 
@@ -87,7 +86,6 @@ namespace SAFV.Test
 
                 LoginPage loginPage = new LoginPage(_driver);
                 IncidentsPage incidentsPage = new IncidentsPage(_driver);
-                HomePage homePage = new HomePage(_driver);
 
                 loginPage.GoToLoginPage();
 
@@ -113,8 +111,11 @@ namespace SAFV.Test
             var suspectDataList = PeopleDataReader.ReadSuspectData();
             var suspectInterviewDataList = PeopleDataReader.ReadSuspectInterviewData();
             var suspectInfoDataList = PeopleDataReader.ReadSuspectInfoData();
+            var medicalEmsDataList = PeopleDataReader.ReadMedicalEmsData();
+            var demeanorDataList = PeopleDataReader.ReadDemeanorData();
             var emergencyContactDataList = PeopleDataReader.ReadEmergencyContactData();
             var externalInfoDataList = PeopleDataReader.ReadExternalInfoData();
+            var suspectEvidenceDataList = PeopleDataReader.ReadSuspectEvidenceData();
 
             int loginDataCount = loginDataList.Count();
 
@@ -131,14 +132,18 @@ namespace SAFV.Test
                 var suspectData = suspectDataList[i];
                 var suspectInterviewData = suspectInterviewDataList[i];
                 var suspectInfoData = suspectInfoDataList[i];
+                var medicalEmsData = medicalEmsDataList[i];
+                var demeanorData = demeanorDataList[i];
                 var emergencyContactData = emergencyContactDataList[i];
                 var externalInfoData = externalInfoDataList[i];
+                var suspectEvidenceData = suspectEvidenceDataList[i];
 
                 Reporting.CreateTest("IncidentTest");
 
                 LoginPage loginPage = new LoginPage(_driver);
                 IncidentsPage incidentsPage = new IncidentsPage(_driver);
-                HomePage homePage = new HomePage(_driver);
+                IncidentInfoPage incidentInfoPage = new IncidentInfoPage(_driver);
+                PeoplePage peoplePage = new PeoplePage(_driver);
 
                 loginPage.GoToLoginPage();
 
@@ -146,17 +151,21 @@ namespace SAFV.Test
                 incidentsPage.GoToIncidentPage();
 
                 incidentsPage.CreateIncident(incidentData);
-                incidentsPage.CreateIncidentInfo(incidentInfoData);
-                incidentsPage.CreatePeople(victimData);
-                incidentsPage.GoToPeoplePage();
-                incidentsPage.CreatePeople(witnessData);
-                incidentsPage.GoToPeoplePage();
-                incidentsPage.CreatePeople(optherPeopleData);
-                incidentsPage.GoToPeoplePage();
-                incidentsPage.CreatePeople(suspectData);
-                incidentsPage.CreatePeopleInterview(suspectInterviewData);
-                incidentsPage.CreateSuspectInfo(suspectInfoData);
-                incidentsPage.CreateExternalInfo(externalInfoData);
+                incidentInfoPage.CreateIncidentInfo(incidentInfoData);
+                peoplePage.CreatePeople(victimData);
+                peoplePage.GoToPeoplePage();
+                peoplePage.CreatePeople(witnessData);
+                peoplePage.GoToPeoplePage();
+                peoplePage.CreatePeople(optherPeopleData);
+                peoplePage.GoToPeoplePage();
+                peoplePage.CreatePeople(suspectData);
+                peoplePage.CreatePeopleInterview(suspectInterviewData);
+                peoplePage.CreateSuspectInfo(suspectInfoData);
+                peoplePage.CreateMedicalEms(medicalEmsData);
+                peoplePage.CreateDemeanorInfo(demeanorData);
+                peoplePage.CreateEmergencyContact(emergencyContactData);
+                peoplePage.CreateExternalInfo(externalInfoData);
+                peoplePage.CreateExternalInfo(suspectEvidenceData);
             }
         }
     }
