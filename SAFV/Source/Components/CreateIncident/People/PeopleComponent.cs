@@ -29,7 +29,7 @@ namespace SAFV.Source.Components.CreateIncident.People
         public static IList<IWebElement> LstSex => WaitAndFindElements(By.XPath("//*[@id=\"SexId_listbox\"]/li"));
         public static IWebElement DateOfBirth => WaitAndFindElement(By.Id("DateOfBirth"));
         public static IWebElement Age => WaitAndFindElement(By.Id("Age"));
-        public static IWebElement Save => WaitAndFindElement(By.XPath("//*[@id=\"createbasicinfoform\"]/div/div[2]/div/div/button[1]"));
+        public static IWebElement SaveAndShowMore => WaitAndFindElement(By.XPath("//*[@id=\"createbasicinfoform\"]/div/div[2]/div/div/button[1]"));
         public static IWebElement Cancel => WaitAndFindElement(By.XPath("//*[@id=\"createbasicinfoform\"]/div/div[2]/div/div/a"));
 
 
@@ -102,6 +102,23 @@ namespace SAFV.Source.Components.CreateIncident.People
 
 
         // search people from master
+        public static IWebElement SearchFromMaster => WaitAndFindElement(By.XPath("//*[@id=\"person-page\"]/div/div[1]/div/div/div/div[1]/header/button"));
+        public static IWebElement SearchFirstName => WaitAndFindElement(By.Id("sFirstName"));
+        public static IWebElement SearchLastName => WaitAndFindElement(By.Id("sLastName"));
+        public static IWebElement SearchMiddleName => WaitAndFindElement(By.Id("sMiddleName"));
+        public static IWebElement SearchPlaceOfBirth => WaitAndFindElement(By.Id("PlaceOfBirth"));
+        public static IWebElement SearchPlaceOfEmployment => WaitAndFindElement(By.Id("PlaceOfEmployment"));
+        public static IWebElement SearchSsn => WaitAndFindElement(By.Id("SSN"));
+        public static IWebElement SearchPersonIdType => WaitAndFindElement(By.Id("//*[@id=\"masterPeopleSearch-form\"]/div[3]/div[1]/span[1]"));
+        public static IList<IWebElement> LstSearchPersonIdType => WaitAndFindElements(By.Id("//*[@id=\"PersonIdType_listbox\"]/li"));
+        public static IWebElement SearchId => WaitAndFindElement(By.Id("IdCardNo"));
+        public static IWebElement SearchButton => WaitAndFindElement(By.Id("searchbtn"));
+        public static IWebElement ClearButton => WaitAndFindElement(By.XPath("//*[@id=\"masterPeopleSearch-form\"]/div[4]/div/div[3]/button[2]"));
+        public static IWebElement CloseButton => WaitAndFindElement(By.XPath("//*[@id=\"masterPeopleSearch-form\"]/div[4]/div/div[3]/button[3]"));
+        public static IWebElement LoadFromMaster => WaitAndFindElement(By.XPath("//*[@id=\"master_people-grid\"]/table/tbody/tr/td[7]/a"));
+
+
+
         public static IWebElement SavePeople => WaitAndFindElement(By.XPath("//*[@id=\"createbasicinfoform\"]/div/div[20]/div/div/button"));
         public static IWebElement CancelPeople => WaitAndFindElement(By.XPath("//*[@id=\"createbasicinfoform\"]/div/div[20]/div/div/a"));
 

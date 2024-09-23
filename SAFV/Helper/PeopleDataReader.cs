@@ -143,6 +143,27 @@ namespace SAFV.Helper
         }
 
 
+        public static List<Dictionary<string, string>> ReadMasterSearchData()
+        {
+            // Read dataset
+            var masterSearchColumnList = new ColumnList();
+            masterSearchColumnList.AddColumn("SearchText", "SearchText");
+            masterSearchColumnList.AddColumn("SearchField", "SearchField");
+            masterSearchColumnList.AddColumn("PersonIdType", "PersonIdType");
+            masterSearchColumnList.AddColumn("PersonType", "PersonType");
+
+
+            var projectRoot = Utils.GetProjectRoot();
+            var filePath = Path.Combine(projectRoot, "Helper/TestData/CreateIncident/People/create people - master.xlsx");
+
+            Console.WriteLine(filePath);
+            var dataSet = new DataSet(masterSearchColumnList);
+            var masterSearchData = dataSet.ReadData(filePath);
+
+            return masterSearchData;
+        }
+
+
         public static List<Dictionary<string, string>> ReadSuspectInterviewData()
         {
             // Read dataset

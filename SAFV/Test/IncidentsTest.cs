@@ -22,7 +22,7 @@ namespace SAFV.Test
                 var loginData = loginDataList[i];
                 var incidentData = incidentDataList[i];
 
-                Reporting.CreateTest("IncidentTest");
+                Reporting.CreateTest("MainIncidentCreateTest");
 
                 LoginPage loginPage = new LoginPage(_driver);
                 IncidentsPage incidentsPage = new IncidentsPage(_driver);
@@ -32,7 +32,7 @@ namespace SAFV.Test
                 loginPage.Login(loginData["Username"], loginData["Password"]);
                 incidentsPage.GoToIncidentPage();
 
-                incidentsPage.CreateIncident(incidentData);
+                incidentsPage.CreateNewIncident(incidentData);
             }
         }
 
@@ -52,7 +52,7 @@ namespace SAFV.Test
                 var loginData = loginDataList[i];
                 var incidentData = incidentDataList[i];
 
-                Reporting.CreateTest("IncidentTest");
+                Reporting.CreateTest("SupplementIncidentCreateTest");
 
                 LoginPage loginPage = new LoginPage(_driver);
                 IncidentsPage incidentsPage = new IncidentsPage(_driver);
@@ -62,7 +62,7 @@ namespace SAFV.Test
                 loginPage.Login(loginData["Username"], loginData["Password"]);
                 incidentsPage.GoToIncidentPage();
 
-                incidentsPage.CreateIncident(incidentData);
+                incidentsPage.CreateNewIncident(incidentData);
             }
         }
 
@@ -82,7 +82,7 @@ namespace SAFV.Test
                 var loginData = loginDataList[i];
                 var incidentData = incidentDataList[i];
 
-                Reporting.CreateTest("IncidentTest");
+                Reporting.CreateTest("ConfidentialIncidentCreateTest");
 
                 LoginPage loginPage = new LoginPage(_driver);
                 IncidentsPage incidentsPage = new IncidentsPage(_driver);
@@ -92,13 +92,13 @@ namespace SAFV.Test
                 loginPage.Login(loginData["Username"], loginData["Password"]);
                 incidentsPage.GoToIncidentPage();
 
-                incidentsPage.CreateIncident(incidentData);
+                incidentsPage.CreateNewIncident(incidentData);
             }
         }
 
 
         [Test]
-        public void CreateIncidentFullCycleTest()
+        public void CreateNewIncidentFullCycleTest()
         {
             // Read data
             var loginDataList = LoginDataReader.ReadLoginData();
@@ -116,6 +116,9 @@ namespace SAFV.Test
             var emergencyContactDataList = PeopleDataReader.ReadEmergencyContactData();
             var externalInfoDataList = PeopleDataReader.ReadExternalInfoData();
             var suspectEvidenceDataList = PeopleDataReader.ReadSuspectEvidenceData();
+            var masterSearchDataList = PeopleDataReader.ReadMasterSearchData();
+            var locationDataList = LocationDataReader.ReadLocationData();
+            var sceneDataList = LocationDataReader.ReadSceneData();
 
             int loginDataCount = loginDataList.Count();
 
@@ -137,24 +140,29 @@ namespace SAFV.Test
                 var emergencyContactData = emergencyContactDataList[i];
                 var externalInfoData = externalInfoDataList[i];
                 var suspectEvidenceData = suspectEvidenceDataList[i];
+                var masterSearchData = masterSearchDataList[i];
+                var locationData = locationDataList[i];
+                var sceneData = sceneDataList[i];
 
-                Reporting.CreateTest("IncidentTest");
+                Reporting.CreateTest("IncidentFullCycleTest");
 
                 LoginPage loginPage = new LoginPage(_driver);
                 IncidentsPage incidentsPage = new IncidentsPage(_driver);
                 IncidentInfoPage incidentInfoPage = new IncidentInfoPage(_driver);
                 PeoplePage peoplePage = new PeoplePage(_driver);
+                LocationPage locationPage = new LocationPage(_driver);
 
                 loginPage.GoToLoginPage();
 
                 loginPage.Login(loginData["Username"], loginData["Password"]);
                 incidentsPage.GoToIncidentPage();
 
-                incidentsPage.CreateIncident(incidentData);
+                incidentsPage.CreateNewIncident(incidentData);
                 incidentInfoPage.CreateIncidentInfo(incidentInfoData);
                 peoplePage.CreatePeople(victimData);
                 peoplePage.GoToPeoplePage();
-                peoplePage.CreatePeople(witnessData);
+                //peoplePage.CreatePeople(witnessData);
+                peoplePage.CreatePeopleFromMaster(masterSearchData);
                 peoplePage.GoToPeoplePage();
                 peoplePage.CreatePeople(optherPeopleData);
                 peoplePage.GoToPeoplePage();
@@ -166,6 +174,9 @@ namespace SAFV.Test
                 peoplePage.CreateEmergencyContact(emergencyContactData);
                 peoplePage.CreateExternalInfo(externalInfoData);
                 peoplePage.CreateExternalInfo(suspectEvidenceData);
+                locationPage.CreateLocation(locationData);
+                locationPage.CreateNewIncident(locationData);
+                locationPage.CreateScene(sceneData);
             }
         }
     }

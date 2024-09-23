@@ -24,6 +24,68 @@ namespace SAFV.Source.Pages.CreateIncident
             Click(IncidentMenuComponent.People);
         }
 
+        public void CreatePeopleFromMaster(Dictionary<string, string> searchData)
+        {
+            Reporting.AddTestScreenshot(_driver, "Incident Test");
+
+            Click(IncidentMenuComponent.People);
+            Click(PeopleComponent.AddPerson);
+            Click(PeopleComponent.SearchFromMaster);
+
+            if (searchData["SearchField"].ToLower() == "first name")
+            {
+                SendKeys(PeopleComponent.SearchFirstName, searchData["SearchText"]);
+            }
+            else if (searchData["SearchField"].ToLower() == "last name")
+            {
+                SendKeys(PeopleComponent.SearchLastName, searchData["SearchText"]);
+            }
+            else if (searchData["SearchField"].ToLower() == "middle name")
+            {
+                SendKeys(PeopleComponent.SearchMiddleName, searchData["SearchText"]);
+            }
+            else if (searchData["SearchField"].ToLower() == "palce of birth")
+            {
+                SendKeys(PeopleComponent.SearchPlaceOfBirth, searchData["SearchText"]);
+            }
+            else if (searchData["SearchField"].ToLower() == "place of employment")
+            {
+                SendKeys(PeopleComponent.SearchPlaceOfEmployment, searchData["SearchText"]);
+            }
+            else if (searchData["SearchField"].ToLower() == "ssn")
+            {
+                SendKeys(PeopleComponent.SearchSsn, searchData["SearchText"]);
+            }
+            else if (searchData["SearchField"].ToLower() == "id")
+            {
+                Click(PeopleComponent.SearchPersonIdType);
+                SelectOption(PeopleComponent.LstSearchPersonIdType, searchData["PersonIdType"]);
+                SendKeys(PeopleComponent.SearchId, searchData["SearchText"]);
+            }
+
+            Click(PeopleComponent.SearchButton);
+            Click(PeopleComponent.LoadFromMaster);
+
+            if (searchData["PersonType"].ToLower() == "witness")
+            {
+                Toggle(PeopleComponent.Witness, "1");
+            }
+            else if (searchData["PersonType"].ToLower() == "victim")
+            {
+                Toggle(PeopleComponent.Victim, "1");
+            }
+            else if (searchData["PersonType"].ToLower() == "suspect")
+            {
+                Toggle(PeopleComponent.Suspect, "1");
+            }
+            else if (searchData["PersonType"].ToLower() == "other")
+            {
+                Toggle(PeopleComponent.OtherNotInvolved, "1");
+            }
+
+            Click(PeopleComponent.SaveAndShowMore);
+        }
+
         public void CreatePeople(Dictionary<string, string> peopleData)
         {
             Reporting.AddTestScreenshot(_driver, "Incident Test");
@@ -78,7 +140,7 @@ namespace SAFV.Source.Pages.CreateIncident
                 SendKeys(PeopleComponent.DateOfBirth, peopleData["DateOfBirth"]);
             }
 
-            Click(PeopleComponent.Save);
+            Click(PeopleComponent.SaveAndShowMore);
 
             // more info
             Click(PeopleComponent.Ethnicity);
@@ -158,7 +220,7 @@ namespace SAFV.Source.Pages.CreateIncident
                 Click(PeopleComponent.SavePhoneNumber);
             }
 
-            if (!String.IsNullOrEmpty(peopleData["Address1"]))
+            /*if (!String.IsNullOrEmpty(peopleData["Address1"]))
             {
                 Click(PeopleComponent.AddNewAddress);
                 //Click(PeopleComponent.AddressGroup);
@@ -170,7 +232,8 @@ namespace SAFV.Source.Pages.CreateIncident
                 Click(PeopleComponent.County);
                 SelectOption(PeopleComponent.LstCounty, peopleData["County"]);
                 SendKeys(PeopleComponent.ZipCode, peopleData["ZipCode"]);
-            }
+                Click(PeopleComponent.SaveAddress);
+            }*/
 
             Click(PeopleComponent.SavePeople);
         }

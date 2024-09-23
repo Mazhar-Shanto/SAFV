@@ -29,7 +29,7 @@ namespace SAFV.Source.Components
                     // Exception handling can be implemented here if needed
                 }
 
-                Thread.Sleep(250);
+                Thread.Sleep(100);
 
                 if (element != null && element.Enabled)
                 {
@@ -60,7 +60,7 @@ namespace SAFV.Source.Components
                     // Exception handling can be implemented here if needed
                 }
 
-                Thread.Sleep(250);
+                Thread.Sleep(100);
 
                 if (elements != null)
                 {

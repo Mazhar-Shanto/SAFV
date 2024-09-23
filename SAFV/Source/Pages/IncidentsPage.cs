@@ -2,8 +2,6 @@
 using SAFV.Drivers;
 using SAFV.Source.Components;
 using SAFV.Source.Components.CreateIncident;
-using SAFV.Source.Components.CreateIncident.People;
-using SAFV.Source.Components.CreateIncident.People.Suspect;
 
 namespace SAFV.Source.Pages
 {
@@ -22,10 +20,10 @@ namespace SAFV.Source.Pages
         {
             Console.WriteLine("Incident -- " + MenuComponent.Incidents.Text);
             Click(MenuComponent.Incidents);
-            Click(MenuComponent.CreateNewIncident);
+            Click(MenuComponent.CreateNewIncidentButton);
         }
 
-        public void CreateIncident(Dictionary<string, string> incidentData)
+        public void CreateNewIncident(Dictionary<string, string> incidentData)
         {
             Reporting.AddTestScreenshot(_driver, "Incident Test");
 
