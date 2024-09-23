@@ -2,12 +2,10 @@
 using SAFV.Drivers;
 using SAFV.Source.Components;
 using SAFV.Source.Components.CreateIncident;
-using SAFV.Source.Components.CreateIncident.People;
-using SAFV.Source.Components.CreateIncident.People.Suspect;
 
 namespace SAFV.Source.Pages.CreateIncident
 {
-    public class IncidentInfoPage : BasePage
+    public class IncidentInfoPage : IncidentsPage
     {
         private IWebDriver _driver;
 

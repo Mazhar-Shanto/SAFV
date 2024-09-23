@@ -7,7 +7,7 @@ using SAFV.Source.Components.CreateIncident.People.Suspect;
 
 namespace SAFV.Source.Pages.CreateIncident
 {
-    public class PeoplePage : BasePage
+    public class PeoplePage : IncidentsPage
     {
         private IWebDriver _driver;
 
