@@ -107,9 +107,14 @@ namespace SAFV.Test
             var incidentDataList = IncidentDataReader.ReadIncidentData("Main");
             var incidentInfoDataList = IncidentInfoDataReader.ReadIncidentInfoData();
             var victimDataList = PeopleDataReader.ReadVictimData();
-            var suspectDataList = PeopleDataReader.ReadSuspectData();
             var witnessDataList = PeopleDataReader.ReadWitnessData();
             var otherPeopleDataList = PeopleDataReader.ReadOtherPeopleData();
+
+            var suspectDataList = PeopleDataReader.ReadSuspectData();
+            var suspectInterviewDataList = PeopleDataReader.ReadSuspectInterviewData();
+            var suspectInfoDataList = PeopleDataReader.ReadSuspectInfoData();
+            var emergencyContactDataList = PeopleDataReader.ReadEmergencyContactData();
+            var externalInfoDataList = PeopleDataReader.ReadExternalInfoData();
 
             int loginDataCount = loginDataList.Count();
 
@@ -120,9 +125,14 @@ namespace SAFV.Test
                 var incidentData = incidentDataList[i];
                 var incidentInfoData = incidentInfoDataList[i];
                 var victimData = victimDataList[i];
-                var suspectData = suspectDataList[i];
                 var witnessData = witnessDataList[i];
                 var optherPeopleData = otherPeopleDataList[i];
+
+                var suspectData = suspectDataList[i];
+                var suspectInterviewData = suspectInterviewDataList[i];
+                var suspectInfoData = suspectInfoDataList[i];
+                var emergencyContactData = emergencyContactDataList[i];
+                var externalInfoData = externalInfoDataList[i];
 
                 Reporting.CreateTest("IncidentTest");
 
@@ -139,11 +149,14 @@ namespace SAFV.Test
                 incidentsPage.CreateIncidentInfo(incidentInfoData);
                 incidentsPage.CreatePeople(victimData);
                 incidentsPage.GoToPeoplePage();
-                incidentsPage.CreatePeople(suspectData);
-                incidentsPage.GoToPeoplePage();
                 incidentsPage.CreatePeople(witnessData);
                 incidentsPage.GoToPeoplePage();
                 incidentsPage.CreatePeople(optherPeopleData);
+                incidentsPage.GoToPeoplePage();
+                incidentsPage.CreatePeople(suspectData);
+                incidentsPage.CreatePeopleInterview(suspectInterviewData);
+                incidentsPage.CreateSuspectInfo(suspectInfoData);
+                incidentsPage.CreateExternalInfo(externalInfoData);
             }
         }
     }

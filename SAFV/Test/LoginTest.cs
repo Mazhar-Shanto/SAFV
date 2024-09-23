@@ -43,7 +43,7 @@ namespace SAFV.Test
         [Test]
         public void a()
         {
-            string input = "FirstName\tLastName\tMiddleName\tAlias\tAliasDescription\tVictim\tSuspect\tWitness\tOtherNotInvolved\tVictimWouldLikeToUsePseudonym\tVictimRealFirstName\tVictimRealLastName\tVictimRealMiddleName\tWasPresent\tIsUnknownPerson\tRace\tSex\tDateOfBirth\tAge\tEthnicity\tEyeColor\tHairColor\tHeightFeet\tHeightInches\tWeight\tSsn\tPrimaryLanguage\tPersonIdType\tIdNumber\tIdState\tIdExpirationDate\tEmail\tSafeToContactViaEmail\tOccupation\tPlaceOfBirth\tNameOfEmployer\tScarsMarks\tTxSid\tSpecialNeeds\tHandcuffedPriorToArrest\tHandcuffReason\tIsPersonChild\tWasThisChildPresent\tDidTheyAttemptToIntervene\tPrimaryCaretakerOfChild\tPersonGivenMirandaWarning\tMirandaWarningDate\tMirandaWarningTime\tStatementsMadeAfterMiranda\tIsPersonElderly\tIsPersonDisabled\tPhoneType\tPhoneNumber\tPrimaryContact\tAddressGroup\tAddress1\tAddress2\tCity\tState\tCounty\tZipCode";
+            string input = "EvidenceType\tEvidenceDisposition\tCollectedFromPerson\tPerson\tPersonNotListed\tPersonName\tWhereFound\tEvidenceDescription\tWasSeized\tTypeOfWeapon\tEvidenceSerialNumber\tWeaponManufacturer\tWeaponCaliber\tEvidenceCollectedBy";
 
             // Split the string into words, ignoring multiple spaces
             string[] words = input.Split(new[] { "\t" }, StringSplitOptions.RemoveEmptyEntries);
@@ -52,7 +52,7 @@ namespace SAFV.Test
             // Print each word on a new line
             foreach (string word in words)
             {
-                Console.WriteLine("peopleColumnList.AddColumn(\"" + word + "\", \"" + word + "\");");
+                Console.WriteLine("suspectEvidenceColumnList.AddColumn(\"" + word + "\", \"" + word + "\");");
                 count++;
             }
 
