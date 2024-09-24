@@ -17,7 +17,7 @@ namespace SAFV.Source.Components.CreateIncident.Location
         public static IWebElement County => WaitAndFindElement(By.XPath("//*[@id=\"addressinfoform\"]/div/div[1]/div[7]/div[2]/span[1]"));
         public static IList<IWebElement> LstCounty => WaitAndFindElements(By.XPath("//*[@id=\"County_listbox\"]/li"));
         public static IWebElement ZipCode => WaitAndFindElement(By.Id("ZipCode"));
-        public static IWebElement DispatchedLocation => WaitAndFindElement(By.Id("//*[@id=\"addressinfoform\"]/div/div[1]/div[9]/div/span[1]"));
+        public static IWebElement DispatchedLocation => WaitAndFindElement(By.XPath("//*[@id=\"addressinfoform\"]/div/div[1]/div[9]/div/span[1]"));
         public static IWebElement SaveLoaction => WaitAndFindElement(By.XPath("//*[@id=\"addressinfoform\"]/div/div[2]/div/div/button"));
         public static IWebElement CancelLoaction => WaitAndFindElement(By.XPath("//*[@id=\"addressinfoform\"]/div/div[2]/div/div/a"));
 

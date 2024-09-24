@@ -19,28 +19,27 @@ namespace SAFV.Source.Pages.CreateIncident
         public void GoToLocationPage()
         {
             Console.WriteLine("Incident -- " + MenuComponent.Incidents.Text);
-            Click(IncidentMenuComponent.Incident);
+            Click(IncidentMenuComponent.Locations);
         }
 
         public void CreateLocation(Dictionary<string, string> locationData)
         {
             Reporting.AddTestScreenshot(_driver, "Incident Test");
 
-            Click(IncidentMenuComponent.Locations);
             Click(LocationComponent.AddLocation);
 
             Click(LocationComponent.LocationType);
-            SelectOption(LocationComponent.LstLocationType, locationData[""]);
+            SelectOption(LocationComponent.LstLocationType, locationData["LocationType"]);
             Click(LocationComponent.AddressGroup);
-            SelectOption(LocationComponent.LstAddressGroup, locationData[""]);
-            SendKeys(LocationComponent.Address1, locationData[""]);
-            SendKeys(LocationComponent.Address2, locationData[""]);
-            SendKeys(LocationComponent.City, locationData[""]);
-            SendKeys(LocationComponent.State, locationData[""]);
+            SelectOption(LocationComponent.LstAddressGroup, locationData["AddressGroup"]);
+            SendKeys(LocationComponent.Address1, locationData["Address1"]);
+            SendKeys(LocationComponent.Address2, locationData["Address2"]);
+            SendKeys(LocationComponent.City, locationData["City"]);
+            SendKeys(LocationComponent.State, locationData["State"]);
             Click(LocationComponent.County);
-            SelectOption(LocationComponent.LstCounty, locationData[""]);
-            SendKeys(LocationComponent.ZipCode, locationData[""]);
-            Toggle(LocationComponent.DispatchedLocation, locationData[""]);
+            SelectOption(LocationComponent.LstCounty, locationData["County"]);
+            SendKeys(LocationComponent.ZipCode, locationData["ZipCode"]);
+            Toggle(LocationComponent.DispatchedLocation, locationData["DispatchedLocation"]);
 
             Click(LocationComponent.SaveLoaction);
         }
@@ -72,14 +71,14 @@ namespace SAFV.Source.Pages.CreateIncident
 
                 if (sceneData["DamagedKickedRemovedDoor"].ToLower() == "yes" || sceneData["DamagedKickedRemovedDoor"].ToLower() == "true" || sceneData["DamagedKickedRemovedDoor"].ToLower() == "1")
                 {
-                    Toggle(SceneComponent.DoorToWhichRoom, sceneData["DoorToWhichRoom"]);
+                    SendKeys(SceneComponent.DoorToWhichRoom, sceneData["DoorToWhichRoom"]);
                 }
 
                 Toggle(SceneComponent.ForcedEntry, sceneData["ForcedEntry"]);
 
                 if (sceneData["ForcedEntry"].ToLower() == "yes" || sceneData["ForcedEntry"].ToLower() == "true" || sceneData["ForcedEntry"].ToLower() == "1")
                 {
-                    Toggle(SceneComponent.WhichLocation, sceneData["WhichLocation"]);
+                    SendKeys(SceneComponent.WhichLocation, sceneData["WhichLocation"]);
                 }
 
                 Toggle(SceneComponent.DrugsParaphernalia, sceneData["DrugsParaphernalia"]);
@@ -88,10 +87,10 @@ namespace SAFV.Source.Pages.CreateIncident
 
                 if (sceneData["Other"].ToLower() == "yes" || sceneData["Other"].ToLower() == "true" || sceneData["Other"].ToLower() == "1")
                 {
-                    Toggle(SceneComponent.OtherDescription, sceneData["OtherDescription"]);
+                    SendKeys(SceneComponent.OtherDescription, sceneData["OtherDescription"]);
                 }
 
-                Toggle(SceneComponent.DescribeSceneUponYourArrival, sceneData["DescribeSceneUponYourArrival"]);
+                SendKeys(SceneComponent.DescribeSceneUponYourArrival, sceneData["DescribeSceneUponYourArrival"]);
             }
 
             Click(SceneComponent.SaveScene);

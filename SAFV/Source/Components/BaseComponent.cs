@@ -1,6 +1,7 @@
 ﻿using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
 using OpenQA.Selenium.Interactions;
+using AngleSharp.Dom;
 
 namespace SAFV.Source.Components
 {
@@ -12,7 +13,8 @@ namespace SAFV.Source.Components
         public static IWebElement WaitAndFindElement(By by)
         {
             IWebElement element = null;
-            int maxTry = 3;
+            int maxTry = 5;
+            int trying = 6;
 
             // This will try 3 times to find an element
             while (maxTry > 0)
@@ -23,22 +25,25 @@ namespace SAFV.Source.Components
 
                     Actions actions = new Actions(_driver);
                     actions.MoveToElement(element).Perform();
+                    return element;
                 }
                 catch (Exception)
                 {
-                    // Exception handling can be implemented here if needed
+                    Console.WriteLine("Element not found on try " + (trying - maxTry));
+                    Thread.Sleep(1000);
+                    maxTry--;
                 }
 
-                Thread.Sleep(100);
+                //Thread.Sleep(100);
 
-                if (element != null && element.Enabled)
+                /*if (element != null && element.Enabled)
                 {
                     break;
                 }
                 else
                 {
                     maxTry--;
-                }
+                }*/
             }
             return element;
         }
@@ -46,7 +51,8 @@ namespace SAFV.Source.Components
         public static IList<IWebElement> WaitAndFindElements(By by)
         {
             IList<IWebElement> elements = null;
-            int maxTry = 3;
+            int maxTry = 5;
+            int trying = 6;
 
             // This will try 3 times to find an element list
             while (maxTry > 0)
@@ -54,22 +60,25 @@ namespace SAFV.Source.Components
                 try
                 {
                     elements = _wait.Until(driver => driver.FindElements(by));
+                    return elements;
                 }
                 catch (Exception)
                 {
-                    // Exception handling can be implemented here if needed
+                    Console.WriteLine("Element not found on try " + (trying - maxTry));
+                    Thread.Sleep(1000);
+                    maxTry--;
                 }
 
-                Thread.Sleep(100);
+                //Thread.Sleep(100);
 
-                if (elements != null)
+                /*if (elements != null)
                 {
                     break;
                 }
                 else
                 {
                     maxTry--;
-                }
+                }*/
             }
             return elements;
         }

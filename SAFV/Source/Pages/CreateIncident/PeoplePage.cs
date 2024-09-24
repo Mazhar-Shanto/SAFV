@@ -141,6 +141,11 @@ namespace SAFV.Source.Pages.CreateIncident
             }
 
             Click(PeopleComponent.SaveAndShowMore);
+        }
+
+        public void CreatePeopleMoreInfo(Dictionary<string, string> peopleData)
+        {
+            Reporting.AddTestScreenshot(_driver, "Incident Test");
 
             // more info
             Click(PeopleComponent.Ethnicity);
@@ -235,6 +240,15 @@ namespace SAFV.Source.Pages.CreateIncident
                 Click(PeopleComponent.SaveAddress);
             }*/
 
+            if (peopleData["SyncToMaster"].ToLower() == "true" || peopleData["SyncToMaster"].ToLower() == "yes" || peopleData["SyncToMaster"].ToLower() == "1")
+            {
+                Click(PeopleComponent.SyncToMaster);
+            }
+            else
+            {
+                Click(PeopleComponent.NoSyncToMaster);
+            }
+
             Click(PeopleComponent.SavePeople);
         }
 
@@ -267,14 +281,14 @@ namespace SAFV.Source.Pages.CreateIncident
 
                 if (peopleInterviewData["DeEscalation"].ToLower() == "true" || peopleInterviewData["DeEscalation"].ToLower() == "yes" || peopleInterviewData["DeEscalation"].ToLower() == "1")
                 {
-                    Toggle(InterviewComponent.DeEscalationDescription, peopleInterviewData["DeEscalationDescription"]);
+                    SendKeys(InterviewComponent.DeEscalationDescription, peopleInterviewData["DeEscalationDescription"]);
                 }
 
                 Toggle(InterviewComponent.IndicationOfViolence, peopleInterviewData["IndicationOfViolence"]);
 
                 if (peopleInterviewData["IndicationOfViolence"].ToLower() == "true" || peopleInterviewData["IndicationOfViolence"].ToLower() == "yes" || peopleInterviewData["IndicationOfViolence"].ToLower() == "1")
                 {
-                    Toggle(InterviewComponent.IndicationOfViolenceDescription, peopleInterviewData["IndicationOfViolenceDescription"]);
+                    SendKeys(InterviewComponent.IndicationOfViolenceDescription, peopleInterviewData["IndicationOfViolenceDescription"]);
                 }
 
                 SendKeys(InterviewComponent.InjuriesToOthers, peopleInterviewData["InjuriesToOthers"]);
@@ -456,7 +470,7 @@ namespace SAFV.Source.Pages.CreateIncident
 
             if (demeanorData["AppearanceOther"].ToLower() == "yes" || demeanorData["AppearanceOther"].ToLower() == "true" || demeanorData["AppearanceOther"].ToLower() == "1")
             {
-                SendKeys(DemeanorComponent.AppearanceOtherDescription, demeanorData["AppearanceOtherDescription"]);
+                //SendKeys(DemeanorComponent.AppearanceOtherDescription, demeanorData["AppearanceOtherDescription"]);
             }
 
             // Demeanor
@@ -480,7 +494,7 @@ namespace SAFV.Source.Pages.CreateIncident
 
             if (demeanorData["DemeanorOther"].ToLower() == "yes" || demeanorData["DemeanorOther"].ToLower() == "true" || demeanorData["DemeanorOther"].ToLower() == "1")
             {
-                SendKeys(DemeanorComponent.DemeanorOtherDescription, demeanorData["DemeanorOtherDescription"]);
+                //SendKeys(DemeanorComponent.DemeanorOtherDescription, demeanorData["DemeanorOtherDescription"]);
             }
 
             // Speech
@@ -497,7 +511,7 @@ namespace SAFV.Source.Pages.CreateIncident
 
             if (demeanorData["SpeechOther"].ToLower() == "yes" || demeanorData["SpeechOther"].ToLower() == "true" || demeanorData["SpeechOther"].ToLower() == "1")
             {
-                SendKeys(DemeanorComponent.SpeechOtherDescription, demeanorData["SpeechOtherDescription"]);
+                //SendKeys(DemeanorComponent.SpeechOtherDescription, demeanorData["SpeechOtherDescription"]);
             }
 
             Click(DemeanorComponent.SaveDemeanorInfo);
@@ -541,7 +555,7 @@ namespace SAFV.Source.Pages.CreateIncident
                 SelectOption(ExternalInfoComponent.LstMilitaryType, externalInfoData["MilitaryType"]);
                 Click(ExternalInfoComponent.Branch);
                 SelectOption(ExternalInfoComponent.LstBranch, externalInfoData["Branch"]);
-                Toggle(ExternalInfoComponent.Stationed, externalInfoData["Stationed"]);
+                SendKeys(ExternalInfoComponent.Stationed, externalInfoData["Stationed"]);
             }
 
             Toggle(ExternalInfoComponent.AlcoholInvolved, externalInfoData["AlcoholInvolved"]);
@@ -582,7 +596,7 @@ namespace SAFV.Source.Pages.CreateIncident
 
             if (suspectEvidenceData["CollectedFromPerson"].ToLower() == "yes" || suspectEvidenceData["CollectedFromPerson"].ToLower() == "true" || suspectEvidenceData["CollectedFromPerson"].ToLower() == "1")
             {
-                if (!string.IsNullOrEmpty(suspectEvidenceData[""]))
+                if (!string.IsNullOrEmpty(suspectEvidenceData["Person"]))
                 {
                     Click(SuspectEvidenceComponent.Person);
                     SelectOption(SuspectEvidenceComponent.LstPerson, suspectEvidenceData["Person"]);
@@ -623,12 +637,12 @@ namespace SAFV.Source.Pages.CreateIncident
                 SendKeys(SuspectEvidenceComponent.EvidenceSerialNumber, suspectEvidenceData["EvidenceSerialNumber"]);
             }
 
-            if (!string.IsNullOrEmpty(suspectEvidenceData[""]))
+            if (!string.IsNullOrEmpty(suspectEvidenceData["EvidenceCollectedBy"]))
             {
                 SendKeys(SuspectEvidenceComponent.EvidenceCollectedBy, suspectEvidenceData["EvidenceCollectedBy"]);
             }
 
-            Click(ExternalInfoComponent.SaveExternalInfo);
+            Click(SuspectEvidenceComponent.SaveEvidence);
         }
     }
 }

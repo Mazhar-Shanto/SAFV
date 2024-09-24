@@ -26,8 +26,8 @@ namespace SAFV.Source.Components.CreateIncident.People.Suspect
         public static IWebElement WeaponCaliber => WaitAndFindElement(By.XPath("//*[@id=\"person-evidance-form\"]/div/div[7]/div[3]/div[3]/div/span[1]"));
         public static IList<IWebElement> LstWeaponCaliber => WaitAndFindElements(By.XPath("//*[@id=\"WeaponCaliberId_listbox\"]/li"));
         public static IWebElement EvidenceCollectedBy => WaitAndFindElement(By.Id("CollectedBy"));
-        public static IWebElement SaveEvidence => WaitAndFindElement(By.XPath("//*[@id=\"extended-info-form\"]/div[2]/div/div/button"));
-        public static IWebElement CancelEvidence => WaitAndFindElement(By.XPath("//*[@id=\"extended-info-form\"]/div[2]/div/div/a"));
+        public static IWebElement SaveEvidence => WaitAndFindElement(By.XPath("//*[@id=\"person-evidance-form\"]/div/div[9]/div/div/button"));
+        public static IWebElement CancelEvidence => WaitAndFindElement(By.XPath("//*[@id=\"person-evidance-form\"]/div/div[9]/div/div/a"));
 
 
         public SuspectEvidenceComponent(IWebDriver driver) : base(driver)

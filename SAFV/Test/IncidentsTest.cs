@@ -119,6 +119,12 @@ namespace SAFV.Test
             var masterSearchDataList = PeopleDataReader.ReadMasterSearchData();
             var locationDataList = LocationDataReader.ReadLocationData();
             var sceneDataList = LocationDataReader.ReadSceneData();
+            var offenseDataList = OffenseDataReader.ReadOffenseData();
+            var offenseSceneDataList = OffenseDataReader.ReadSceneData();
+            var biasDataList = OffenseDataReader.ReadBiasData();
+            var mannerDataList = OffenseDataReader.ReadMannerData();
+            var useOfWeaponDataList = OffenseDataReader.ReadUseOfWeaponData();
+            var aggAssaultDataList = OffenseDataReader.ReadAggAssaultData();
 
             int loginDataCount = loginDataList.Count();
 
@@ -143,6 +149,12 @@ namespace SAFV.Test
                 var masterSearchData = masterSearchDataList[i];
                 var locationData = locationDataList[i];
                 var sceneData = sceneDataList[i];
+                var offenseData = offenseDataList[i];
+                var offenseSceneData = offenseSceneDataList[i];
+                var biasData = biasDataList[i];
+                var mannerData = mannerDataList[i];
+                var useOfWeaponData = useOfWeaponDataList[i];
+                var aggAssaultData = aggAssaultDataList[i];
 
                 Reporting.CreateTest("IncidentFullCycleTest");
 
@@ -151,6 +163,7 @@ namespace SAFV.Test
                 IncidentInfoPage incidentInfoPage = new IncidentInfoPage(_driver);
                 PeoplePage peoplePage = new PeoplePage(_driver);
                 LocationPage locationPage = new LocationPage(_driver);
+                OffensePage offensePage = new OffensePage(_driver);
 
                 loginPage.GoToLoginPage();
 
@@ -158,25 +171,37 @@ namespace SAFV.Test
                 incidentsPage.GoToIncidentPage();
 
                 incidentsPage.CreateNewIncident(incidentData);
-                incidentInfoPage.CreateIncidentInfo(incidentInfoData);
+                /*incidentInfoPage.CreateIncidentInfo(incidentInfoData);
                 peoplePage.CreatePeople(victimData);
+                peoplePage.CreatePeopleMoreInfo(victimData);
                 peoplePage.GoToPeoplePage();
                 //peoplePage.CreatePeople(witnessData);
+                peoplePage.CreatePeopleMoreInfo(witnessData);
                 peoplePage.CreatePeopleFromMaster(masterSearchData);
                 peoplePage.GoToPeoplePage();
                 peoplePage.CreatePeople(optherPeopleData);
+                peoplePage.CreatePeopleMoreInfo(optherPeopleData);
                 peoplePage.GoToPeoplePage();
                 peoplePage.CreatePeople(suspectData);
+                peoplePage.CreatePeopleMoreInfo(suspectData);
                 peoplePage.CreatePeopleInterview(suspectInterviewData);
                 peoplePage.CreateSuspectInfo(suspectInfoData);
                 peoplePage.CreateMedicalEms(medicalEmsData);
                 peoplePage.CreateDemeanorInfo(demeanorData);
                 peoplePage.CreateEmergencyContact(emergencyContactData);
                 peoplePage.CreateExternalInfo(externalInfoData);
-                peoplePage.CreateExternalInfo(suspectEvidenceData);
+                peoplePage.CreateSuspectEvidence(suspectEvidenceData);
+                locationPage.GoToLocationPage();
                 locationPage.CreateLocation(locationData);
-                locationPage.CreateNewIncident(locationData);
-                locationPage.CreateScene(sceneData);
+                locationPage.CreateScene(sceneData);*/
+                offensePage.GoToOffensePage();
+                offensePage.CreateOffense(offenseData);
+                offensePage.CreateScene(offenseSceneData);
+                offensePage.CreateBias(biasData);
+                offensePage.CreateManner(mannerData);
+                offensePage.CreateUseOfWeapon(useOfWeaponData);
+                offensePage.CreateAggAssault(aggAssaultData);
+                offensePage.CreatePcNarrative();
             }
         }
     }

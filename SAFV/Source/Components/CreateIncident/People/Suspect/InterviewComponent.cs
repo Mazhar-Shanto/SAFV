@@ -22,7 +22,7 @@ namespace SAFV.Source.Components.CreateIncident.People.Suspect
         public static IWebElement IndicationOfViolence => WaitAndFindElement(By.XPath("//*[@id=\"personInterviewform\"]/div/div[3]/div[13]/div/span[1]"));
         public static IWebElement IndicationOfViolenceDescription => WaitAndFindElement(By.Id("IndOfViolenceDesc"));
         public static IWebElement InjuriesToOthers => WaitAndFindElement(By.Id("OtherInjuries"));
-        public static IWebElement Admission => WaitAndFindElement(By.XPath("//*[@id=\"personInterviewform\"]/div/div[3]/div[17]/div[1]/div/span[1]"));
+        public static IWebElement Admission => WaitAndFindElement(By.XPath("//*[@id=\"personInterviewform\"]/div/div[3]/div[18]/div/span[1]"));
         public static IWebElement SaveInterview => WaitAndFindElement(By.XPath("//*[@id=\"personInterviewform\"]/div/div[4]/div/div/button"));
         public static IWebElement CancelInterview => WaitAndFindElement(By.Id("interviewCancelId"));
 

@@ -70,6 +70,7 @@ namespace SAFV.Helper
             peopleColumnList.AddColumn("State", "State");
             peopleColumnList.AddColumn("County", "County");
             peopleColumnList.AddColumn("ZipCode", "ZipCode");
+            peopleColumnList.AddColumn("SyncToMaster", "SyncToMaster");
 
             return peopleColumnList;
         }
@@ -325,7 +326,7 @@ namespace SAFV.Helper
 
 
             var projectRoot = Utils.GetProjectRoot();
-            var filePath = Path.Combine(projectRoot, "Helper/TestData/CreateIncident/People/SuspectData/medical ems data.xlsx");
+            var filePath = Path.Combine(projectRoot, "Helper/TestData/CreateIncident/People/SuspectData/demeanor data.xlsx");
 
             Console.WriteLine(filePath);
             var dataSet = new DataSet(demeanorColumnList);
@@ -415,7 +416,7 @@ namespace SAFV.Helper
 
 
             var projectRoot = Utils.GetProjectRoot();
-            var filePath = Path.Combine(projectRoot, "Helper/TestData/CreateIncident/People/SuspectData/external info data.xlsx");
+            var filePath = Path.Combine(projectRoot, "Helper/TestData/CreateIncident/People/SuspectData/suspect evidence data.xlsx");
 
             Console.WriteLine(filePath);
             var dataSet = new DataSet(suspectEvidenceColumnList);

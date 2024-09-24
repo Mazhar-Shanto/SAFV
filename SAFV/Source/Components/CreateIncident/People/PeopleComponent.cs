@@ -119,6 +119,8 @@ namespace SAFV.Source.Components.CreateIncident.People
 
 
 
+        public static IWebElement SyncToMaster => WaitAndFindElement(By.Id("btnSyncConfirmation"));
+        public static IWebElement NoSyncToMaster => WaitAndFindElement(By.Id("btnNoSyncConfirmation"));
         public static IWebElement SavePeople => WaitAndFindElement(By.XPath("//*[@id=\"createbasicinfoform\"]/div/div[20]/div/div/button"));
         public static IWebElement CancelPeople => WaitAndFindElement(By.XPath("//*[@id=\"createbasicinfoform\"]/div/div[20]/div/div/a"));
 

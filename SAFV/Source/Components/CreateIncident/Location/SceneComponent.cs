@@ -1,7 +1,7 @@
 ﻿using AventStack.ExtentReports.Gherkin.Model;
 using OpenQA.Selenium;
 
-namespace SAFV.Source.Components.CreateIncident
+namespace SAFV.Source.Components.CreateIncident.Location
 {
     public class SceneComponent : BaseComponent
     {
