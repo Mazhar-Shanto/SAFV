@@ -141,6 +141,73 @@ namespace SAFV.Source.Pages
             }
         }
 
+        public void Radio(IList<IWebElement> elements, string s)
+        {
+            int maxTry = 5;
+            string label = "";
+            string selectedOption = "";
+
+
+            // This will try 5 times to click an element
+            while (maxTry > 0)
+            {
+                if (label.Length == 0)
+                {
+                    label = Utils.GetLabelName(elements.ElementAt(0));
+                }
+
+
+                try
+                {
+                    if (s.ToLower() == "yes" || s == "true" || s == "1")
+                    {
+                        selectedOption = elements.ElementAt(0).Text;
+                        elements.ElementAt(0).Click();
+                    }
+                    else if (s.ToLower() == "no" || s == "false" || s == "0")
+                    {
+                        selectedOption = elements.ElementAt(1).Text;
+                        elements.ElementAt(1).Click();
+                    }
+                    else
+                    {
+                        selectedOption = elements.ElementAt(2).Text;
+                        elements.ElementAt(2).Click();
+                    }
+                    Reporting.SetStepStatusPass($"Select radio option <b>{selectedOption}</b> from <b style=\"color:blue;\">{label}</b>", _driver);
+                    return; // Click was successful, exit the method
+                }
+                catch (ElementClickInterceptedException e)
+                {
+                    // Log or handle ElementClickInterceptedException
+                    Console.WriteLine("ElementClickInterceptedException caught: " + e.Message);
+                    Reporting.SetStepStatusFail($"Select radio option <b>{selectedOption}</b> from <b style=\"color:blue;\">{label}</b> failed", _driver);
+                    Thread.Sleep(2000); // Wait before retrying
+                }
+                catch (StaleElementReferenceException e)
+                {
+                    // Log or handle StaleElementReferenceException
+                    Console.WriteLine("StaleElementReferenceException caught: " + e.Message);
+                    Reporting.SetStepStatusFail($"Select radio option <b>{selectedOption}</b> from <b style=\"color:blue;\">{label}</b> failed", _driver);
+                    Thread.Sleep(2000); // Wait before retrying
+                }
+                catch (Exception e)
+                {
+                    // Log or handle other exceptions
+                    Console.WriteLine("Exception caught: " + e.Message);
+                    Reporting.SetStepStatusFail($"Select radio option <b>{selectedOption}</b> from <b style=\"color:blue;\">{label}</b> failed", _driver);
+                    Thread.Sleep(2000); // Wait before retrying
+                }
+
+                maxTry--;
+            }
+
+            // If we exit the loop without clicking, throw an exception
+            Reporting.SetStepStatusFail($"Select radio option <b>{selectedOption}</b> from <b style=\"color:blue;\">{label}</b> failed", _driver);
+            throw new Exception("Failed to select the radio element after multiple attempts");
+
+        }
+
         public void SendKeys(IWebElement element, string value)
         {
             int maxTry = 5;

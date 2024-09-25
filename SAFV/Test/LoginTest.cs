@@ -43,7 +43,7 @@ namespace SAFV.Test
         [Test]
         public void a()
         {
-            string input = "Person\tWeaponType\tOtherDescription\tNoEvidence\tNoEvidenceReason\tEvidence\tSelfDefence\tThirdParty\tDisplayedOnly";
+            string input = "OffenseGroup\tRequestedByVictim\tRequestedByGuardian\tGuardiansName\tRequestedByOfficer\tRequestedByState\tStateAttorneyName\tRequestedByMagistrate\tMagistratesName\tHoldRequested\tHour24\tHour48\tExplainHold\tJudicialOrganization\tSignEpo\tWitnessIsLocal\tSignerName\tJudge";
 
             // Split the string into words, ignoring multiple spaces
             string[] words = input.Split(new[] { "\t" }, StringSplitOptions.RemoveEmptyEntries);
@@ -52,7 +52,7 @@ namespace SAFV.Test
             // Print each word on a new line
             foreach (string word in words)
             {
-                Console.WriteLine("useOfWeaponColumnList.AddColumn(\"" + word + "\", \"" + word + "\");");
+                Console.WriteLine("epoColumnList.AddColumn(\"" + word + "\", \"" + word + "\");");
                 count++;
             }
 

@@ -42,7 +42,7 @@ namespace SAFV.Source.Pages.CreateIncident
             Click(OffenseComponent.SaveOffense);
         }
 
-        public void CreateScene(Dictionary<string, string> sceneData)
+        public void CreateOffenceScene(Dictionary<string, string> sceneData)
         {
             Reporting.AddTestScreenshot(_driver, "Incident Test");
 
@@ -165,6 +165,55 @@ namespace SAFV.Source.Pages.CreateIncident
             }
 
             Click(MannerComponent.SaveManner);
+        }
+
+        public void CreateRiskAssessment(Dictionary<string, string> riskAssessmentData)
+        {
+            Reporting.AddTestScreenshot(_driver, "Incident Test");
+
+            Click(OffenseMenuComponent.RiskAssessment);
+
+            Radio(OffenseRiskAssessmentComponent.FamilyViolenceLikelyToOccur, riskAssessmentData["FamilyViolenceLikelyToOccur"]);
+            Radio(OffenseRiskAssessmentComponent.UsedOrThreatenedWithWeapon, riskAssessmentData["UsedOrThreatenedWithWeapon"]);
+            Radio(OffenseRiskAssessmentComponent.ThreatenedToKill, riskAssessmentData["ThreatenedToKill"]);
+            Radio(OffenseRiskAssessmentComponent.SuspectHasGun, riskAssessmentData["SuspectHasGun"]);
+
+            if (riskAssessmentData["SuspectHasGun"].ToLower() == "true" || riskAssessmentData["SuspectHasGun"].ToLower() == "yes" || riskAssessmentData["SuspectHasGun"].ToLower() == "1")
+            {
+                SendKeys(OffenseRiskAssessmentComponent.GunDetailsInfo, riskAssessmentData["GunDetailsInfo"]);
+            }
+
+            Radio(OffenseRiskAssessmentComponent.Strangulation, riskAssessmentData["Strangulation"]);
+            Radio(OffenseRiskAssessmentComponent.Violence, riskAssessmentData["Violence"]);
+            Radio(OffenseRiskAssessmentComponent.Jealousy, riskAssessmentData["Jealousy"]);
+            Radio(OffenseRiskAssessmentComponent.Controlling, riskAssessmentData["Controlling"]);
+            Radio(OffenseRiskAssessmentComponent.ViolenceIncreased, riskAssessmentData["ViolenceIncreased"]);
+
+            if (riskAssessmentData["ViolenceIncreased"].ToLower() == "true" || riskAssessmentData["ViolenceIncreased"].ToLower() == "yes" || riskAssessmentData["ViolenceIncreased"].ToLower() == "1")
+            {
+                SendKeys(OffenseRiskAssessmentComponent.ViolenceIncreasedDescription, riskAssessmentData["ViolenceIncreasedDescription"]);
+            }
+
+            Radio(OffenseRiskAssessmentComponent.DestroyedItems, riskAssessmentData["DestroyedItems"]);
+            Radio(OffenseRiskAssessmentComponent.HurtPets, riskAssessmentData["HurtPets"]);
+            Radio(OffenseRiskAssessmentComponent.Unemployed, riskAssessmentData["Unemployed"]);
+            Radio(OffenseRiskAssessmentComponent.Suicidal, riskAssessmentData["Suicidal"]);
+            Radio(OffenseRiskAssessmentComponent.Spying, riskAssessmentData["Spying"]);
+            Radio(OffenseRiskAssessmentComponent.ThreateningMessages, riskAssessmentData["ThreateningMessages"]);
+            Radio(OffenseRiskAssessmentComponent.AlcoholAbuse, riskAssessmentData["AlcoholAbuse"]);
+            Radio(OffenseRiskAssessmentComponent.DrugUse, riskAssessmentData["DrugUse"]);
+            Radio(OffenseRiskAssessmentComponent.MightKillYou, riskAssessmentData["MightKillYou"]);
+            Radio(OffenseRiskAssessmentComponent.ForcedSex, riskAssessmentData["ForcedSex"]);
+            Radio(OffenseRiskAssessmentComponent.Separation, riskAssessmentData["Separation"]);
+            Radio(OffenseRiskAssessmentComponent.RecentSeparation, riskAssessmentData["RecentSeparation"]);
+            Radio(OffenseRiskAssessmentComponent.UnrelatedChild, riskAssessmentData["UnrelatedChild"]);
+            Radio(OffenseRiskAssessmentComponent.PriorContacts, riskAssessmentData["PriorContacts"]);
+            Radio(OffenseRiskAssessmentComponent.CourtAction, riskAssessmentData["CourtAction"]);
+            SendKeys(OffenseRiskAssessmentComponent.AdditionalInfo, riskAssessmentData["AdditionalInfo"]);
+            SendKeys(OffenseRiskAssessmentComponent.PriorProtectiveOrder, riskAssessmentData["PriorProtectiveOrder"]);
+            SendKeys(OffenseRiskAssessmentComponent.DateTimeOfAssessment, riskAssessmentData["DateTimeOfAssessment"]);
+
+            Click(OffenseRiskAssessmentComponent.SaveRiskAssessment);
         }
 
         public void CreateUseOfWeapon(Dictionary<string, string> useOfWeaponData)

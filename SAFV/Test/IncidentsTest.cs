@@ -123,8 +123,11 @@ namespace SAFV.Test
             var offenseSceneDataList = OffenseDataReader.ReadSceneData();
             var biasDataList = OffenseDataReader.ReadBiasData();
             var mannerDataList = OffenseDataReader.ReadMannerData();
+            var offenseRiskAssessmentDataList = OffenseDataReader.ReadOffenseRiskAssessmentData();
             var useOfWeaponDataList = OffenseDataReader.ReadUseOfWeaponData();
             var aggAssaultDataList = OffenseDataReader.ReadAggAssaultData();
+            var riskAssessmentDataList = RiskAssessmentDataReader.ReadRiskAssessmentData();
+            var epoDataList = EpoDataReader.ReadEpoData();
 
             int loginDataCount = loginDataList.Count();
 
@@ -153,8 +156,11 @@ namespace SAFV.Test
                 var offenseSceneData = offenseSceneDataList[i];
                 var biasData = biasDataList[i];
                 var mannerData = mannerDataList[i];
+                var offenseRiskAssessmentData = offenseRiskAssessmentDataList[i];
                 var useOfWeaponData = useOfWeaponDataList[i];
                 var aggAssaultData = aggAssaultDataList[i];
+                var riskAssessmentData = riskAssessmentDataList[i];
+                var epoData = epoDataList[i];
 
                 Reporting.CreateTest("IncidentFullCycleTest");
 
@@ -164,6 +170,8 @@ namespace SAFV.Test
                 PeoplePage peoplePage = new PeoplePage(_driver);
                 LocationPage locationPage = new LocationPage(_driver);
                 OffensePage offensePage = new OffensePage(_driver);
+                RiskAssessmentPage riskAssessmentPage = new RiskAssessmentPage(_driver);
+                EpoBookingPage epoBookingPage = new EpoBookingPage(_driver);
 
                 loginPage.GoToLoginPage();
 
@@ -171,12 +179,12 @@ namespace SAFV.Test
                 incidentsPage.GoToIncidentPage();
 
                 incidentsPage.CreateNewIncident(incidentData);
-                /*incidentInfoPage.CreateIncidentInfo(incidentInfoData);
+                incidentInfoPage.CreateIncidentInfo(incidentInfoData);
                 peoplePage.CreatePeople(victimData);
                 peoplePage.CreatePeopleMoreInfo(victimData);
                 peoplePage.GoToPeoplePage();
                 //peoplePage.CreatePeople(witnessData);
-                peoplePage.CreatePeopleMoreInfo(witnessData);
+                //peoplePage.CreatePeopleMoreInfo(witnessData);
                 peoplePage.CreatePeopleFromMaster(masterSearchData);
                 peoplePage.GoToPeoplePage();
                 peoplePage.CreatePeople(optherPeopleData);
@@ -193,15 +201,20 @@ namespace SAFV.Test
                 peoplePage.CreateSuspectEvidence(suspectEvidenceData);
                 locationPage.GoToLocationPage();
                 locationPage.CreateLocation(locationData);
-                locationPage.CreateScene(sceneData);*/
+                locationPage.CreateScene(sceneData);
                 offensePage.GoToOffensePage();
                 offensePage.CreateOffense(offenseData);
-                offensePage.CreateScene(offenseSceneData);
+                offensePage.CreateOffenceScene(offenseSceneData);
                 offensePage.CreateBias(biasData);
                 offensePage.CreateManner(mannerData);
+                offensePage.CreateRiskAssessment(offenseRiskAssessmentData);
                 offensePage.CreateUseOfWeapon(useOfWeaponData);
                 offensePage.CreateAggAssault(aggAssaultData);
                 offensePage.CreatePcNarrative();
+                riskAssessmentPage.GoToRiskAssessmentPage();
+                riskAssessmentPage.CreateRiskAssessment(riskAssessmentData);
+                epoBookingPage.GoToEpoBookingPage();
+                epoBookingPage.CreateEpoRequest(epoData);
             }
         }
     }
