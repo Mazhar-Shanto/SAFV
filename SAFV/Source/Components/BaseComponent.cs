@@ -1,9 +1,8 @@
 ﻿using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
 using OpenQA.Selenium.Interactions;
-using System;
-using System.Collections.Generic;
-using System.Threading;
+using AngleSharp.Dom;
+using System.Xml.Linq;
 
 namespace SAFV.Source.Components
 {
@@ -15,7 +14,8 @@ namespace SAFV.Source.Components
         public static IWebElement WaitAndFindElement(By by)
         {
             IWebElement element = null;
-            int maxTry = 3;
+            int maxTry = 5;
+            int trying = 6;
 
             // This will try 3 times to find an element
             while (maxTry > 0)
@@ -29,10 +29,11 @@ namespace SAFV.Source.Components
                 }
                 catch (Exception)
                 {
-                    // Exception handling can be implemented here if needed
+                    Console.WriteLine("Element not found on try " + (trying - maxTry));
+                    Thread.Sleep(1000);
                 }
 
-                Thread.Sleep(250);
+                //Thread.Sleep(100);
 
                 if (element != null && element.Enabled)
                 {
@@ -49,7 +50,8 @@ namespace SAFV.Source.Components
         public static IList<IWebElement> WaitAndFindElements(By by)
         {
             IList<IWebElement> elements = null;
-            int maxTry = 3;
+            int maxTry = 5;
+            int trying = 6;
 
             // This will try 3 times to find an element list
             while (maxTry > 0)
@@ -60,10 +62,11 @@ namespace SAFV.Source.Components
                 }
                 catch (Exception)
                 {
-                    // Exception handling can be implemented here if needed
+                    Console.WriteLine("Element not found on try " + (trying - maxTry));
+                    Thread.Sleep(1000);
                 }
 
-                Thread.Sleep(250);
+                //Thread.Sleep(100);
 
                 if (elements != null)
                 {

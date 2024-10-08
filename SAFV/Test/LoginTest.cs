@@ -1,6 +1,7 @@
 ﻿using SAFV.Drivers;
 using SAFV.Source.Pages;
 using SAFV.Helper;
+using SAFV.Helper.Log;
 
 namespace SAFV.Test
 {
@@ -40,10 +41,10 @@ namespace SAFV.Test
             }
         }
 
-        [Test]
+        /*[Test]
         public void a()
         {
-            string input = "OfficerBadgeNumber\tOfficerRank\tDistrict\tChildrenInvolved\tRequiresCpsNotification\tCpsHaveBeenCalled\tCpsNumber\tCpsNotifedAt\tCpsSafetyIssues\tOfficerPrimaryConcern\tSuspectedMethManufacture\tSensitiveIssues\tCovid19Exposure\tHowPoliceContacted\tWhatWasBeingReported\tDispatchedDate\tDispatchedTime";
+            string input = "ActsOfFamilyViolence\tStalking\tDirectCommunication\tThreatCommunication\tAnyCommunication\tPhysicalDistance\tYards\tPossessFirearm\tNearResidence\tNearPlaceOfEmployment\tNearSchool\tTracking\tGpsMonitoring\tGpsMonitoringDescription\tHumanTrafficking\tVictimNotification\tCourtAppearance\tVictimContact\tApproachResidence\tSchoolDaycare\tWeapons\tAlcoholDrugs\tPrescriptionMedications\tDrugTest\tCourtOrder\tOffense\tOtherConditions\tOtherConditionsDescription";
 
             // Split the string into words, ignoring multiple spaces
             string[] words = input.Split(new[] { "\t" }, StringSplitOptions.RemoveEmptyEntries);
@@ -52,7 +53,7 @@ namespace SAFV.Test
             // Print each word on a new line
             foreach (string word in words)
             {
-                Console.WriteLine("incidentInfoColumnList.AddColumn(\"" + word + "\", \"" + word + "\");");
+                Console.WriteLine("courtEpoConditionsColumnList.AddColumn(\"" + word + "\", \"" + word + "\");");
                 count++;
             }
 
@@ -60,6 +61,6 @@ namespace SAFV.Test
             Console.WriteLine("");
             Console.WriteLine("");
             Console.WriteLine(count);
-        }
+        }*/
     }
 }
