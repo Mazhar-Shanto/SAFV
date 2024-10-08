@@ -5,6 +5,7 @@ namespace SAFV.Source.Components.CreateIncident.People
     public class PeopleMenuComponent : BaseComponent
     {
         // Elements
+        public static IWebElement Header => WaitAndFindElement(By.Id("form-header"));
         public static IWebElement BasicInfo => WaitAndFindElement(By.XPath("//*[@id=\"incident-info-side-bar\"]/li[1]/a"));
         public static IWebElement Interview => WaitAndFindElement(By.Id("interview-nav-item"));
         public static IWebElement Suspect => WaitAndFindElement(By.Id("suspect_tab"));

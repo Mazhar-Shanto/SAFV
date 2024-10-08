@@ -29,7 +29,9 @@ namespace SAFV.Source.Pages.CreateIncident
             Reporting.AddTestScreenshot(_driver, "Incident Test");
 
             Click(OffenseComponent.AddOffense);
-            
+
+            //VerifyPageLabel(OffenseComponent.AddOffense, OffenseComponent.TabTitle.Text.ToLower(), "offense");
+
             Click(OffenseComponent.Suspect);
             Click(OffenseComponent.LstSuspect);
             Click(OffenseComponent.Victim);
@@ -38,6 +40,8 @@ namespace SAFV.Source.Pages.CreateIncident
             SendKeys(OffenseComponent.TimeOfOffense, offenseData["TimeOfOffense"]);
             Click(OffenseComponent.OffenseLocation);
             Click(OffenseComponent.LstOffenseLocation);
+            Click(OffenseComponent.OffenseType);
+            Click(OffenseComponent.LstOffenseType);
 
             Click(OffenseComponent.SaveOffense);
         }
@@ -47,6 +51,8 @@ namespace SAFV.Source.Pages.CreateIncident
             Reporting.AddTestScreenshot(_driver, "Incident Test");
 
             Click(OffenseMenuComponent.Scene);
+
+            VerifyPageLabel(OffenseMenuComponent.Scene, OffenseComponent.TabTitle.Text.ToLower(), "scene");
 
             Toggle(SceneComponent.DidNotVisitScene, sceneData["DidNotVisitScene"]);
 
@@ -100,6 +106,8 @@ namespace SAFV.Source.Pages.CreateIncident
 
             Click(OffenseMenuComponent.Bias);
 
+            VerifyPageLabel(OffenseMenuComponent.Bias, OffenseComponent.TabTitle.Text.ToLower(), "bias");
+
             Toggle(BiasComponent.ByGender, biasData["ByGender"]);
             Click(BiasComponent.GenderBias);
             SelectOption(BiasComponent.LstGenderBias, biasData["GenderBias"]);
@@ -131,6 +139,9 @@ namespace SAFV.Source.Pages.CreateIncident
 
             Click(OffenseMenuComponent.Manner);
 
+            VerifyPageLabel(OffenseMenuComponent.Manner, OffenseComponent.TabTitle.Text.ToLower(), "manner");
+
+            Click(MannerComponent.AddNewManner);
             Click(MannerComponent.ActionOfSuspect);
             SelectOption(MannerComponent.LstActionOfSuspect, mannerData["ActionOfSuspect"]);
 
@@ -172,6 +183,8 @@ namespace SAFV.Source.Pages.CreateIncident
             Reporting.AddTestScreenshot(_driver, "Incident Test");
 
             Click(OffenseMenuComponent.RiskAssessment);
+
+            VerifyPageLabel(OffenseMenuComponent.RiskAssessment, OffenseComponent.TabTitle.Text.ToLower(), "risk assessment");
 
             Radio(OffenseRiskAssessmentComponent.FamilyViolenceLikelyToOccur, riskAssessmentData["FamilyViolenceLikelyToOccur"]);
             Radio(OffenseRiskAssessmentComponent.UsedOrThreatenedWithWeapon, riskAssessmentData["UsedOrThreatenedWithWeapon"]);
@@ -222,6 +235,9 @@ namespace SAFV.Source.Pages.CreateIncident
 
             Click(OffenseMenuComponent.UseOfWeapon);
 
+            VerifyPageLabel(OffenseMenuComponent.UseOfWeapon, OffenseComponent.TabTitle.Text.ToLower(), "weapon");
+
+            Click(UseOfWeaponComponent.CreateNewUseOfWeapon);
             Click(UseOfWeaponComponent.Person);
             Click(UseOfWeaponComponent.LstPerson);
             Click(UseOfWeaponComponent.WeaponType);
@@ -235,7 +251,7 @@ namespace SAFV.Source.Pages.CreateIncident
             if (useOfWeaponData["WeaponType"].ToLower() != "motor vehicle" || useOfWeaponData["WeaponType"].ToLower() != "personal weapons (hands,feet,fist,teeth,etc.)" || useOfWeaponData["WeaponType"].ToLower() != "unknown" || useOfWeaponData["WeaponType"].ToLower() != "other")
             {
                 Toggle(UseOfWeaponComponent.NoEvidence, useOfWeaponData["NoEvidence"]);
-                
+
                 if (useOfWeaponData["NoEvidence"].ToLower() == "true" || useOfWeaponData["NoEvidence"].ToLower() == "yes" || useOfWeaponData["NoEvidence"].ToLower() == "1")
                 {
                     SendKeys(UseOfWeaponComponent.NoEvidenceReason, useOfWeaponData["NoEvidenceReason"]);
@@ -257,6 +273,8 @@ namespace SAFV.Source.Pages.CreateIncident
             Reporting.AddTestScreenshot(_driver, "Incident Test");
 
             Click(OffenseMenuComponent.AggAssault);
+
+            VerifyPageLabel(OffenseMenuComponent.AggAssault, OffenseComponent.TabTitle.Text.ToLower(), "assault");
 
             Toggle(AggAssaultComponent.SeriousBodilyInjury, aggAssaultData["SeriousBodilyInjury"]);
 
@@ -310,6 +328,8 @@ namespace SAFV.Source.Pages.CreateIncident
 
             Click(OffenseMenuComponent.PcNarrative);
 
+            VerifyPageLabel(OffenseMenuComponent.AggAssault, OffenseComponent.TabTitle.Text.ToLower(), "narrative");
+
             Click(PcNarrativeComponent.GeneratePcNarrative);
 
             Thread.Sleep(5000);
@@ -317,6 +337,10 @@ namespace SAFV.Source.Pages.CreateIncident
             if (string.IsNullOrEmpty(PcNarrativeComponent.NarrativeText.Text))
             {
                 Reporting.SetStepStatusFail("Narrative not generated!!!", _driver);
+            }
+            else
+            {
+                Click(PcNarrativeComponent.CopyAndPaste);
             }
 
             Click(PcNarrativeComponent.SavePcNarrative);

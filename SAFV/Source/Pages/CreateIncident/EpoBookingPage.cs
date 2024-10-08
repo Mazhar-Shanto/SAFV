@@ -95,6 +95,7 @@ namespace SAFV.Source.Pages.CreateIncident
                         Click(SignEpoComponent.GoToSignature);
 
                         Thread.Sleep(2000);
+                        Click(SignEpoComponent.ClearSign);
                         Draw(SignEpoComponent.SignatureCanvas, 60, 40, -60, 40);
                         Draw(SignEpoComponent.SignatureCanvas, -60, 40, -60, 0);
                         Draw(SignEpoComponent.SignatureCanvas, -60, 0, 60, 0);
@@ -103,7 +104,7 @@ namespace SAFV.Source.Pages.CreateIncident
                         Click(SignEpoComponent.SetupAndSign);
                         Click(SignEpoComponent.PlaceSignature);
                         Click(SignEpoComponent.SubmitSignature);
-                        Click(SignEpoComponent.ApprovePcAffidavit);
+                        Click(SignEpoComponent.Approve);
                     }
                 }
 
@@ -117,9 +118,6 @@ namespace SAFV.Source.Pages.CreateIncident
                 Reporting.SetStepStatusFail("Suspect not arrested. Can not generate EPO.", _driver);
                 return;
             }
-
-
-            
         }
     }
 }

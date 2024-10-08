@@ -5,7 +5,7 @@ namespace SAFV.Source.Components.CreateIncident.People.Suspect
     public class SuspectEvidenceComponent : BaseComponent
     {
         // Elements
-        public static IWebElement AddEvidence => WaitAndFindElement(By.XPath("//*[@id=\"master-container\"]/div[1]/div/a"));
+        public static IWebElement AddSuspectEvidence => WaitAndFindElement(By.XPath("//*[@id=\"master-container\"]/div[1]/div/a"));
         public static IWebElement EvidenceType => WaitAndFindElement(By.XPath("//*[@id=\"person-evidance-form\"]/div/div[1]/div/span[1]"));
         public static IList<IWebElement> LstEvidenceType => WaitAndFindElements(By.XPath("//*[@id=\"EvidenceTypeId_listbox\"]/li"));
         public static IWebElement EvidenceDisposition => WaitAndFindElement(By.XPath("//*[@id=\"person-evidance-form\"]/div/div[2]/div/span[1]"));

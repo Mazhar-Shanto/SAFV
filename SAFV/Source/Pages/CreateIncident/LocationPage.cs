@@ -3,6 +3,7 @@ using SAFV.Drivers;
 using SAFV.Source.Components;
 using SAFV.Source.Components.CreateIncident;
 using SAFV.Source.Components.CreateIncident.Location;
+using SAFV.Source.Components.CreateIncident.People;
 
 namespace SAFV.Source.Pages.CreateIncident
 {
@@ -28,6 +29,8 @@ namespace SAFV.Source.Pages.CreateIncident
 
             Click(LocationComponent.AddLocation);
 
+            //VerifyPageLabel(LocationComponent.AddLocation, LocationComponent.TabTitle.Text.ToLower(), "location info");
+
             Click(LocationComponent.LocationType);
             SelectOption(LocationComponent.LstLocationType, locationData["LocationType"]);
             Click(LocationComponent.AddressGroup);
@@ -49,6 +52,8 @@ namespace SAFV.Source.Pages.CreateIncident
             Reporting.AddTestScreenshot(_driver, "Incident Test");
 
             Click(LocationMenuComponent.Scene);
+
+            VerifyPageLabel(LocationMenuComponent.Scene, LocationComponent.TabTitle.Text.ToLower(), "scene");
 
             Toggle(SceneComponent.DidNotVisitScene, sceneData["DidNotVisitScene"]);
 
@@ -94,6 +99,18 @@ namespace SAFV.Source.Pages.CreateIncident
             }
 
             Click(SceneComponent.SaveScene);
+        }
+
+        public bool AttachLocationFromMainCase()
+        {
+            Reporting.AddTestScreenshot(_driver, "Incident Test");
+
+            Click(LocationComponent.SelectAllMainLocation);
+            Click(PeopleComponent.AttachToSupplement);
+
+            bool allPeoplePresent = PeopleComponent.LstAllMainPeopleNew.All(people => PeopleComponent.LstAllMainPeopleOld.Contains(people));
+
+            return allPeoplePresent;
         }
     }
 }

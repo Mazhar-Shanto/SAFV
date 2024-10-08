@@ -37,5 +37,22 @@ namespace SAFV.Helper
 
             return epoData;
         }
+
+
+        public static List<Dictionary<string, string>> ReadEpoLogData()
+        {
+            // Read dataset
+            var epoColumnList = new ColumnList();
+            epoColumnList.AddColumn("EpoCaseNumber", "EpoCaseNumber");
+
+            var projectRoot = Utils.GetProjectRoot();
+            var filePath = Path.Combine(projectRoot, "Helper/Log/epo log.xlsx");
+
+            Console.WriteLine(filePath);
+            var dataSet = new DataSet(epoColumnList);
+            var epoData = dataSet.ReadData(filePath);
+
+            return epoData;
+        }
     }
 }

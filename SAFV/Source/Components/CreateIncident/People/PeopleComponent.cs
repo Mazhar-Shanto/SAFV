@@ -5,6 +5,16 @@ namespace SAFV.Source.Components.CreateIncident.People
     public class PeopleComponent : BaseComponent
     {
         // Elements
+        public static IWebElement TabTitle => WaitAndFindElement(By.Id("seletedTabTitle"));
+        public static IWebElement SeeMaster => WaitAndFindElement(By.XPath("//*[@id=\"person-page\"]/div/div[1]/div/div/div/header/div[3]/div/div/a[1]"));
+        public static IWebElement SelectAllMainPeople => WaitAndFindElement(By.XPath("//*[@id=\"master_case_people-grid\"]/table/thead/tr/th[6]/input"));
+        public static IList<IWebElement> LstAllMainPeopleOld => WaitAndFindElements(By.XPath("//*[@id=\"master_case_people-grid\"]/table/tbody/tr/td[2]"));
+        public static IList<IWebElement> LstAllMainPeopleNew => WaitAndFindElements(By.XPath("//*[@id=\"module-container\"]/div/div[2]/table/tbody/tr/td[2]"));
+        public static IWebElement AttachToSupplement => WaitAndFindElement(By.Id("pdf"));
+        public static IWebElement SeeLog => WaitAndFindElement(By.Id("logs_menu"));
+        public static IWebElement ViewLogHistory => WaitAndFindElement(By.XPath("//*[@id=\"master-log_grid\"]/div[2]/table/tbody/tr[1]/td[7]/a"));
+        public static IWebElement PreviousDataLastName => WaitAndFindElement(By.Id("PreviousData_LastName"));
+        public static IWebElement ChangedDataLastName => WaitAndFindElement(By.Id("ChangedData_LastName"));
         public static IWebElement AddPerson => WaitAndFindElement(By.XPath("//*[@id=\"module-container\"]/div/div[1]/div/div[2]/a"));
         public static IWebElement FirstName => WaitAndFindElement(By.Id("FirstName"));
         public static IWebElement LastName => WaitAndFindElement(By.Id("LastName"));

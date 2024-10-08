@@ -5,6 +5,7 @@ namespace SAFV.Source.Components.CreateIncident.Offense
     public class OffenseComponent : BaseComponent
     {
         // Elements
+        public static IWebElement TabTitle => WaitAndFindElement(By.Id("seletedTabTitle"));
         public static IWebElement AddOffense => WaitAndFindElement(By.XPath("//*[@id=\"module-container\"]/div/div[1]/div/div[2]/a"));
         public static IWebElement Suspect => WaitAndFindElement(By.XPath("//*[@id=\"collapse_3_1\"]/div/div/div[1]/div/span[1]"));
         public static IWebElement LstSuspect => WaitAndFindElement(By.XPath("//*[@id=\"IncidentPersonId_listbox\"]/li[1]"));

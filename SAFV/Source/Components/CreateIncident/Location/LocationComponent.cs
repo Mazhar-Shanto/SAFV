@@ -5,7 +5,12 @@ namespace SAFV.Source.Components.CreateIncident.Location
     public class LocationComponent : BaseComponent
     {
         // Elements
+        public static IWebElement TabTitle => WaitAndFindElement(By.Id("seletedTabTitle"));
         public static IWebElement AddLocation => WaitAndFindElement(By.XPath("//*[@id=\"module-container\"]/div/div[1]/div/div[2]/a"));
+        public static IWebElement SelectAllMainLocation => WaitAndFindElement(By.XPath("//*[@id=\"master_case_location-grid\"]/table/thead/tr/th[9]/input"));
+        public static IWebElement AttachToSupplement => WaitAndFindElement(By.Id("pdf"));
+        public static IList<IWebElement> LstAllMainLocationOld => WaitAndFindElements(By.XPath("//*[@id=\"master_case_location-grid\"]/table/tbody/tr/td[2]"));
+        public static IList<IWebElement> LstAllMainLocationNew => WaitAndFindElements(By.XPath("//*[@id=\"module-container\"]/div/div[2]/table/tbody/tr/td[2]/a"));
         public static IWebElement LocationType => WaitAndFindElement(By.XPath("//*[@id=\"addressinfoform\"]/div/div[1]/div[1]/div/span[1]"));
         public static IList<IWebElement> LstLocationType => WaitAndFindElements(By.XPath("//*[@id=\"AddressTypeId_listbox\"]/li"));
         public static IWebElement AddressGroup => WaitAndFindElement(By.XPath("//*[@id=\"addressinfoform\"]/div/div[1]/div[2]/div/span[1]"));

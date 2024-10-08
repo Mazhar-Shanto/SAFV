@@ -4,6 +4,7 @@ using SAFV.Source.Components;
 using OpenQA.Selenium.Interactions;
 using SAFV.Drivers;
 using SAFV.Utility;
+using SAFV.Source.Components.CreateIncident.People;
 
 namespace SAFV.Source.Pages
 {
@@ -31,6 +32,7 @@ namespace SAFV.Source.Pages
                 try
                 {
                     element.Click();
+                    Console.WriteLine("Try click: " + label);
                     Reporting.SetStepStatusPass($"Click <b style=\"color:blue;\">{label}</b>", _driver);
                     return; // Click was successful, exit the method
                 }
@@ -151,10 +153,10 @@ namespace SAFV.Source.Pages
             // This will try 5 times to click an element
             while (maxTry > 0)
             {
-                if (label.Length == 0)
+                /*if (label.Length == 0)
                 {
                     label = Utils.GetLabelName(elements.ElementAt(0));
-                }
+                }*/
 
 
                 try
@@ -174,7 +176,7 @@ namespace SAFV.Source.Pages
                         selectedOption = elements.ElementAt(2).Text;
                         elements.ElementAt(2).Click();
                     }
-                    Reporting.SetStepStatusPass($"Select radio option <b>{selectedOption}</b> from <b style=\"color:blue;\">{label}</b>", _driver);
+                    Reporting.SetStepStatusPass($"Select radio option <b>{selectedOption}</b>", _driver);/* from <b style=\"color:blue;\">{label}</b>*/
                     return; // Click was successful, exit the method
                 }
                 catch (ElementClickInterceptedException e)
@@ -465,6 +467,34 @@ namespace SAFV.Source.Pages
                 element.FindElement(By.XPath(childLocator)).Click();
                 string searchValue = Utils.GetLabelName(element.FindElement(By.XPath(childLocator)));
                 Reporting.SetStepStatusPass($"Select option <b>{searchValue}</b>", _driver);
+            }
+        }
+
+        public void VerifyPageLabel(IWebElement element, string headerText, string searchText)
+        {
+            int maxTry = 5;
+            while (maxTry > 0)
+            {
+                try
+                {
+                    if (headerText.ToLower().Contains(searchText))
+                    {
+                        Console.WriteLine(headerText);
+                        break;
+                    }
+                    else
+                    {
+                        Console.WriteLine("Label not found");
+                        Thread.Sleep(2000);
+                        element.Click();
+                    }
+                }
+                catch (Exception ex)
+                {
+
+                }
+
+                maxTry--;
             }
         }
 

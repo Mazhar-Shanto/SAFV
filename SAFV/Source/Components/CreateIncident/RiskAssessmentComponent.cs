@@ -19,7 +19,7 @@ namespace SAFV.Source.Components.CreateIncident.Offense
         public static IList<IWebElement> Violence => WaitAndFindElements(By.XPath("//*[@id=\"risk-assessment-form\"]/div/div[9]/div/label"));
         public static IList<IWebElement> Jealousy => WaitAndFindElements(By.XPath("//*[@id=\"risk-assessment-form\"]/div/div[10]/div/label"));
         public static IList<IWebElement> Controlling => WaitAndFindElements(By.XPath("//*[@id=\"risk-assessment-form\"]/div/div[11]/div/label"));
-        public static IList<IWebElement> ViolenceIncreased => WaitAndFindElements(By.XPath("//*[@id=\"risk-assessment-form\"]/div/div[11]/div/label"));
+        public static IList<IWebElement> ViolenceIncreased => WaitAndFindElements(By.XPath("//*[@id=\"risk-assessment-form\"]/div/div[12]/div/label"));
         public static IWebElement ViolenceIncreasedDescription => WaitAndFindElement(By.Id("IncreaseInViolenceDesc"));
         public static IList<IWebElement> DestroyedItems => WaitAndFindElements(By.XPath("//*[@id=\"risk-assessment-form\"]/div/div[14]/div/label"));
         public static IList<IWebElement> HurtPets => WaitAndFindElements(By.XPath("//*[@id=\"risk-assessment-form\"]/div/div[15]/div/label"));
@@ -39,8 +39,8 @@ namespace SAFV.Source.Components.CreateIncident.Offense
         public static IWebElement AdditionalInfo => WaitAndFindElement(By.Id("AdditionalInformation"));
         public static IWebElement PriorProtectiveOrder => WaitAndFindElement(By.Id("PriorProtectiveOrder"));
         public static IWebElement DateTimeOfAssessment => WaitAndFindElement(By.Id("AssessmentDate"));
-        public static IWebElement SaveRiskAssessment => WaitAndFindElement(By.XPath("//*[@id=\"risk-assessment-form\"]/div/div[30]/div/button"));
-        public static IWebElement CancelRiskAssessment => WaitAndFindElement(By.XPath("//*[@id=\"risk-assessment-form\"]/div/div[30]/div/a"));
+        public static IWebElement SaveRiskAssessment => WaitAndFindElement(By.XPath("//*[@id=\"risk-assessment-form\"]/div/div[32]/div/button"));
+        public static IWebElement CancelRiskAssessment => WaitAndFindElement(By.XPath("//*[@id=\"risk-assessment-form\"]/div/div[32]/div/a"));
 
         public RiskAssessmentComponent(IWebDriver driver) : base(driver)
         {

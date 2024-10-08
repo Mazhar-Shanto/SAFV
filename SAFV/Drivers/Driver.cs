@@ -18,7 +18,7 @@ namespace SAFV.Drivers
             options.AddArgument("no-sandbox");
             //options.AddArgument("test-type");
             options.AddArgument("disable-notifications");
-            //options.AddUserProfilePreference("autofill.profile_enabled", false);
+            options.AddUserProfilePreference("autofill.profile_enabled", false);
 
             new DriverManager().SetUpDriver(new ChromeConfig());
             _driver = new ChromeDriver(ChromeDriverService.CreateDefaultService(), options, TimeSpan.FromMinutes(3));

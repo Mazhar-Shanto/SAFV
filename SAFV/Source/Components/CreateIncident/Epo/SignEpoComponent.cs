@@ -13,13 +13,16 @@ namespace SAFV.Source.Components.CreateIncident.Epo
         public static IWebElement GoToSignature => WaitAndFindElement(By.Id("signatureAction"));
         public static IWebElement PlaceSignature => WaitAndFindElement(By.Id("signatureDiv_1"));
         public static IWebElement SignatureCanvas => WaitAndFindElement(By.Id("softpad"));
+        public static IWebElement ClearSign => WaitAndFindElement(By.Id("tx-sign-setup-clear"));
+        public static IWebElement RestoreSign => WaitAndFindElement(By.Id("tx-sign-setup-retrieve"));
+        public static IWebElement UploadSign => WaitAndFindElement(By.Id("tx_signature_upload"));
         public static IWebElement SetupAndSign => WaitAndFindElement(By.Id("tx_signature_sign"));
         public static IWebElement CancelSigning => WaitAndFindElement(By.Id("tx_signature_cancel"));
         public static IWebElement SubmitSignature => WaitAndFindElement(By.Id("//*[@id=\"signatureModal\"]/div/div/div[2]/div[1]/button[1]"));
         public static IWebElement ReSign => WaitAndFindElement(By.Id("//*[@id=\"signatureModal\"]/div/div/div[2]/div[1]/button[2]"));
-        public static IWebElement ApprovePcAffidavit => WaitAndFindElement(By.Id("/html/body/div/div[1]/div[1]/div/div/div[2]/div/div[1]/a[1]"));
-        public static IWebElement ReSignPcAffidavit => WaitAndFindElement(By.Id("/html/body/div/div[1]/div[1]/div/div/div[2]/div/div[1]/a[2]"));
-        public static IWebElement RejectPcAffidavit => WaitAndFindElement(By.Id("/html/body/div/div[1]/div[1]/div/div/div[2]/div/div[1]/a[3]"));
+        public static IWebElement Approve => WaitAndFindElement(By.Id("/html/body/div/div[1]/div[1]/div/div/div[2]/div/div[1]/a[1]"));
+        public static IWebElement SignAgain => WaitAndFindElement(By.Id("/html/body/div/div[1]/div[1]/div/div/div[2]/div/div[1]/a[2]"));
+        public static IWebElement Reject => WaitAndFindElement(By.Id("/html/body/div/div[1]/div[1]/div/div/div[2]/div/div[1]/a[3]"));
 
         public SignEpoComponent(IWebDriver driver) : base(driver)
         {

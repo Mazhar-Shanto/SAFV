@@ -11,6 +11,10 @@ namespace SAFV.Helper
             var loginColumnList = new ColumnList();
             loginColumnList.AddColumn("Username", "Username");
             loginColumnList.AddColumn("Password", "Password");
+            loginColumnList.AddColumn("Username2", "Username2");
+            loginColumnList.AddColumn("Password2", "Password2");
+            loginColumnList.AddColumn("JudgeUsername", "JudgeUsername");
+            loginColumnList.AddColumn("JudgePassword", "JudgePassword");
 
             var projectRoot = Utils.GetProjectRoot();
             var filePath = Path.Combine(projectRoot, "Helper/TestData/login data.xlsx");

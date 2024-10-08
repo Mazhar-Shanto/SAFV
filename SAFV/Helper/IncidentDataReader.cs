@@ -37,5 +37,25 @@ namespace SAFV.Helper
 
             return incidentData;
         }
+
+        public static List<Dictionary<string, string>> ReadIncidentCount()
+        {
+            // Read dataset
+            var logColumnList = new ColumnList();
+            logColumnList.AddColumn("CaseCount", "CaseCount");
+            logColumnList.AddColumn("CaseNumber", "CaseNumber");
+            logColumnList.AddColumn("SupplementCount", "SupplementCount");
+            logColumnList.AddColumn("SupplementNumber", "SupplementNumber");
+            logColumnList.AddColumn("MainCaseForSupplement", "MainCaseForSupplement");
+
+            var projectRoot = Utils.GetProjectRoot();
+            var filePath = Path.Combine(projectRoot, "Helper/Log/test log.xlsx");
+
+            Console.WriteLine(filePath);
+            var dataSet = new DataSet(logColumnList);
+            var logData = dataSet.ReadData(filePath);
+
+            return logData;
+        }
     }
 }

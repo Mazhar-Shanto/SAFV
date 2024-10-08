@@ -2,6 +2,7 @@
 using OpenQA.Selenium.Support.UI;
 using OpenQA.Selenium.Interactions;
 using AngleSharp.Dom;
+using System.Xml.Linq;
 
 namespace SAFV.Source.Components
 {
@@ -25,25 +26,23 @@ namespace SAFV.Source.Components
 
                     Actions actions = new Actions(_driver);
                     actions.MoveToElement(element).Perform();
-                    return element;
                 }
                 catch (Exception)
                 {
                     Console.WriteLine("Element not found on try " + (trying - maxTry));
                     Thread.Sleep(1000);
-                    maxTry--;
                 }
 
                 //Thread.Sleep(100);
 
-                /*if (element != null && element.Enabled)
+                if (element != null && element.Enabled)
                 {
                     break;
                 }
                 else
                 {
                     maxTry--;
-                }*/
+                }
             }
             return element;
         }
@@ -60,25 +59,23 @@ namespace SAFV.Source.Components
                 try
                 {
                     elements = _wait.Until(driver => driver.FindElements(by));
-                    return elements;
                 }
                 catch (Exception)
                 {
                     Console.WriteLine("Element not found on try " + (trying - maxTry));
                     Thread.Sleep(1000);
-                    maxTry--;
                 }
 
                 //Thread.Sleep(100);
 
-                /*if (elements != null)
+                if (elements != null)
                 {
                     break;
                 }
                 else
                 {
                     maxTry--;
-                }*/
+                }
             }
             return elements;
         }

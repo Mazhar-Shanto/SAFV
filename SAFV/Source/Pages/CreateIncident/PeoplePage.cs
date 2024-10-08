@@ -30,6 +30,9 @@ namespace SAFV.Source.Pages.CreateIncident
 
             Click(IncidentMenuComponent.People);
             Click(PeopleComponent.AddPerson);
+
+            //VerifyPageLabel(PeopleComponent.AddPerson, PeopleComponent.TabTitle.Text.ToLower(), "basic info");
+
             Click(PeopleComponent.SearchFromMaster);
 
             if (searchData["SearchField"].ToLower() == "first name")
@@ -92,6 +95,9 @@ namespace SAFV.Source.Pages.CreateIncident
 
             Click(IncidentMenuComponent.People);
             Click(PeopleComponent.AddPerson);
+
+            //VerifyPageLabel(PeopleComponent.AddPerson, PeopleComponent.TabTitle.Text.ToLower(), "basic info");
+
             SendKeys(PeopleComponent.FirstName, peopleData["FirstName"]);
             SendKeys(PeopleComponent.LastName, peopleData["LastName"]);
             SendKeys(PeopleComponent.MiddleName, peopleData["MiddleName"]);
@@ -258,6 +264,8 @@ namespace SAFV.Source.Pages.CreateIncident
 
             Click(PeopleMenuComponent.Interview);
 
+            VerifyPageLabel(PeopleMenuComponent.Interview, PeopleComponent.TabTitle.Text.ToLower(), "interview");
+
             Toggle(InterviewComponent.PersonWasInterviewed, peopleInterviewData["PersonWasInterviewed"]);
 
             if (peopleInterviewData["PersonWasInterviewed"].ToLower() == "true" || peopleInterviewData["PersonWasInterviewed"].ToLower() == "yes" || peopleInterviewData["PersonWasInterviewed"].ToLower() == "1")
@@ -307,6 +315,8 @@ namespace SAFV.Source.Pages.CreateIncident
             Reporting.AddTestScreenshot(_driver, "Incident Test");
 
             Click(PeopleMenuComponent.Suspect);
+
+            VerifyPageLabel(PeopleMenuComponent.Suspect, PeopleComponent.TabTitle.Text.ToLower(), "suspect");
 
             Toggle(SuspectComponent.SuspectWasOnScene, suspectData["SuspectWasOnScene"]);
 
@@ -409,8 +419,10 @@ namespace SAFV.Source.Pages.CreateIncident
         public void CreateMedicalEms(Dictionary<string, string> medicalData)
         {
             Reporting.AddTestScreenshot(_driver, "Incident Test");
-
+            Thread.Sleep(10000);
             Click(PeopleMenuComponent.MedicalEms);
+
+            VerifyPageLabel(PeopleMenuComponent.MedicalEms, PeopleComponent.TabTitle.Text.ToLower(), "medical");
 
             Toggle(MedicalEmsComponent.DidPersonComplainOfInjuries, medicalData["DidPersonComplainOfInjuries"]);
             Toggle(MedicalEmsComponent.DidYouObserveInjuries, medicalData["DidYouObserveInjuries"]);
@@ -459,6 +471,8 @@ namespace SAFV.Source.Pages.CreateIncident
             Reporting.AddTestScreenshot(_driver, "Incident Test");
 
             Click(PeopleMenuComponent.Demeanor);
+
+            VerifyPageLabel(PeopleMenuComponent.Demeanor, PeopleComponent.TabTitle.Text.ToLower(), "demeanor");
 
             // Appearance
             Toggle(DemeanorComponent.AppearanceBloody, demeanorData["AppearanceBloody"]);
@@ -522,6 +536,9 @@ namespace SAFV.Source.Pages.CreateIncident
             Reporting.AddTestScreenshot(_driver, "Incident Test");
 
             Click(PeopleMenuComponent.EmergencyContacts);
+
+            VerifyPageLabel(PeopleMenuComponent.EmergencyContacts, PeopleComponent.TabTitle.Text.ToLower(), "em. contacts");
+
             Click(EmergencyContactComponent.AddNewContact);
 
             SendKeys(EmergencyContactComponent.ContactName, emergencyContactData["ContactName"]);
@@ -546,6 +563,8 @@ namespace SAFV.Source.Pages.CreateIncident
             Reporting.AddTestScreenshot(_driver, "Incident Test");
 
             Click(PeopleMenuComponent.ExternalInfo);
+
+            VerifyPageLabel(PeopleMenuComponent.ExternalInfo, PeopleComponent.TabTitle.Text.ToLower(), "em. contacts");
 
             Toggle(ExternalInfoComponent.InTheMilitary, externalInfoData["InTheMilitary"]);
 
@@ -586,7 +605,10 @@ namespace SAFV.Source.Pages.CreateIncident
             Reporting.AddTestScreenshot(_driver, "Incident Test");
 
             Click(PeopleMenuComponent.Evidence);
-            Click(SuspectEvidenceComponent.AddEvidence);
+
+            VerifyPageLabel(PeopleMenuComponent.Evidence, PeopleComponent.TabTitle.Text.ToLower(), "evidence");
+
+            Click(SuspectEvidenceComponent.AddSuspectEvidence);
 
             Click(SuspectEvidenceComponent.EvidenceType);
             SelectOption(SuspectEvidenceComponent.LstEvidenceType, suspectEvidenceData["EvidenceType"]);
@@ -643,6 +665,77 @@ namespace SAFV.Source.Pages.CreateIncident
             }
 
             Click(SuspectEvidenceComponent.SaveEvidence);
+        }
+
+        public bool VerifyMasterDataSync(Dictionary<string, string> peopleData)
+        {
+            Reporting.AddTestScreenshot(_driver, "Incident Test");
+
+            string masterFirstName;
+            string masterLastName;
+            string masterMiddletName;
+
+            Click(PeopleComponent.SeeMaster);
+
+            masterFirstName = PeopleComponent.FirstName.Text;
+            masterLastName = PeopleComponent.LastName.Text;
+            masterMiddletName = PeopleComponent.MiddleName.Text;
+
+            if (peopleData["FirstName"] == masterFirstName && peopleData["LastName"] == masterLastName && peopleData["MiddleName"] == masterMiddletName)
+            {
+                Reporting.SetStepStatusPass("Master data synced", _driver);
+
+                return true;
+            }
+            else
+            {
+                Reporting.SetStepStatusFail("Master data sync failed", _driver);
+
+                return false;
+            }
+        }
+
+        public void UpdatePeople(string updateData)
+        {
+            Reporting.AddTestScreenshot(_driver, "Incident Test");
+
+            SendKeys(PeopleComponent.LastName, updateData);
+            Click(PeopleComponent.SavePeople);
+            Click(PeopleComponent.SyncToMaster);
+        }
+
+        public bool VerifyMasterDataLog(string oldData, string updateData)
+        {
+            Reporting.AddTestScreenshot(_driver, "Incident Test");
+
+            Click(PeopleComponent.SeeMaster);
+            Click(PeopleComponent.SeeLog);
+            Click(PeopleComponent.ViewLogHistory);
+
+            if (oldData == PeopleComponent.PreviousDataLastName.Text && updateData == PeopleComponent.ChangedDataLastName.Text)
+            {
+                Reporting.SetStepStatusPass("Master data log successful", _driver);
+
+                return true;
+            }
+            else
+            {
+                Reporting.SetStepStatusFail("Master data log failed", _driver);
+
+                return false;
+            }
+        }
+
+        public bool AttachPeopleFromMainCase()
+        {
+            Reporting.AddTestScreenshot(_driver, "Incident Test");
+
+            Click(PeopleComponent.SelectAllMainPeople);
+            Click(PeopleComponent.AttachToSupplement);
+
+            bool allPeoplePresent = PeopleComponent.LstAllMainPeopleNew.All(people => PeopleComponent.LstAllMainPeopleOld.Contains(people));
+
+            return allPeoplePresent;
         }
     }
 }
