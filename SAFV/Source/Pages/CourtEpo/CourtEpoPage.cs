@@ -23,9 +23,16 @@ namespace SAFV.Source.Pages.CourtEpo
             Click(MenuComponent.Epo);
         }
 
-        public void CreateCourtEpo(Dictionary<string, string> courtEpoData)
+        public void GoToCourtEpoSigningPage()
+        {
+            Click(MenuComponent.Signing);
+        }
+
+        public string CreateCourtEpo(Dictionary<string, string> courtEpoData, string courtEpoCount)
         {
             Reporting.AddTestScreenshot(_driver, "Incident Test");
+
+            string courtEpoCaseNumber = "courtEpo" + courtEpoCount;
 
             Click(CourtEpoComponent.CreateCourtEpo);
 
@@ -33,8 +40,8 @@ namespace SAFV.Source.Pages.CourtEpo
             SelectOption(CreateCourtEpoComponent.LstCourtName, courtEpoData["CourtName"]);
             Click(CreateCourtEpoComponent.TypeOfIncident);
             SelectOption(CreateCourtEpoComponent.LstTypeOfIncident, courtEpoData["TypeOfIncident"]);
-            SendKeys(CreateCourtEpoComponent.CourtCaseNo, courtEpoData["CourtCaseNo"]);
-            SendKeys(CreateCourtEpoComponent.IncidentCaseNo, courtEpoData["IncidentCaseNo"]);
+            SendKeys(CreateCourtEpoComponent.CourtCaseNo, courtEpoCount);
+            SendKeys(CreateCourtEpoComponent.IncidentCaseNo, courtEpoCaseNumber);
             SendKeys(CreateCourtEpoComponent.Ori, courtEpoData["Ori"]);
             Click(CreateCourtEpoComponent.CountyOfArrest);
             SelectOption(CreateCourtEpoComponent.LstCountyOfArrest, courtEpoData["CountyOfArrest"]);
@@ -94,6 +101,8 @@ namespace SAFV.Source.Pages.CourtEpo
             Toggle(CreateCourtEpoComponent.VictimAddressInformationConfidential, courtEpoData["VictimAddressInformationConfidential"]);
 
             Click(CreateCourtEpoComponent.SaveCourtEpo);
+
+            return courtEpoCaseNumber;
         }
 
         public void AssignCourtEpo(string epoCaseNumber)
@@ -102,6 +111,7 @@ namespace SAFV.Source.Pages.CourtEpo
 
             Click(CourtEpoComponent.FilterUnAssignedCourtEpo);
             SendKeys(CourtEpoComponent.UnAssignedCourtEpoSearchBox, epoCaseNumber);
+            Click(CourtEpoComponent.UnAssignedCourtEpoFilterButton);
 
             if (CourtEpoComponent.UnAssignedCourtEpoGridCount.Text.ToLower().Contains("1"))
             {
@@ -121,6 +131,7 @@ namespace SAFV.Source.Pages.CourtEpo
 
             Click(CourtEpoComponent.FilterAssignedCourtEpo);
             SendKeys(CourtEpoComponent.AssignedCourtEpoSearchBox, epoCaseNumber);
+            Click(CourtEpoComponent.AssignedCourtEpoFilterButton);
 
             if (CourtEpoComponent.AssignedCourtEpoGridCount.Text.ToLower().Contains("1"))
             {
@@ -134,26 +145,34 @@ namespace SAFV.Source.Pages.CourtEpo
 
             Click(CourtEpoComponent.GenerateDocs);
 
-            if (CourtEpoComponent.AlertMessage.Text.ToLower().Contains("then try again"))
+            try
             {
-                if (CourtEpoComponent.AlertMessage.Text.ToLower().Contains("produce a condition of bond"))
+                if (CourtEpoComponent.AlertMessage.Text.ToLower().Contains("then try again"))
                 {
-                    Click(CreateCourtEpoComponent.ProduceConditionOfBond);
-                }
+                    if (CourtEpoComponent.AlertMessage.Text.ToLower().Contains("produce a condition of bond"))
+                    {
+                        Click(CreateCourtEpoComponent.ProduceConditionOfBond);
+                    }
 
-                if (CourtEpoComponent.AlertMessage.Text.ToLower().Contains("produce magistrate's protective order"))
-                {
-                    Click(CreateCourtEpoComponent.ProduceMagistrateProtectiveOrder);
-                }
+                    if (CourtEpoComponent.AlertMessage.Text.ToLower().Contains("produce magistrate's protective order"))
+                    {
+                        Click(CreateCourtEpoComponent.ProduceMagistrateProtectiveOrder);
+                    }
 
-                Click(CreateCourtEpoComponent.SaveCourtEpo);
-                Click(CourtEpoComponent.GenerateDocs);
+                    Click(CreateCourtEpoComponent.SaveCourtEpo);
+                    Click(CourtEpoComponent.GenerateDocs);
+                }
+            }
+            catch
+            {
+
             }
 
             Click(CourtEpoComponent.County);
             Click(CourtEpoComponent.LstCounty);
             Click(CourtEpoComponent.GenerateOrder);
             Click(CourtEpoComponent.CompleteEpoManually);
+            Click(CourtEpoComponent.ConfirmCompleteEpoManually);
         }
 
         public void CourtEpoCancel(string epoCaseNumber)
@@ -162,6 +181,7 @@ namespace SAFV.Source.Pages.CourtEpo
 
             Click(CourtEpoComponent.FilterAssignedCourtEpo);
             SendKeys(CourtEpoComponent.AssignedCourtEpoSearchBox, epoCaseNumber);
+            Click(CourtEpoComponent.AssignedCourtEpoFilterButton);
 
             if (CourtEpoComponent.AssignedCourtEpoGridCount.Text.ToLower().Contains("1"))
             {
@@ -173,28 +193,36 @@ namespace SAFV.Source.Pages.CourtEpo
                 return;
             }
 
-            Click(CourtEpoComponent.GenerateDocs);
+            /*Click(CourtEpoComponent.GenerateDocs);
 
-            if (CourtEpoComponent.AlertMessage.Text.ToLower().Contains("then try again"))
+            try
             {
-                if (CourtEpoComponent.AlertMessage.Text.ToLower().Contains("produce a condition of bond"))
+                if (CourtEpoComponent.AlertMessage.Text.ToLower().Contains("then try again"))
                 {
-                    Click(CreateCourtEpoComponent.ProduceConditionOfBond);
-                }
+                    if (CourtEpoComponent.AlertMessage.Text.ToLower().Contains("produce a condition of bond"))
+                    {
+                        Click(CreateCourtEpoComponent.ProduceConditionOfBond);
+                    }
 
-                if (CourtEpoComponent.AlertMessage.Text.ToLower().Contains("produce magistrate's protective order"))
-                {
-                    Click(CreateCourtEpoComponent.ProduceMagistrateProtectiveOrder);
-                }
+                    if (CourtEpoComponent.AlertMessage.Text.ToLower().Contains("produce magistrate's protective order"))
+                    {
+                        Click(CreateCourtEpoComponent.ProduceMagistrateProtectiveOrder);
+                    }
 
-                Click(CreateCourtEpoComponent.SaveCourtEpo);
-                Click(CourtEpoComponent.GenerateDocs);
+                    Click(CreateCourtEpoComponent.SaveCourtEpo);
+                    Click(CourtEpoComponent.GenerateDocs);
+                }
+            }
+            catch
+            {
+
             }
 
             Click(CourtEpoComponent.County);
             Click(CourtEpoComponent.LstCounty);
-            Click(CourtEpoComponent.GenerateOrder);
-            Click(CourtEpoComponent.CancelCourtEpo);
+            Click(CourtEpoComponent.GenerateOrder);*/
+            Click(CourtEpoComponent.CancelEpo);
+            Click(CourtEpoComponent.ConfirmCancelEpo);
         }
 
         public void CourtEpoRequestForSigning(string epoCaseNumber, string signingOption)
@@ -203,6 +231,7 @@ namespace SAFV.Source.Pages.CourtEpo
 
             Click(CourtEpoComponent.FilterAssignedCourtEpo);
             SendKeys(CourtEpoComponent.AssignedCourtEpoSearchBox, epoCaseNumber);
+            Click(CourtEpoComponent.AssignedCourtEpoFilterButton);
 
             if (CourtEpoComponent.AssignedCourtEpoGridCount.Text.ToLower().Contains("1"))
             {
@@ -273,6 +302,7 @@ namespace SAFV.Source.Pages.CourtEpo
                 else
                 {
                     Reporting.SetStepStatusFail("Epo not found!!!", _driver);
+                    return;
                 }
             }
             
@@ -339,6 +369,7 @@ namespace SAFV.Source.Pages.CourtEpo
                 else
                 {
                     Reporting.SetStepStatusFail("Epo not found!!!", _driver);
+                    return;
                 }
             }
 

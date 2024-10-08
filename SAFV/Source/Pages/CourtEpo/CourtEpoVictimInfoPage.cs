@@ -24,6 +24,7 @@ namespace SAFV.Source.Pages.CourtEpo
         {
             Reporting.AddTestScreenshot(_driver, "Incident Test");
 
+            Thread.Sleep(3000);
             SendKeys(CourtEpoVictimInfoComponent.FirstName, courtEpoVictimInfoData["FirstName"]);
             SendKeys(CourtEpoVictimInfoComponent.LastName, courtEpoVictimInfoData["LastName"]);
             SendKeys(CourtEpoVictimInfoComponent.MiddleName, courtEpoVictimInfoData["MiddleName"]);

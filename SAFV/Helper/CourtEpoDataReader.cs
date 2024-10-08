@@ -96,5 +96,23 @@ namespace SAFV.Helper
 
             return courtEpoConditionsData;
         }
+
+
+        public static List<Dictionary<string, string>> ReadCourtEpoLogData()
+        {
+            // Read dataset
+            var epoColumnList = new ColumnList();
+            epoColumnList.AddColumn("EpoCaseNumber", "EpoCaseNumber");
+            epoColumnList.AddColumn("EpoCaseCount", "EpoCaseCount");
+
+            var projectRoot = Utils.GetProjectRoot();
+            var filePath = Path.Combine(projectRoot, "Helper/Log/epo log from court.xlsx");
+
+            Console.WriteLine(filePath);
+            var dataSet = new DataSet(epoColumnList);
+            var epoData = dataSet.ReadData(filePath);
+
+            return epoData;
+        }
     }
 }

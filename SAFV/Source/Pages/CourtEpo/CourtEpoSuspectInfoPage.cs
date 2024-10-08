@@ -43,9 +43,9 @@ namespace SAFV.Source.Pages.CourtEpo
             SelectOption(CourtEpoSuspectInfoComponent.LstSkinColor, courtEpoSuspectInfoData["SkinColor"]);
             Click(CourtEpoSuspectInfoComponent.MedicalConditions);
             SelectOption(CourtEpoSuspectInfoComponent.LstMedicalConditions, courtEpoSuspectInfoData["MedicalConditions"]);
+            SendKeys(CourtEpoSuspectInfoComponent.MarksOrTattoos, courtEpoSuspectInfoData["MarksOrTattoos"]);
             Click(CourtEpoSuspectInfoComponent.PrimaryLanguage);
             SelectOption(CourtEpoSuspectInfoComponent.LstPrimaryLanguage, courtEpoSuspectInfoData["PrimaryLanguage"]);
-            SendKeys(CourtEpoSuspectInfoComponent.MarksOrTattoos, courtEpoSuspectInfoData["MarksOrTattoos"]);
             SendKeys(CourtEpoSuspectInfoComponent.PlaceOfBirth, courtEpoSuspectInfoData["PlaceOfBirth"]);
             SendKeys(CourtEpoSuspectInfoComponent.Weight, courtEpoSuspectInfoData["Weight"]);
             SendKeys(CourtEpoSuspectInfoComponent.HeightFeet, courtEpoSuspectInfoData["HeightFeet"]);

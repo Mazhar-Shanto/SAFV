@@ -26,6 +26,7 @@ namespace SAFV.Source.Pages.CourtEpo
 
             Click(CourtEpoOtherInfoComponent.AddNewOtherInfo);
 
+            Thread.Sleep(3000);
             SendKeys(CourtEpoOtherInfoComponent.FirstName, courtEpoOtherInfoData["FirstName"]);
             SendKeys(CourtEpoOtherInfoComponent.LastName, courtEpoOtherInfoData["LastName"]);
             SendKeys(CourtEpoOtherInfoComponent.MiddleName, courtEpoOtherInfoData["MiddleName"]);
@@ -46,8 +47,6 @@ namespace SAFV.Source.Pages.CourtEpo
             Click(CourtEpoOtherInfoComponent.PrimaryLanguage);
             SelectOption(CourtEpoOtherInfoComponent.LstPrimaryLanguage, courtEpoOtherInfoData["PrimaryLanguage"]);
             Toggle(CourtEpoOtherInfoComponent.IsThisPersonChild, courtEpoOtherInfoData["IsThisPersonChild"]);
-            Click(CourtEpoOtherInfoComponent.EnableSsn);
-            SendKeys(CourtEpoOtherInfoComponent.SsnFeild, courtEpoOtherInfoData["SsnFeild"]);
 
             Click(CourtEpoOtherInfoComponent.SaveEpoOtherInfo);
         }

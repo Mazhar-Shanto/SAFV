@@ -7,7 +7,7 @@ namespace SAFV.Test
 {
     public class LoginTest : Driver
     {
-        [Test]
+        [Test, Order(0)]
         public void SafvLogin()
         {
             // Read login data

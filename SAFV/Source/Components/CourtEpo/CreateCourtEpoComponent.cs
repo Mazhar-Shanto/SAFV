@@ -28,7 +28,7 @@ namespace SAFV.Source.Components.CourtEpo
         public static IWebElement OfficerAgency => WaitAndFindElement(By.Id("OfficerAgency"));
         public static IWebElement OfficerPhone => WaitAndFindElement(By.Id("OfficerPhone"));
         public static IWebElement RequestedByState => WaitAndFindElement(By.XPath("//*[@id=\"court-epo-form\"]/div/div[17]/div/span[1]"));
-        public static IWebElement StateAttorneyName => WaitAndFindElement(By.XPath("EPORequesterSName"));
+        public static IWebElement StateAttorneyName => WaitAndFindElement(By.Id("EPORequesterSName"));
         public static IWebElement SeriousBodilyInjuryOccurred => WaitAndFindElement(By.XPath("//*[@id=\"court-epo-form\"]/div/div[19]/div/span[1]"));
         public static IWebElement UseOfWeaponOccurred => WaitAndFindElement(By.XPath("//*[@id=\"court-epo-form\"]/div/div[20]/div/span[1]"));
         public static IWebElement IssueFamilyViolenceHold => WaitAndFindElement(By.XPath("//*[@id=\"court-epo-form\"]/div/div[21]/div/span[1]"));

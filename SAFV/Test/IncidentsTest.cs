@@ -8,7 +8,7 @@ namespace SAFV.Test
 {
     internal class IncidentsTest : Driver
     {
-        [Test]
+        [Test, Order(1)]
         public void CreateMainIncidentTest()
         {
             // Read data
@@ -25,7 +25,7 @@ namespace SAFV.Test
                 var incidentData = incidentDataList[i];
                 var incidentCountData = incidentCountDataList[i];
 
-                Reporting.CreateTest("MainIncidentCreateTest");
+                Reporting.CreateTest("CreateMainIncidentTest");
 
                 LoginPage loginPage = new LoginPage(_driver);
                 IncidentsPage incidentsPage = new IncidentsPage(_driver);
@@ -41,7 +41,7 @@ namespace SAFV.Test
                 string supplementNumberOld = incidentCountData["SupplementNumber"];
                 string mainCaseForSupplement = incidentCountData["MainCaseForSupplement"];
 
-                int caseCountInt = Int32.Parse(incidentCountData["CaseCount"]) + 1;
+                int caseCountInt = Int32.Parse(caseCountOld) + 1;
                 string caseCountNew = caseCountInt.ToString();
 
                 string caseNumberNew = incidentsPage.CreateNewIncident(incidentData, caseCountNew, mainCaseForSupplement);
@@ -51,7 +51,7 @@ namespace SAFV.Test
         }
 
 
-        [Test]
+        [Test, Order(2)]
         public void CreateConfidentialIncidentTest()
         {
             // Read data
@@ -68,7 +68,7 @@ namespace SAFV.Test
                 var incidentData = incidentDataList[i];
                 var incidentCountData = incidentCountDataList[i];
 
-                Reporting.CreateTest("ConfidentialIncidentCreateTest");
+                Reporting.CreateTest("CreateConfidentialIncidentTest");
 
                 LoginPage loginPage = new LoginPage(_driver);
                 IncidentsPage incidentsPage = new IncidentsPage(_driver);
@@ -84,7 +84,7 @@ namespace SAFV.Test
                 string supplementNumberOld = incidentCountData["SupplementNumber"];
                 string mainCaseForSupplement = incidentCountData["MainCaseForSupplement"];
 
-                int caseCountInt = Int32.Parse(incidentCountData["CaseCount"]) + 1;
+                int caseCountInt = Int32.Parse(caseCountOld) + 1;
                 string caseCountNew = caseCountInt.ToString();
 
                 string caseNumberNew = incidentsPage.CreateNewIncident(incidentData, caseCountNew, mainCaseForSupplement);
@@ -94,7 +94,7 @@ namespace SAFV.Test
         }
 
 
-        [Test]
+        [Test, Order(3)]
         public void CreateNewIncidentFullCycleTest()
         {
             // Read data
@@ -163,7 +163,7 @@ namespace SAFV.Test
                 var epoData = epoDataList[i];
                 var evidenceData = evidenceDataList[i];
 
-                Reporting.CreateTest("IncidentFullCycleTest");
+                Reporting.CreateTest("CreateNewIncidentFullCycleTest");
 
                 LoginPage loginPage = new LoginPage(_driver);
                 IncidentsPage incidentsPage = new IncidentsPage(_driver);
@@ -176,22 +176,22 @@ namespace SAFV.Test
                 EvidencePage evidencePage = new EvidencePage(_driver);
                 ReportPage reportPage = new ReportPage(_driver);
 
+                loginPage.GoToLoginPage();
+                loginPage.Login(loginData["Username"], loginData["Password"]);
+                incidentsPage.GoToIncidentCreatePage();
+
                 string caseCountOld = incidentCountData["CaseCount"];
                 string caseNumberOld = incidentCountData["CaseNumber"];
                 string supplementCountOld = incidentCountData["SupplementCount"];
                 string supplementNumberOld = incidentCountData["SupplementNumber"];
                 string mainCaseForSupplement = incidentCountData["MainCaseForSupplement"];
 
-                int caseCountInt = Int32.Parse(incidentCountData["CaseCount"]) + 1;
+                int caseCountInt = Int32.Parse(caseCountOld) + 1;
                 string caseCountNew = caseCountInt.ToString();
 
                 string caseNumberNew = incidentsPage.CreateNewIncident(incidentData, caseCountNew, mainCaseForSupplement);
 
                 WriteToExcel.WriteLog(caseCountNew, caseNumberNew, supplementCountOld, supplementNumberOld, mainCaseForSupplement);
-
-                loginPage.GoToLoginPage();
-                loginPage.Login(loginData["Username"], loginData["Password"]);
-                incidentsPage.GoToIncidentCreatePage();
 
                 incidentInfoPage.CreateIncidentInfo(incidentInfoData);
                 peoplePage.GoToPeoplePage();
@@ -239,7 +239,7 @@ namespace SAFV.Test
         }
 
 
-        [Test]
+        [Test, Order(4)]
         public void GenerateReportTest()
         {
             // Read data
@@ -254,22 +254,22 @@ namespace SAFV.Test
                 var loginData = loginDataList[i];
                 var incidentCountData = incidentCountDataList[i];
 
-                Reporting.CreateTest("MasterPeopleSyncTest");
+                Reporting.CreateTest("GenerateReportTest");
 
                 LoginPage loginPage = new LoginPage(_driver);
                 IncidentsPage incidentsPage = new IncidentsPage(_driver);
                 PeoplePage peoplePage = new PeoplePage(_driver);
                 ReportPage reportPage = new ReportPage(_driver);
 
+                loginPage.GoToLoginPage();
+                loginPage.Login(loginData["Username"], loginData["Password"]);
+                incidentsPage.GoToIncidentPage();
+
                 string caseCountOld = incidentCountData["CaseCount"];
                 string caseNumberOld = incidentCountData["CaseNumber"];
                 string supplementCountOld = incidentCountData["SupplementCount"];
                 string supplementNumberOld = incidentCountData["SupplementNumber"];
                 string mainCaseForSupplement = incidentCountData["MainCaseForSupplement"];
-
-                loginPage.GoToLoginPage();
-                loginPage.Login(loginData["Username"], loginData["Password"]);
-                incidentsPage.GoToIncidentPage();
                 incidentsPage.SearchIncident(caseNumberOld);
                 Thread.Sleep(2000);
                 incidentsPage.OpenIncident();
@@ -279,7 +279,7 @@ namespace SAFV.Test
         }
 
 
-        [Test]
+        [Test, Order(5)]
         public void SendToDfpsTest()
         {
             // Read data
@@ -294,22 +294,22 @@ namespace SAFV.Test
                 var loginData = loginDataList[i];
                 var incidentCountData = incidentCountDataList[i];
 
-                Reporting.CreateTest("MasterPeopleSyncTest");
+                Reporting.CreateTest("SendToDfpsTest");
 
                 LoginPage loginPage = new LoginPage(_driver);
                 IncidentsPage incidentsPage = new IncidentsPage(_driver);
                 PeoplePage peoplePage = new PeoplePage(_driver);
                 ReportPage reportPage = new ReportPage(_driver);
 
+                loginPage.GoToLoginPage();
+                loginPage.Login(loginData["Username"], loginData["Password"]);
+                incidentsPage.GoToIncidentPage();
+
                 string caseCountOld = incidentCountData["CaseCount"];
                 string caseNumberOld = incidentCountData["CaseNumber"];
                 string supplementCountOld = incidentCountData["SupplementCount"];
                 string supplementNumberOld = incidentCountData["SupplementNumber"];
                 string mainCaseForSupplement = incidentCountData["MainCaseForSupplement"];
-
-                loginPage.GoToLoginPage();
-                loginPage.Login(loginData["Username"], loginData["Password"]);
-                incidentsPage.GoToIncidentPage();
                 incidentsPage.SearchIncident(caseNumberOld);
                 Thread.Sleep(2000);
                 incidentsPage.OpenIncident();
@@ -319,7 +319,7 @@ namespace SAFV.Test
         }
 
 
-        [Test]
+        [Test, Order(6)]
         public void MasterPeopleSyncTest()
         {
             // Read data
@@ -344,22 +344,22 @@ namespace SAFV.Test
                 IncidentsPage incidentsPage = new IncidentsPage(_driver);
                 PeoplePage peoplePage = new PeoplePage(_driver);
 
+                loginPage.GoToLoginPage();
+                loginPage.Login(loginData["Username"], loginData["Password"]);
+                incidentsPage.GoToIncidentCreatePage();
+
                 string caseCountOld = incidentCountData["CaseCount"];
                 string caseNumberOld = incidentCountData["CaseNumber"];
                 string supplementCountOld = incidentCountData["SupplementCount"];
                 string supplementNumberOld = incidentCountData["SupplementNumber"];
                 string mainCaseForSupplement = incidentCountData["MainCaseForSupplement"];
 
-                int caseCountInt = Int32.Parse(incidentCountData["CaseCount"]) + 1;
+                int caseCountInt = Int32.Parse(caseCountOld) + 1;
                 string caseCountNew = caseCountInt.ToString();
 
                 string caseNumberNew = incidentsPage.CreateNewIncident(incidentData, caseCountNew, mainCaseForSupplement);
 
                 WriteToExcel.WriteLog(caseCountNew, caseNumberNew, supplementCountOld, supplementNumberOld, mainCaseForSupplement);
-
-                loginPage.GoToLoginPage();
-                loginPage.Login(loginData["Username"], loginData["Password"]);
-                incidentsPage.GoToIncidentCreatePage();
                 peoplePage.GoToPeoplePage();
                 peoplePage.CreatePeople(victimData);
                 if (peoplePage.VerifyMasterDataSync(victimData))
@@ -374,7 +374,7 @@ namespace SAFV.Test
         }
 
 
-        [Test]
+        [Test, Order(7)]
         public void MasterPeopleUpdateAndLogTest()
         {
             // Read data
@@ -399,22 +399,22 @@ namespace SAFV.Test
                 IncidentsPage incidentsPage = new IncidentsPage(_driver);
                 PeoplePage peoplePage = new PeoplePage(_driver);
 
+                loginPage.GoToLoginPage();
+                loginPage.Login(loginData["Username"], loginData["Password"]);
+                incidentsPage.GoToIncidentCreatePage();
+
                 string caseCountOld = incidentCountData["CaseCount"];
                 string caseNumberOld = incidentCountData["CaseNumber"];
                 string supplementCountOld = incidentCountData["SupplementCount"];
                 string supplementNumberOld = incidentCountData["SupplementNumber"];
                 string mainCaseForSupplement = incidentCountData["MainCaseForSupplement"];
 
-                int caseCountInt = Int32.Parse(incidentCountData["CaseCount"]) + 1;
+                int caseCountInt = Int32.Parse(caseCountOld) + 1;
                 string caseCountNew = caseCountInt.ToString();
 
                 string caseNumberNew = incidentsPage.CreateNewIncident(incidentData, caseCountNew, mainCaseForSupplement);
 
                 WriteToExcel.WriteLog(caseCountNew, caseNumberNew, supplementCountOld, supplementNumberOld, mainCaseForSupplement);
-
-                loginPage.GoToLoginPage();
-                loginPage.Login(loginData["Username"], loginData["Password"]);
-                incidentsPage.GoToIncidentCreatePage();
                 peoplePage.GoToPeoplePage();
                 peoplePage.CreatePeople(victimData);
                 if (peoplePage.VerifyMasterDataSync(victimData))

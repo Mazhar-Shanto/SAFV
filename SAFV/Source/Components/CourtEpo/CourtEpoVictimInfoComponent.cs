@@ -28,7 +28,7 @@ namespace SAFV.Source.Components.CourtEpo
         public static IWebElement Weight => WaitAndFindElement(By.Id("Weight"));
         public static IWebElement HeightFeet => WaitAndFindElement(By.Id("HeightFt"));
         public static IWebElement HeightInch => WaitAndFindElement(By.Id("HeightIn"));
-        public static IWebElement IsThisPersonChild => WaitAndFindElement(By.Id("//*[@id=\"court-epo-victim-submit-form\"]/div/div[13]/div/span[1]"));
+        public static IWebElement IsThisPersonChild => WaitAndFindElement(By.XPath("//*[@id=\"court-epo-victim-submit-form\"]/div/div[13]/div/span[1]"));
         public static IWebElement EnableSsn => WaitAndFindElement(By.XPath("//*[@id=\"court-epo-victim-submit-form\"]/div/div[14]/div[2]/button"));
         public static IWebElement SsnFeild => WaitAndFindElement(By.Id("SSN"));
         public static IWebElement NameOfemployer => WaitAndFindElement(By.Id("PlaceOfEmployment"));

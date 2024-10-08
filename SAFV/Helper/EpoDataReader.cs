@@ -39,14 +39,14 @@ namespace SAFV.Helper
         }
 
 
-        public static List<Dictionary<string, string>> ReadEpoLogData()
+        public static List<Dictionary<string, string>> ReadIncidentEpoLogData()
         {
             // Read dataset
             var epoColumnList = new ColumnList();
             epoColumnList.AddColumn("EpoCaseNumber", "EpoCaseNumber");
 
             var projectRoot = Utils.GetProjectRoot();
-            var filePath = Path.Combine(projectRoot, "Helper/Log/epo log.xlsx");
+            var filePath = Path.Combine(projectRoot, "Helper/Log/epo log from incidents.xlsx");
 
             Console.WriteLine(filePath);
             var dataSet = new DataSet(epoColumnList);

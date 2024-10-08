@@ -10,7 +10,7 @@ namespace SAFV.Source.Components.CourtEpo
     internal class CourtEpoOtherInfoComponent : BaseComponent
     {
         // Elements
-        public static IWebElement AddNewOtherInfo => WaitAndFindElement(By.XPath("//*[@id=\"module-container\"]/div/div[1]/div/div/a"));
+        public static IWebElement AddNewOtherInfo => WaitAndFindElement(By.XPath("//*[@id=\"module-container\"]/div/div[1]/div[1]/div/a"));
         public static IWebElement FirstName => WaitAndFindElement(By.Id("FirstName"));
         public static IWebElement LastName => WaitAndFindElement(By.Id("LastName"));
         public static IWebElement MiddleName => WaitAndFindElement(By.Id("MiddleName"));
@@ -34,7 +34,7 @@ namespace SAFV.Source.Components.CourtEpo
         public static IWebElement Weight => WaitAndFindElement(By.Id("Weight"));
         public static IWebElement HeightFeet => WaitAndFindElement(By.Id("HeightFt"));
         public static IWebElement HeightInch => WaitAndFindElement(By.Id("HeightIn"));
-        public static IWebElement IsThisPersonChild => WaitAndFindElement(By.Id("//*[@id=\"epo-other-submit-form\"]/div/div[13]/div/span[1]"));
+        public static IWebElement IsThisPersonChild => WaitAndFindElement(By.XPath("//*[@id=\"epo-other-submit-form\"]/div/div[13]/div/span[1]"));
         public static IWebElement EnableSsn => WaitAndFindElement(By.XPath("//*[@id=\"epo-other-submit-form\"]/div/div[14]/div[2]/button"));
         public static IWebElement SsnFeild => WaitAndFindElement(By.Id("SSN"));
         public static IList<IWebElement> LstVictimRelationshipToSuspect => WaitAndFindElements(By.XPath("//*[@id=\"VictimRelationshipArrayFormat_listbox\"]/li"));

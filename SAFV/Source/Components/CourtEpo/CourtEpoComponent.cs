@@ -17,8 +17,10 @@ namespace SAFV.Source.Components.CourtEpo
         public static IWebElement CancelAssign => WaitAndFindElement(By.Id("btnCloseAssignCourtEPOModal"));
 
         public static IWebElement FilterAssignedCourtEpo => WaitAndFindElement(By.XPath("//*[@id=\"assigned_courte_epo\"]/div[1]/div/table/thead/tr/th[1]/a"));
-        public static IWebElement AssignedCourtEpoSearchBox => WaitAndFindElement(By.XPath("/html/body/div[6]/form/div[1]/input"));
-        public static IWebElement AssignedCourtEpoFilterButton => WaitAndFindElement(By.XPath("/html/body/div[6]/form/div[1]/div[2]/button[1]"));
+        public static IWebElement AssignedCourtEpoSearchBox => WaitAndFindElement(By.XPath("/html/body/div[5]/form/div[1]/input"));
+        //public static IWebElement AssignedCourtEpoSearchBox => WaitAndFindElement(By.XPath("/html/body/div[6]/form/div[1]/input"));
+        public static IWebElement AssignedCourtEpoFilterButton => WaitAndFindElement(By.XPath("/html/body/div[5]/form/div[1]/div[2]/button[1]"));
+        //public static IWebElement AssignedCourtEpoFilterButton => WaitAndFindElement(By.XPath("/html/body/div[6]/form/div[1]/div[2]/button[1]"));
         public static IWebElement AssignedCourtEpoClearButton => WaitAndFindElement(By.XPath("/html/body/div[6]/form/div[1]/div[2]/button[2]"));
         public static IWebElement AssignedCourtEpoGridCount => WaitAndFindElement(By.XPath("//*[@id=\"assigned_courte_epo\"]/div[3]/span"));
         public static IWebElement SelectCourtEpo => WaitAndFindElement(By.XPath("//*[@id=\"assigned_courte_epo\"]/div[2]/table/tbody/tr/td[1]/a"));
@@ -32,9 +34,11 @@ namespace SAFV.Source.Components.CourtEpo
         public static IWebElement CancelOrder => WaitAndFindElement(By.XPath("//*[@id=\"generate-form-main\"]/div[2]/a[2]"));
 
         public static IWebElement CompleteEpoManually => WaitAndFindElement(By.XPath("//*[@id=\"master-container-row\"]/div[3]/div/a[1]"));
+        public static IWebElement ConfirmCompleteEpoManually => WaitAndFindElement(By.XPath("/html/body/div[11]/div[3]/button[1]"));
         public static IWebElement RequestForSigning => WaitAndFindElement(By.XPath("//*[@id=\"master-container-row\"]/div[3]/div/a[2]"));
         public static IWebElement CopyEpo => WaitAndFindElement(By.Id("copy_epo"));
         public static IWebElement CancelEpo => WaitAndFindElement(By.XPath("//*[@id=\"master-container-row\"]/div[3]/div/a[4]"));
+        public static IWebElement ConfirmCancelEpo => WaitAndFindElement(By.XPath("/html/body/div[11]/div[3]/button[1]"));
 
         public static IWebElement SigningOption => WaitAndFindElement(By.XPath("/html/body/div[1]/div[4]/div[2]/div/div[2]/div/div/form/div/div[1]/div/span"));
         public static IWebElement JudgeSigning => WaitAndFindElement(By.XPath("//*[@id=\"SigningOption_listbox\"]/li[1]"));

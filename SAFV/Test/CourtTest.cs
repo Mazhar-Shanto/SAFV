@@ -10,12 +10,13 @@ namespace SAFV.Test
 {
     internal class CourtTest : Driver
     {
-        [Test]
+        [Test, Order(21)]
         public void CreateCourtEpoTest()
         {
             // Read data
             var loginDataList = LoginDataReader.ReadLoginData();
             var courtEpoDataList = CourtEpoDataReader.ReadCourtEpoData();
+            var courtEpoLogDataList = CourtEpoDataReader.ReadCourtEpoLogData();
             var courtEpoSuspectDataList = EpoPersonDataReader.ReadCourtEpoSuspectData();
             var courtEpoVictimDataList = EpoPersonDataReader.ReadCourtEpoVictimData();
             var courtEpoOtherDataList = EpoPersonDataReader.ReadCourtEpoOtherData();
@@ -28,12 +29,13 @@ namespace SAFV.Test
             {
                 var loginData = loginDataList[i];
                 var courtEpoData = courtEpoDataList[i];
+                var courtEpoLogData = courtEpoLogDataList[i];
                 var courtEpoSuspectData = courtEpoSuspectDataList[i];
                 var courtEpoVictimData = courtEpoVictimDataList[i];
                 var courtEpoOtherData = courtEpoOtherDataList[i];
                 var courtEpoConditionsData = courtEpoConditionsDataList[i];
 
-                Reporting.CreateTest("CreateSupplementTest");
+                Reporting.CreateTest("CreateCourtEpoTest");
 
                 LoginPage loginPage = new LoginPage(_driver);
                 CourtEpoPage courtEpoPage = new CourtEpoPage(_driver);
@@ -46,9 +48,16 @@ namespace SAFV.Test
 
                 loginPage.Login(loginData["JudgeUsername"], loginData["JudgePassword"]);
                 courtEpoPage.GoToCourtEpoPage();
-                courtEpoPage.CreateCourtEpo(courtEpoData);
 
-                WriteToExcel.WriteEpoLog(courtEpoData["IncidentCaseNo"]);
+                string courtEpoCaseNumberOld = courtEpoLogData["EpoCaseNumber"];
+                string courtEpoCaseCountOld = courtEpoLogData["EpoCaseCount"];
+
+                int courtEpoCaseCountOldInt = Int32.Parse(courtEpoCaseCountOld) + 1;
+                string courtEpoCaseCountNew = courtEpoCaseCountOldInt.ToString();
+
+                string courtEpoCaseNumberNew = courtEpoPage.CreateCourtEpo(courtEpoData, courtEpoCaseCountNew);
+
+                WriteToExcel.WriteCourtEpoLog(courtEpoCaseNumberNew, courtEpoCaseCountNew);
 
                 courtEpoSuspectInfoPage.GoToCourtEpoSuspectInfoPage();
                 courtEpoSuspectInfoPage.CreateEpoSuspectInfo(courtEpoSuspectData);
@@ -62,12 +71,12 @@ namespace SAFV.Test
         }
 
 
-        [Test]
+        [Test, Order(22)]
         public void CourtEpoAssignTest()
         {
             // Read data
             var loginDataList = LoginDataReader.ReadLoginData();
-            var courtEpoDataList = EpoDataReader.ReadEpoLogData();
+            var courtEpoDataList = CourtEpoDataReader.ReadCourtEpoLogData();
 
             int loginDataCount = loginDataList.Count();
 
@@ -77,7 +86,7 @@ namespace SAFV.Test
                 var loginData = loginDataList[i];
                 var courtEpoData = courtEpoDataList[i];
 
-                Reporting.CreateTest("CreateSupplementTest");
+                Reporting.CreateTest("CourtEpoAssignTest");
 
                 LoginPage loginPage = new LoginPage(_driver);
                 CourtEpoPage courtEpoPage = new CourtEpoPage(_driver);
@@ -91,12 +100,12 @@ namespace SAFV.Test
         }
 
 
-        [Test]
+        [Test, Order(23)]
         public void CourtEpoManualCompleteTest()
         {
             // Read data
             var loginDataList = LoginDataReader.ReadLoginData();
-            var courtEpoDataList = EpoDataReader.ReadEpoLogData();
+            var courtEpoDataList = CourtEpoDataReader.ReadCourtEpoLogData();
 
             int loginDataCount = loginDataList.Count();
 
@@ -106,7 +115,7 @@ namespace SAFV.Test
                 var loginData = loginDataList[i];
                 var courtEpoData = courtEpoDataList[i];
 
-                Reporting.CreateTest("CreateSupplementTest");
+                Reporting.CreateTest("CourtEpoManualCompleteTest");
 
                 LoginPage loginPage = new LoginPage(_driver);
                 CourtEpoPage courtEpoPage = new CourtEpoPage(_driver);
@@ -120,12 +129,12 @@ namespace SAFV.Test
         }
 
 
-        [Test]
+        [Test, Order(24)]
         public void CourtEpoCancelTest()
         {
             // Read data
             var loginDataList = LoginDataReader.ReadLoginData();
-            var courtEpoDataList = EpoDataReader.ReadEpoLogData();
+            var courtEpoDataList = CourtEpoDataReader.ReadCourtEpoLogData();
 
             int loginDataCount = loginDataList.Count();
 
@@ -135,7 +144,7 @@ namespace SAFV.Test
                 var loginData = loginDataList[i];
                 var courtEpoData = courtEpoDataList[i];
 
-                Reporting.CreateTest("CreateSupplementTest");
+                Reporting.CreateTest("CourtEpoCancelTest");
 
                 LoginPage loginPage = new LoginPage(_driver);
                 CourtEpoPage courtEpoPage = new CourtEpoPage(_driver);
@@ -149,12 +158,12 @@ namespace SAFV.Test
         }
 
 
-        [Test]
+        [Test, Order(25)]
         public void CourtEpoRequestForSigningTest()
         {
             // Read data
             var loginDataList = LoginDataReader.ReadLoginData();
-            var courtEpoDataList = EpoDataReader.ReadEpoLogData();
+            var courtEpoDataList = EpoDataReader.ReadIncidentEpoLogData();
 
             int loginDataCount = loginDataList.Count();
 
@@ -164,7 +173,7 @@ namespace SAFV.Test
                 var loginData = loginDataList[i];
                 var courtEpoData = courtEpoDataList[i];
 
-                Reporting.CreateTest("CreateSupplementTest");
+                Reporting.CreateTest("CourtEpoRequestForSigningTest");
 
                 LoginPage loginPage = new LoginPage(_driver);
                 CourtEpoPage courtEpoPage = new CourtEpoPage(_driver);
@@ -172,18 +181,20 @@ namespace SAFV.Test
                 loginPage.GoToLoginPage();
 
                 loginPage.Login(loginData["JudgeUsername"], loginData["JudgePassword"]);
+                courtEpoPage.GoToCourtEpoPage();
+                courtEpoPage.AssignCourtEpo(courtEpoData["EpoCaseNumber"]);
                 courtEpoPage.GoToCourtEpoPage();
                 courtEpoPage.CourtEpoRequestForSigning(courtEpoData["EpoCaseNumber"], "judge");
             }
         }
 
 
-        [Test]
+        [Test, Order(26)]
         public void CourtEpoJudgeSigningTest()
         {
             // Read data
             var loginDataList = LoginDataReader.ReadLoginData();
-            var courtEpoDataList = EpoDataReader.ReadEpoLogData();
+            var courtEpoDataList = EpoDataReader.ReadIncidentEpoLogData();
 
             int loginDataCount = loginDataList.Count();
 
@@ -193,7 +204,7 @@ namespace SAFV.Test
                 var loginData = loginDataList[i];
                 var courtEpoData = courtEpoDataList[i];
 
-                Reporting.CreateTest("CreateSupplementTest");
+                Reporting.CreateTest("CourtEpoJudgeSigningTest");
 
                 LoginPage loginPage = new LoginPage(_driver);
                 CourtEpoPage courtEpoPage = new CourtEpoPage(_driver);
@@ -202,17 +213,19 @@ namespace SAFV.Test
 
                 loginPage.Login(loginData["JudgeUsername"], loginData["JudgePassword"]);
                 courtEpoPage.GoToCourtEpoPage();
+                courtEpoPage.AssignCourtEpo(courtEpoData["EpoCaseNumber"]);
+                courtEpoPage.GoToCourtEpoSigningPage();
                 courtEpoPage.CourtEpoJudgeSigning(courtEpoData["EpoCaseNumber"]);
             }
         }
 
 
-        [Test]
+        [Test, Order(27)]
         public void CourtEpoJudgeAndSuspectSigningTest()
         {
             // Read data
             var loginDataList = LoginDataReader.ReadLoginData();
-            var courtEpoDataList = EpoDataReader.ReadEpoLogData();
+            var courtEpoDataList = CourtEpoDataReader.ReadCourtEpoLogData();
 
             int loginDataCount = loginDataList.Count();
 
@@ -222,7 +235,7 @@ namespace SAFV.Test
                 var loginData = loginDataList[i];
                 var courtEpoData = courtEpoDataList[i];
 
-                Reporting.CreateTest("CreateSupplementTest");
+                Reporting.CreateTest("CourtEpoJudgeAndSuspectSigningTest");
 
                 LoginPage loginPage = new LoginPage(_driver);
                 CourtEpoPage courtEpoPage = new CourtEpoPage(_driver);
@@ -230,7 +243,7 @@ namespace SAFV.Test
                 loginPage.GoToLoginPage();
 
                 loginPage.Login(loginData["JudgeUsername"], loginData["JudgePassword"]);
-                courtEpoPage.GoToCourtEpoPage();
+                courtEpoPage.GoToCourtEpoSigningPage();
                 courtEpoPage.CourtEpoJudgeAndSuspectSigning(courtEpoData["EpoCaseNumber"]);
             }
         }

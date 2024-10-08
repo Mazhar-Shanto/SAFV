@@ -676,6 +676,7 @@ namespace SAFV.Source.Pages.CreateIncident
             string masterMiddletName;
 
             Click(PeopleComponent.SeeMaster);
+            _driver.SwitchTo().Window(_driver.WindowHandles[1]);
 
             masterFirstName = PeopleComponent.FirstName.Text;
             masterLastName = PeopleComponent.LastName.Text;
@@ -709,6 +710,7 @@ namespace SAFV.Source.Pages.CreateIncident
             Reporting.AddTestScreenshot(_driver, "Incident Test");
 
             Click(PeopleComponent.SeeMaster);
+            _driver.SwitchTo().Window(_driver.WindowHandles[1]);
             Click(PeopleComponent.SeeLog);
             Click(PeopleComponent.ViewLogHistory);
 

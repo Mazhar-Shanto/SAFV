@@ -8,7 +8,7 @@ namespace SAFV.Test
 {
     internal class SupplementsTest : Driver
     {
-        [Test]
+        [Test, Order(8)]
         public void CreateSupplementTest()
         {
             // Read data
@@ -51,7 +51,7 @@ namespace SAFV.Test
         }
 
 
-        [Test]
+        [Test, Order(9)]
         public void InheritPeopleFromMainTest()
         {
             // Read data
@@ -75,7 +75,6 @@ namespace SAFV.Test
                 loginPage.GoToLoginPage();
 
                 loginPage.Login(loginData["Username"], loginData["Password"]);
-                incidentsPage.GoToIncidentCreatePage();
 
                 string caseCountOld = incidentCountData["CaseCount"];
                 string caseNumberOld = incidentCountData["CaseNumber"];
@@ -85,19 +84,23 @@ namespace SAFV.Test
 
                 incidentsPage.GoToIncidentPage();
                 incidentsPage.SearchIncident(supplementNumberOld);
+                Thread.Sleep(2000);
+                incidentsPage.OpenIncident();
                 peoplePage.GoToPeoplePage();
                 peoplePage.AttachPeopleFromMainCase();
             }
         }
 
 
-        [Test]
+        [Test, Order(10)]
         public void CreatePeopleForSupplementTest()
         {
             // Read data
             var loginDataList = LoginDataReader.ReadLoginData();
             var incidentCountDataList = IncidentDataReader.ReadIncidentCount();
             var witnessDataList = PeopleDataReader.ReadWitnessData();
+            var suspectDataList = PeopleDataReader.ReadSuspectData();
+            var victimDataList = PeopleDataReader.ReadVictimData();
 
             int loginDataCount = loginDataList.Count();
 
@@ -107,6 +110,8 @@ namespace SAFV.Test
                 var loginData = loginDataList[i];
                 var incidentCountData = incidentCountDataList[i];
                 var witnessData = witnessDataList[i];
+                var suspectData = suspectDataList[i];
+                var victimData = victimDataList[i];
 
                 Reporting.CreateTest("CreatePeopleForSupplementTest");
 
@@ -117,7 +122,6 @@ namespace SAFV.Test
                 loginPage.GoToLoginPage();
 
                 loginPage.Login(loginData["Username"], loginData["Password"]);
-                incidentsPage.GoToIncidentCreatePage();
 
                 string caseCountOld = incidentCountData["CaseCount"];
                 string caseNumberOld = incidentCountData["CaseNumber"];
@@ -127,13 +131,19 @@ namespace SAFV.Test
 
                 incidentsPage.GoToIncidentPage();
                 incidentsPage.SearchIncident(supplementNumberOld);
+                Thread.Sleep(2000);
+                incidentsPage.OpenIncident();
                 peoplePage.GoToPeoplePage();
                 peoplePage.CreatePeople(witnessData);
+                peoplePage.GoToPeoplePage();
+                peoplePage.CreatePeople(suspectData);
+                peoplePage.GoToPeoplePage();
+                peoplePage.CreatePeople(victimData);
             }
         }
 
 
-        [Test]
+        [Test, Order(11)]
         public void InheritLocationFromMainTest()
         {
             // Read data
@@ -157,7 +167,6 @@ namespace SAFV.Test
                 loginPage.GoToLoginPage();
 
                 loginPage.Login(loginData["Username"], loginData["Password"]);
-                incidentsPage.GoToIncidentCreatePage();
 
                 string caseCountOld = incidentCountData["CaseCount"];
                 string caseNumberOld = incidentCountData["CaseNumber"];
@@ -167,13 +176,15 @@ namespace SAFV.Test
 
                 incidentsPage.GoToIncidentPage();
                 incidentsPage.SearchIncident(supplementNumberOld);
+                Thread.Sleep(2000);
+                incidentsPage.OpenIncident();
                 locationPage.GoToLocationPage();
                 locationPage.AttachLocationFromMainCase();
             }
         }
 
 
-        [Test]
+        [Test, Order(12)]
         public void CreateLocationForSupplementTest()
         {
             // Read data
@@ -199,7 +210,6 @@ namespace SAFV.Test
                 loginPage.GoToLoginPage();
 
                 loginPage.Login(loginData["Username"], loginData["Password"]);
-                incidentsPage.GoToIncidentCreatePage();
 
                 string caseCountOld = incidentCountData["CaseCount"];
                 string caseNumberOld = incidentCountData["CaseNumber"];
@@ -209,13 +219,15 @@ namespace SAFV.Test
 
                 incidentsPage.GoToIncidentPage();
                 incidentsPage.SearchIncident(supplementNumberOld);
+                Thread.Sleep(2000);
+                incidentsPage.OpenIncident();
                 locationPage.GoToLocationPage();
                 locationPage.CreateLocation(locationData);
             }
         }
 
 
-        [Test]
+        [Test, Order(13)]
         public void CreateOffenseForSupplementTest()
         {
             // Read data
@@ -254,7 +266,6 @@ namespace SAFV.Test
                 loginPage.GoToLoginPage();
 
                 loginPage.Login(loginData["Username"], loginData["Password"]);
-                incidentsPage.GoToIncidentCreatePage();
 
                 string caseCountOld = incidentCountData["CaseCount"];
                 string caseNumberOld = incidentCountData["CaseNumber"];
@@ -264,6 +275,8 @@ namespace SAFV.Test
 
                 incidentsPage.GoToIncidentPage();
                 incidentsPage.SearchIncident(supplementNumberOld);
+                Thread.Sleep(2000);
+                incidentsPage.OpenIncident();
                 offensePage.GoToOffensePage();
                 offensePage.CreateOffense(offenseData);
                 offensePage.CreateOffenceScene(offenseSceneData);
@@ -277,7 +290,7 @@ namespace SAFV.Test
         }
 
 
-        [Test]
+        [Test, Order(14)]
         public void CreateRiskAssessmentForSupplementTest()
         {
             // Read data
@@ -303,7 +316,6 @@ namespace SAFV.Test
                 loginPage.GoToLoginPage();
 
                 loginPage.Login(loginData["Username"], loginData["Password"]);
-                incidentsPage.GoToIncidentCreatePage();
 
                 string caseCountOld = incidentCountData["CaseCount"];
                 string caseNumberOld = incidentCountData["CaseNumber"];
@@ -313,13 +325,15 @@ namespace SAFV.Test
 
                 incidentsPage.GoToIncidentPage();
                 incidentsPage.SearchIncident(supplementNumberOld);
+                Thread.Sleep(2000);
+                incidentsPage.OpenIncident();
                 riskAssessmentPage.GoToRiskAssessmentPage();
                 riskAssessmentPage.CreateRiskAssessment(riskAssessmentData);
             }
         }
 
 
-        [Test]
+        [Test, Order(15)]
         public void CreateEpoForSupplementTest()
         {
             // Read data
@@ -345,7 +359,6 @@ namespace SAFV.Test
                 loginPage.GoToLoginPage();
 
                 loginPage.Login(loginData["Username"], loginData["Password"]);
-                incidentsPage.GoToIncidentCreatePage();
 
                 string caseCountOld = incidentCountData["CaseCount"];
                 string caseNumberOld = incidentCountData["CaseNumber"];
@@ -355,13 +368,15 @@ namespace SAFV.Test
 
                 incidentsPage.GoToIncidentPage();
                 incidentsPage.SearchIncident(supplementNumberOld);
+                Thread.Sleep(2000);
+                incidentsPage.OpenIncident();
                 epoBookingPage.GoToEpoBookingPage();
                 epoBookingPage.CreateEpoRequest(epoData);
             }
         }
 
 
-        [Test]
+        [Test, Order(16)]
         public void CreateEvidenceForSupplementTest()
         {
             // Read data
@@ -387,7 +402,6 @@ namespace SAFV.Test
                 loginPage.GoToLoginPage();
 
                 loginPage.Login(loginData["Username"], loginData["Password"]);
-                incidentsPage.GoToIncidentCreatePage();
 
                 string caseCountOld = incidentCountData["CaseCount"];
                 string caseNumberOld = incidentCountData["CaseNumber"];
@@ -397,13 +411,15 @@ namespace SAFV.Test
 
                 incidentsPage.GoToIncidentPage();
                 incidentsPage.SearchIncident(supplementNumberOld);
+                Thread.Sleep(2000);
+                incidentsPage.OpenIncident();
                 evidencePage.GoToEvidencePage();
                 evidencePage.CreateEvidence(evidenceData);
             }
         }
 
 
-        [Test]
+        [Test, Order(17)]
         public void CreateReportForSupplementTest()
         {
             // Read data
@@ -427,7 +443,6 @@ namespace SAFV.Test
                 loginPage.GoToLoginPage();
 
                 loginPage.Login(loginData["Username"], loginData["Password"]);
-                incidentsPage.GoToIncidentCreatePage();
 
                 string caseCountOld = incidentCountData["CaseCount"];
                 string caseNumberOld = incidentCountData["CaseNumber"];
@@ -437,6 +452,8 @@ namespace SAFV.Test
 
                 incidentsPage.GoToIncidentPage();
                 incidentsPage.SearchIncident(supplementNumberOld);
+                Thread.Sleep(2000);
+                incidentsPage.OpenIncident();
                 reportPage.GoToReportPage();
                 reportPage.CreateReport();
                 reportPage.GoToReportPage();
@@ -445,7 +462,7 @@ namespace SAFV.Test
         }
 
 
-        [Test]
+        [Test, Order(18)]
         public void CreateDigitalEvidenceForSupplementTest()
         {
             // Read data
@@ -471,7 +488,6 @@ namespace SAFV.Test
                 loginPage.GoToLoginPage();
 
                 loginPage.Login(loginData["Username"], loginData["Password"]);
-                incidentsPage.GoToIncidentCreatePage();
 
                 string caseCountOld = incidentCountData["CaseCount"];
                 string caseNumberOld = incidentCountData["CaseNumber"];
@@ -481,13 +497,15 @@ namespace SAFV.Test
 
                 incidentsPage.GoToIncidentPage();
                 incidentsPage.SearchIncident(supplementNumberOld);
+                Thread.Sleep(2000);
+                incidentsPage.OpenIncident();
                 digitalEvidencePage.GoToDigitalEvidencePage();
                 digitalEvidencePage.CreateDigitalEvidence(digitalEvidenceData);
             }
         }
 
 
-        [Test]
+        [Test, Order(19)]
         public void IncidentReviewForSupplementTest()
         {
             // Read data
@@ -511,7 +529,6 @@ namespace SAFV.Test
                 loginPage.GoToLoginPage();
 
                 loginPage.Login(loginData["Username"], loginData["Password"]);
-                incidentsPage.GoToIncidentCreatePage();
 
                 string caseCountOld = incidentCountData["CaseCount"];
                 string caseNumberOld = incidentCountData["CaseNumber"];
@@ -521,13 +538,15 @@ namespace SAFV.Test
 
                 incidentsPage.GoToIncidentPage();
                 incidentsPage.SearchIncident(supplementNumberOld);
+                Thread.Sleep(2000);
+                incidentsPage.OpenIncident();
                 incidentReviewPage.GoToIncidentReviewPage();
                 incidentReviewPage.AddComment();
             }
         }
 
 
-        [Test]
+        [Test, Order(20)]
         public void StatusHistoryForSupplementTest()
         {
             // Read data
@@ -554,7 +573,6 @@ namespace SAFV.Test
                 loginPage.GoToLoginPage();
 
                 loginPage.Login(loginData["Username"], loginData["Password"]);
-                incidentsPage.GoToIncidentCreatePage();
 
                 string caseCountOld = incidentCountData["CaseCount"];
                 string caseNumberOld = incidentCountData["CaseNumber"];
@@ -564,6 +582,8 @@ namespace SAFV.Test
 
                 incidentsPage.GoToIncidentPage();
                 incidentsPage.SearchIncident(supplementNumberOld);
+                Thread.Sleep(2000);
+                incidentsPage.OpenIncident();
                 statusHistoryPage.GoToStatusHistoryPage();
                 status = statusHistoryPage.CheckStatus();
 
@@ -599,6 +619,8 @@ namespace SAFV.Test
                 loginPage.Login(loginData["Username"], loginData["Password"]);
                 incidentsPage.GoToIncidentPage();
                 incidentsPage.SearchIncident(supplementNumberOld);
+                Thread.Sleep(2000);
+                incidentsPage.OpenIncident();
                 statusHistoryPage.GoToStatusHistoryPage();
                 status = statusHistoryPage.CheckStatus();
 
@@ -617,6 +639,8 @@ namespace SAFV.Test
                 loginPage.Login(loginData["Username2"], loginData["Password2"]);
                 incidentsPage.GoToIncidentPage();
                 incidentsPage.SearchIncident(supplementNumberOld);
+                Thread.Sleep(2000);
+                incidentsPage.OpenIncident();
                 statusHistoryPage.GoToStatusHistoryPage();
                 status = statusHistoryPage.CheckStatus();
 
@@ -647,6 +671,8 @@ namespace SAFV.Test
                 loginPage.Login(loginData["Username"], loginData["Password"]);
                 incidentsPage.GoToIncidentPage();
                 incidentsPage.SearchIncident(supplementNumberOld);
+                Thread.Sleep(2000);
+                incidentsPage.OpenIncident();
                 statusHistoryPage.GoToStatusHistoryPage();
                 status = statusHistoryPage.CheckStatus();
 
