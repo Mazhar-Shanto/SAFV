@@ -24,8 +24,10 @@ namespace SAFV.Source.Components
                 {
                     element = _wait.Until(driver => driver.FindElement(by));
 
-                    Actions actions = new Actions(_driver);
-                    actions.MoveToElement(element).Perform();
+                    //((IJavaScriptExecutor)_driver).ExecuteScript("arguments[0].scrollIntoView(true);", element);
+
+                    /*Actions actions = new Actions(_driver);
+                    actions.MoveToElement(element).Perform();*/
                 }
                 catch (Exception)
                 {

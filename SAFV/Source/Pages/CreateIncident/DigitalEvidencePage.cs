@@ -19,7 +19,7 @@ namespace SAFV.Source.Pages.CreateIncident
         public void GoToDigitalEvidencePage()
         {
             Console.WriteLine("Incident -- " + MenuComponent.Incidents.Text);
-            Click(IncidentMenuComponent.Reports);
+            Click(IncidentMenuComponent.DigitalEvidence);
         }
 
         public void CreateDigitalEvidence(Dictionary<string, string> digitalEvidenceData)

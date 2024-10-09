@@ -139,6 +139,7 @@ namespace SAFV.Test
                 peoplePage.CreatePeople(suspectData);
                 peoplePage.GoToPeoplePage();
                 peoplePage.CreatePeople(victimData);
+                peoplePage.CreatePeopleMoreInfo(victimData);
             }
         }
 
@@ -597,6 +598,7 @@ namespace SAFV.Test
                 }
 
                 statusHistoryPage.SendForReview();
+                Thread.Sleep(3000);
                 homePage.Logout();
 
                 loginPage.Login(loginData["Username2"], loginData["Password2"]);
@@ -614,6 +616,7 @@ namespace SAFV.Test
                 }
 
                 statusHistoryPage.RejectCase();
+                Thread.Sleep(3000);
                 homePage.Logout();
 
                 loginPage.Login(loginData["Username"], loginData["Password"]);
@@ -634,6 +637,7 @@ namespace SAFV.Test
                 }
 
                 statusHistoryPage.SendForReview();
+                Thread.Sleep(3000);
                 homePage.Logout();
 
                 loginPage.Login(loginData["Username2"], loginData["Password2"]);
@@ -666,6 +670,7 @@ namespace SAFV.Test
                 }
 
                 statusHistoryPage.UnLockCase();
+                Thread.Sleep(3000);
                 homePage.Logout();
 
                 loginPage.Login(loginData["Username"], loginData["Password"]);

@@ -5,6 +5,8 @@ using OpenQA.Selenium.Interactions;
 using SAFV.Drivers;
 using SAFV.Utility;
 using SAFV.Source.Components.CreateIncident.People;
+using AngleSharp.Dom;
+using System.Xml.Linq;
 
 namespace SAFV.Source.Pages
 {
@@ -335,7 +337,7 @@ namespace SAFV.Source.Pages
                     Reporting.SetStepStatusPass($"Select option <b>{searchValue}</b>", _driver);
                 }
             }
-            Thread.Sleep(2000);
+            Thread.Sleep(250);
         }
 
         public void SelectOptionChild(IList<IWebElement> elementList, string childXpath, string searchValue)
@@ -355,7 +357,7 @@ namespace SAFV.Source.Pages
                     Reporting.SetStepStatusPass($"Select option <b>{searchValue}</b>", _driver);
                 }
             }
-            Thread.Sleep(2000);
+            Thread.Sleep(250);
         }
 
         public void MultiSelectChild(IList<IWebElement> elementList, string childXpath, List<string> searchValue)
@@ -379,7 +381,7 @@ namespace SAFV.Source.Pages
                     }
                 }
             }
-            Thread.Sleep(2000);
+            Thread.Sleep(50);
         }
 
         public void SelectMultipleByValue(IList<IWebElement> elementList, List<string> searchValue)
@@ -403,7 +405,7 @@ namespace SAFV.Source.Pages
                     }
                 }
             }
-            Thread.Sleep(2000);
+            Thread.Sleep(250);
         }
 
         public void Select(IWebElement selectElement, string value)

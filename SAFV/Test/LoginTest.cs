@@ -41,10 +41,10 @@ namespace SAFV.Test
             }
         }
 
-        /*[Test]
+        [Test]
         public void a()
         {
-            string input = "ActsOfFamilyViolence\tStalking\tDirectCommunication\tThreatCommunication\tAnyCommunication\tPhysicalDistance\tYards\tPossessFirearm\tNearResidence\tNearPlaceOfEmployment\tNearSchool\tTracking\tGpsMonitoring\tGpsMonitoringDescription\tHumanTrafficking\tVictimNotification\tCourtAppearance\tVictimContact\tApproachResidence\tSchoolDaycare\tWeapons\tAlcoholDrugs\tPrescriptionMedications\tDrugTest\tCourtOrder\tOffense\tOtherConditions\tOtherConditionsDescription";
+            string input = "PhoneType\tPhoneNumber\tPhoneContact\tAddressGroup\tAddress1\tAddress2\tCity\tState\tCounty\tZipCode";
 
             // Split the string into words, ignoring multiple spaces
             string[] words = input.Split(new[] { "\t" }, StringSplitOptions.RemoveEmptyEntries);
@@ -53,7 +53,7 @@ namespace SAFV.Test
             // Print each word on a new line
             foreach (string word in words)
             {
-                Console.WriteLine("courtEpoConditionsColumnList.AddColumn(\"" + word + "\", \"" + word + "\");");
+                Console.WriteLine("quickBookVictimAddressData.AddColumn(\"" + word + "\", \"" + word + "\");");
                 count++;
             }
 
@@ -61,6 +61,6 @@ namespace SAFV.Test
             Console.WriteLine("");
             Console.WriteLine("");
             Console.WriteLine(count);
-        }*/
+        }
     }
 }

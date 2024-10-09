@@ -35,6 +35,7 @@
   <ItemGroup>
     <Folder Include="Report\Incident Test\" />
     <Folder Include="Source\Components\CreateIncident\People\Victim\" />
+    <Folder Include="Source\Pages\QuickBook\" />
   </ItemGroup>
 
 </Project>
