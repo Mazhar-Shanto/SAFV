@@ -3,8 +3,10 @@ using OpenQA.Selenium;
 using SAFV.Drivers;
 using SAFV.Source.Components;
 using SAFV.Source.Components.CreateIncident;
+using SAFV.Source.Components.CreateIncident.Offense;
 using SAFV.Source.Components.CreateIncident.People.Suspect;
 using SAFV.Source.Components.QuickBook;
+using SAFV.Source.Components.QuickBook.QuickBookSuspect;
 using SAFV.Source.Components.QuickBook.QuickBookVictim;
 
 namespace SAFV.Source.Pages
@@ -27,11 +29,16 @@ namespace SAFV.Source.Pages
             Click(MenuComponent.CreateQuickBook);
         }
 
+        public void GoToQuickBookEvidencePage()
+        {
+            Click(QuickBookMenuComponent.Evidence);
+        }
+
         public string CreateNewQuickBookIncident(Dictionary<string, string> quickBookData, string count, string mainCase)
         {
             Reporting.AddTestScreenshot(_driver, "Incident Test");
 
-            string quickBookCaseNumber = quickBookData["IncidentCaseNumber"] + count;
+            string quickBookCaseNumber = quickBookData["CaseType"] + count;
 
             SendKeys(CreateQuickBookIncidentComponent.ReportDate, quickBookData["ReportDate"]);
             SendKeys(CreateQuickBookIncidentComponent.IncidentCaseNumber, quickBookCaseNumber);
@@ -259,5 +266,185 @@ namespace SAFV.Source.Pages
 
             Click(QuickBookVictimInjuryComponent.SaveAndNext);
         }
+
+        public void CreateQuickBookSuspectFromMaster(Dictionary<string, string> quickBookSuspectData)
+        {
+            Reporting.AddTestScreenshot(_driver, "Incident Test");
+
+            SendKeys(QuickBookSuspectComponent.FirstName, quickBookSuspectData["FirstName"]);
+            Click(QuickBookSuspectComponent.LstFirstName);
+            Click(QuickBookSuspectComponent.RelationshipToVictim);
+            SelectOption(QuickBookSuspectComponent.LstRelationshipToVictim, quickBookSuspectData["RelationshipToVictim"]);
+
+            Click(QuickBookSuspectComponent.SaveAndNext);
+        }
+
+        public void CreateQuickBookSuspectInfo(Dictionary<string, string> quickBookSuspectInfoData)
+        {
+            Reporting.AddTestScreenshot(_driver, "Incident Test");
+
+            Toggle(QuickBookSuspectInfoComponent.SuspectWasOnScene, quickBookSuspectInfoData["SuspectWasOnScene"]);
+
+            if (quickBookSuspectInfoData["SuspectWasOnScene"].ToLower() == "true" || quickBookSuspectInfoData["SuspectWasOnScene"].ToLower() == "yes" || quickBookSuspectInfoData["SuspectWasOnScene"].ToLower() == "1")
+            {
+
+                Toggle(QuickBookSuspectInfoComponent.SuspectWasArrested, quickBookSuspectInfoData["SuspectWasArrested"]);
+
+                if (quickBookSuspectInfoData["SuspectWasArrested"].ToLower() == "true" || quickBookSuspectInfoData["SuspectWasArrested"].ToLower() == "yes" || quickBookSuspectInfoData["SuspectWasArrested"].ToLower() == "1")
+                {
+                    SendKeys(QuickBookSuspectInfoComponent.DateOfArrest, quickBookSuspectInfoData["DateOfArrest"]);
+                    SendKeys(QuickBookSuspectInfoComponent.TimeOfArrest, quickBookSuspectInfoData["TimeOfArrest"]);
+                    SendKeys(QuickBookSuspectInfoComponent.DateOfBooking, quickBookSuspectInfoData["DateOfBooking"]);
+                    SendKeys(QuickBookSuspectInfoComponent.TimeOfBooking, quickBookSuspectInfoData["TimeOfBooking"]);
+                    SendKeys(QuickBookSuspectInfoComponent.ArrestAddress1, quickBookSuspectInfoData["ArrestAddress1"]);
+                    SendKeys(QuickBookSuspectInfoComponent.ArrestAddress2, quickBookSuspectInfoData["ArrestAddress2"]);
+                    SendKeys(QuickBookSuspectInfoComponent.ArrestCity, quickBookSuspectInfoData["ArrestCity"]);
+                    SendKeys(QuickBookSuspectInfoComponent.ArrestState, quickBookSuspectInfoData["ArrestState"]);
+                    SendKeys(QuickBookSuspectInfoComponent.ArrestZipCode, quickBookSuspectInfoData["ArrestZipCode"]);
+                    Click(QuickBookSuspectInfoComponent.ArrestCounty);
+                    SelectOption(QuickBookSuspectInfoComponent.LstArrestCounty, quickBookSuspectInfoData["ArrestCounty"]);
+                }
+            }
+            else
+            {
+                Toggle(QuickBookSuspectInfoComponent.SuspectLocatedLater, quickBookSuspectInfoData["SuspectLocatedLater"]);
+
+                if (quickBookSuspectInfoData["SuspectLocatedLater"].ToLower() == "true" || quickBookSuspectInfoData["SuspectLocatedLater"].ToLower() == "yes" || quickBookSuspectInfoData["SuspectLocatedLater"].ToLower() == "1")
+                {
+                    SendKeys(QuickBookSuspectInfoComponent.LocatedDate, quickBookSuspectInfoData["LocatedDate"]);
+                    SendKeys(QuickBookSuspectInfoComponent.LocatedTime, quickBookSuspectInfoData["LocatedTime"]);
+                    Toggle(QuickBookSuspectInfoComponent.SuspectWasArrested, quickBookSuspectInfoData["SuspectWasArrested"]);
+
+                    if (quickBookSuspectInfoData["SuspectWasArrested"].ToLower() == "true" || quickBookSuspectInfoData["SuspectWasArrested"].ToLower() == "yes" || quickBookSuspectInfoData["SuspectWasArrested"].ToLower() == "1")
+                    {
+                        SendKeys(QuickBookSuspectInfoComponent.DateOfArrest, quickBookSuspectInfoData["DateOfArrest"]);
+                        SendKeys(QuickBookSuspectInfoComponent.TimeOfArrest, quickBookSuspectInfoData["TimeOfArrest"]);
+                        SendKeys(QuickBookSuspectInfoComponent.DateOfBooking, quickBookSuspectInfoData["DateOfBooking"]);
+                        SendKeys(QuickBookSuspectInfoComponent.TimeOfBooking, quickBookSuspectInfoData["TimeOfBooking"]);
+                        SendKeys(QuickBookSuspectInfoComponent.ArrestAddress1, quickBookSuspectInfoData["ArrestAddress1"]);
+                        SendKeys(QuickBookSuspectInfoComponent.ArrestAddress2, quickBookSuspectInfoData["ArrestAddress2"]);
+                        SendKeys(QuickBookSuspectInfoComponent.ArrestCity, quickBookSuspectInfoData["ArrestCity"]);
+                        SendKeys(QuickBookSuspectInfoComponent.ArrestState, quickBookSuspectInfoData["ArrestState"]);
+                        SendKeys(QuickBookSuspectInfoComponent.ArrestZipCode, quickBookSuspectInfoData["ArrestZipCode"]);
+                        Click(QuickBookSuspectInfoComponent.ArrestCounty);
+                        SelectOption(QuickBookSuspectInfoComponent.LstArrestCounty, quickBookSuspectInfoData["ArrestCounty"]);
+                    }
+                }
+            }
+
+            Click(QuickBookSuspectInfoComponent.SaveAndNext);
+        }
+
+        public void CreateQuickBookEvidence(Dictionary<string, string> quickBookEvidenceData)
+        {
+            Reporting.AddTestScreenshot(_driver, "Incident Test");
+
+            Click(QuickBookEvidenceComponent.AddEvidence);
+
+            Click(QuickBookEvidenceComponent.EvidenceType);
+            SelectOption(QuickBookEvidenceComponent.LstEvidenceType, quickBookEvidenceData["EvidenceType"]);
+            Click(QuickBookEvidenceComponent.EvidenceDisposition);
+            SelectOption(QuickBookEvidenceComponent.LstEvidenceDisposition, quickBookEvidenceData["EvidenceDisposition"]);
+            Toggle(QuickBookEvidenceComponent.CollectedFromPerson, quickBookEvidenceData["CollectedFromPerson"]);
+
+            if (quickBookEvidenceData["CollectedFromPerson"].ToLower() == "yes" || quickBookEvidenceData["CollectedFromPerson"].ToLower() == "true" || quickBookEvidenceData["CollectedFromPerson"].ToLower() == "1")
+            {
+                if (!string.IsNullOrEmpty(quickBookEvidenceData["Person"]))
+                {
+                    Click(QuickBookEvidenceComponent.Person);
+                    SelectOption(QuickBookEvidenceComponent.LstPerson, quickBookEvidenceData["Person"]);
+                }
+
+                Toggle(QuickBookEvidenceComponent.PersonNotListed, quickBookEvidenceData["PersonNotListed"]);
+
+                if (quickBookEvidenceData["PersonNotListed"].ToLower() == "yes" || quickBookEvidenceData["PersonNotListed"].ToLower() == "true" || quickBookEvidenceData["PersonNotListed"].ToLower() == "1")
+                {
+                    SendKeys(QuickBookEvidenceComponent.PersonName, quickBookEvidenceData["PersonName"]);
+                }
+            }
+
+            SendKeys(QuickBookEvidenceComponent.WhereFound, quickBookEvidenceData["WhereFound"]);
+            SendKeys(QuickBookEvidenceComponent.EvidenceDescription, quickBookEvidenceData["EvidenceDescription"]);
+            Toggle(QuickBookEvidenceComponent.WasSeized, quickBookEvidenceData["WasSeized"]);
+
+            if (quickBookEvidenceData["EvidenceType"].ToLower() == "weapon")
+            {
+                Click(QuickBookEvidenceComponent.TypeOfWeapon);
+                SelectOption(QuickBookEvidenceComponent.LstTypeOfWeapon, quickBookEvidenceData["TypeOfWeapon"]);
+
+                if (quickBookEvidenceData["TypeOfWeapon"].ToLower() == "firearm (type not stated)" || quickBookEvidenceData["TypeOfWeapon"].ToLower() == "handgun" || quickBookEvidenceData["TypeOfWeapon"].ToLower() == "rifle" || quickBookEvidenceData["TypeOfWeapon"].ToLower() == "shotgun" || quickBookEvidenceData["TypeOfWeapon"].ToLower() == "other firearm")
+                {
+                    Click(QuickBookEvidenceComponent.WeaponManufacturer);
+                    SelectOption(QuickBookEvidenceComponent.LstWeaponManufacturer, quickBookEvidenceData["WeaponManufacturer"]);
+                    Click(QuickBookEvidenceComponent.WeaponCaliber);
+                    SelectOption(QuickBookEvidenceComponent.LstWeaponCaliber, quickBookEvidenceData["WeaponCaliber"]);
+                }
+            }
+
+            if (string.IsNullOrEmpty(quickBookEvidenceData["EvidenceSerialNumber"]))
+            {
+                SendKeys(QuickBookEvidenceComponent.EvidenceSerialNumber, "N/A");
+            }
+            else
+            {
+                SendKeys(QuickBookEvidenceComponent.EvidenceSerialNumber, quickBookEvidenceData["EvidenceSerialNumber"]);
+            }
+
+            if (!string.IsNullOrEmpty(quickBookEvidenceData["EvidenceCollectedBy"]))
+            {
+                SendKeys(QuickBookEvidenceComponent.EvidenceCollectedBy, quickBookEvidenceData["EvidenceCollectedBy"]);
+            }
+
+            Click(QuickBookEvidenceComponent.Save);
+            Click(QuickBookEvidenceComponent.Next);
+        }
+
+        public void CreateQuickBookRiskAssessment(Dictionary<string, string> quickBookRiskAssessmentData)
+        {
+            Reporting.AddTestScreenshot(_driver, "Incident Test");
+
+            Radio(QuickBookRiskAssessmentComponent.FamilyViolenceLikelyToOccur, quickBookRiskAssessmentData["FamilyViolenceLikelyToOccur"]);
+            Radio(QuickBookRiskAssessmentComponent.UsedOrThreatenedWithWeapon, quickBookRiskAssessmentData["UsedOrThreatenedWithWeapon"]);
+            Radio(QuickBookRiskAssessmentComponent.ThreatenedToKill, quickBookRiskAssessmentData["ThreatenedToKill"]);
+            Radio(QuickBookRiskAssessmentComponent.SuspectHasGun, quickBookRiskAssessmentData["SuspectHasGun"]);
+
+            if (quickBookRiskAssessmentData["SuspectHasGun"].ToLower() == "true" || quickBookRiskAssessmentData["SuspectHasGun"].ToLower() == "yes" || quickBookRiskAssessmentData["SuspectHasGun"].ToLower() == "1")
+            {
+                SendKeys(QuickBookRiskAssessmentComponent.GunDetailsInfo, quickBookRiskAssessmentData["GunDetailsInfo"]);
+            }
+
+            Radio(QuickBookRiskAssessmentComponent.Strangulation, quickBookRiskAssessmentData["Strangulation"]);
+            Radio(QuickBookRiskAssessmentComponent.Violence, quickBookRiskAssessmentData["Violence"]);
+            Radio(QuickBookRiskAssessmentComponent.Jealousy, quickBookRiskAssessmentData["Jealousy"]);
+            Radio(QuickBookRiskAssessmentComponent.Controlling, quickBookRiskAssessmentData["Controlling"]);
+            Radio(QuickBookRiskAssessmentComponent.ViolenceIncreased, quickBookRiskAssessmentData["ViolenceIncreased"]);
+
+            if (quickBookRiskAssessmentData["ViolenceIncreased"].ToLower() == "true" || quickBookRiskAssessmentData["ViolenceIncreased"].ToLower() == "yes" || quickBookRiskAssessmentData["ViolenceIncreased"].ToLower() == "1")
+            {
+                SendKeys(QuickBookRiskAssessmentComponent.ViolenceIncreasedDescription, quickBookRiskAssessmentData["ViolenceIncreasedDescription"]);
+            }
+
+            Radio(QuickBookRiskAssessmentComponent.DestroyedItems, quickBookRiskAssessmentData["DestroyedItems"]);
+            Radio(QuickBookRiskAssessmentComponent.HurtPets, quickBookRiskAssessmentData["HurtPets"]);
+            Radio(QuickBookRiskAssessmentComponent.Unemployed, quickBookRiskAssessmentData["Unemployed"]);
+            Radio(QuickBookRiskAssessmentComponent.Suicidal, quickBookRiskAssessmentData["Suicidal"]);
+            Radio(QuickBookRiskAssessmentComponent.Spying, quickBookRiskAssessmentData["Spying"]);
+            Radio(QuickBookRiskAssessmentComponent.ThreateningMessages, quickBookRiskAssessmentData["ThreateningMessages"]);
+            Radio(QuickBookRiskAssessmentComponent.AlcoholAbuse, quickBookRiskAssessmentData["AlcoholAbuse"]);
+            Radio(QuickBookRiskAssessmentComponent.DrugUse, quickBookRiskAssessmentData["DrugUse"]);
+            Radio(QuickBookRiskAssessmentComponent.MightKillYou, quickBookRiskAssessmentData["MightKillYou"]);
+            Radio(QuickBookRiskAssessmentComponent.ForcedSex, quickBookRiskAssessmentData["ForcedSex"]);
+            Radio(QuickBookRiskAssessmentComponent.Separation, quickBookRiskAssessmentData["Separation"]);
+            Radio(QuickBookRiskAssessmentComponent.RecentSeparation, quickBookRiskAssessmentData["RecentSeparation"]);
+            Radio(QuickBookRiskAssessmentComponent.UnrelatedChild, quickBookRiskAssessmentData["UnrelatedChild"]);
+            Radio(QuickBookRiskAssessmentComponent.PriorContacts, quickBookRiskAssessmentData["PriorContacts"]);
+            Radio(QuickBookRiskAssessmentComponent.CourtAction, quickBookRiskAssessmentData["CourtAction"]);
+            SendKeys(QuickBookRiskAssessmentComponent.AdditionalInfo, quickBookRiskAssessmentData["AdditionalInfo"]);
+            SendKeys(QuickBookRiskAssessmentComponent.PriorProtectiveOrder, quickBookRiskAssessmentData["PriorProtectiveOrder"]);
+            SendKeys(QuickBookRiskAssessmentComponent.DateTimeOfAssessment, quickBookRiskAssessmentData["DateTimeOfAssessment"]);
+
+            Click(QuickBookRiskAssessmentComponent.SaveAndNext);
+        }
     }
 }
+                                                                                                                                                                                                                                                                                                                                      

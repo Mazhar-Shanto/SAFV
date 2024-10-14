@@ -50,6 +50,27 @@ namespace SAFV.Helper
         }
 
 
+        public static List<Dictionary<string, string>> ReadQuickBookLogData()
+        {
+            // Read dataset
+            var quickBookColumnList = new ColumnList();
+            quickBookColumnList.AddColumn("QuickBookCaseCount", "QuickBookCaseCount");
+            quickBookColumnList.AddColumn("QuickBookCaseNumber", "QuickBookCaseNumber");
+            quickBookColumnList.AddColumn("QuickBookSupplementCount", "QuickBookSupplementCount");
+            quickBookColumnList.AddColumn("QuickBookSupplementNumber", "QuickBookSupplementNumber");
+            quickBookColumnList.AddColumn("QuickBookMainCaseForSupplement", "QuickBookMainCaseForSupplement");
+
+            var projectRoot = Utils.GetProjectRoot();
+            var filePath = Path.Combine(projectRoot, "Helper/Log/quick book log.xlsx");
+
+            Console.WriteLine(filePath);
+            var dataSet = new DataSet(quickBookColumnList);
+            var quickBookData = dataSet.ReadData(filePath);
+
+            return quickBookData;
+        }
+
+
         public static List<Dictionary<string, string>> ReadQuickBookOffenseData()
         {
             // Read dataset
@@ -207,6 +228,137 @@ namespace SAFV.Helper
             var quickBookVictimMedicalEmsData = dataSet.ReadData(filePath);
 
             return quickBookVictimMedicalEmsData;
+        }
+
+
+        public static List<Dictionary<string, string>> ReadQuickBookSuspectData()
+        {
+            // Read dataset
+            var quickBookSuspectColumnList = new ColumnList();
+            quickBookSuspectColumnList.AddColumn("FirstName", "FirstName");
+            quickBookSuspectColumnList.AddColumn("LastName", "LastName");
+            quickBookSuspectColumnList.AddColumn("RelationshipToVictim", "RelationshipToVictim");
+
+
+            var projectRoot = Utils.GetProjectRoot();
+            var filePath = Path.Combine(projectRoot, "Helper/TestData/QuickBook/Suspect/create quickbook suspect.xlsx");
+
+            Console.WriteLine(filePath);
+            var dataSet = new DataSet(quickBookSuspectColumnList);
+            var quickBookSuspectData = dataSet.ReadData(filePath);
+
+            return quickBookSuspectData;
+        }
+
+
+        public static List<Dictionary<string, string>> ReadQuickBookSuspectInfoData()
+        {
+            // Read dataset
+            var quickBookSuspectInfoColumnList = new ColumnList();
+            quickBookSuspectInfoColumnList.AddColumn("SuspectWasOnScene", "SuspectWasOnScene");
+            quickBookSuspectInfoColumnList.AddColumn("SuspectLocatedLater", "SuspectLocatedLater");
+            quickBookSuspectInfoColumnList.AddColumn("LocatedDate", "LocatedDate");
+            quickBookSuspectInfoColumnList.AddColumn("LocatedTime", "LocatedTime");
+            quickBookSuspectInfoColumnList.AddColumn("SuspectWasArrested", "SuspectWasArrested");
+            quickBookSuspectInfoColumnList.AddColumn("DateOfArrest", "DateOfArrest");
+            quickBookSuspectInfoColumnList.AddColumn("TimeOfArrest", "TimeOfArrest");
+            quickBookSuspectInfoColumnList.AddColumn("DateOfBooking", "DateOfBooking");
+            quickBookSuspectInfoColumnList.AddColumn("TimeOfBooking", "TimeOfBooking");
+            quickBookSuspectInfoColumnList.AddColumn("ArrestAddress1", "ArrestAddress1");
+            quickBookSuspectInfoColumnList.AddColumn("ArrestAddress2", "ArrestAddress2");
+            quickBookSuspectInfoColumnList.AddColumn("ArrestCity", "ArrestCity");
+            quickBookSuspectInfoColumnList.AddColumn("ArrestState", "ArrestState");
+            quickBookSuspectInfoColumnList.AddColumn("ArrestZipCode", "ArrestZipCode");
+            quickBookSuspectInfoColumnList.AddColumn("ArrestCounty", "ArrestCounty");
+
+
+            var projectRoot = Utils.GetProjectRoot();
+            var filePath = Path.Combine(projectRoot, "Helper/TestData/QuickBook/Suspect/create quickbook suspect info.xlsx");
+
+            Console.WriteLine(filePath);
+            var dataSet = new DataSet(quickBookSuspectInfoColumnList);
+            var quickBookSuspectInfoData = dataSet.ReadData(filePath);
+
+            return quickBookSuspectInfoData;
+        }
+
+
+        public static List<Dictionary<string, string>> ReadQuickBookEvidenceData()
+        {
+            // Read dataset
+            var quickBookEvidenceColumnList = new ColumnList();
+            quickBookEvidenceColumnList.AddColumn("EvidenceType", "EvidenceType");
+            quickBookEvidenceColumnList.AddColumn("EvidenceDisposition", "EvidenceDisposition");
+            quickBookEvidenceColumnList.AddColumn("CollectedFromPerson", "CollectedFromPerson");
+            quickBookEvidenceColumnList.AddColumn("Person", "Person");
+            quickBookEvidenceColumnList.AddColumn("PersonNotListed", "PersonNotListed");
+            quickBookEvidenceColumnList.AddColumn("PersonName", "PersonName");
+            quickBookEvidenceColumnList.AddColumn("WhereFound", "WhereFound");
+            quickBookEvidenceColumnList.AddColumn("EvidenceDescription", "EvidenceDescription");
+            quickBookEvidenceColumnList.AddColumn("WasSeized", "WasSeized");
+            quickBookEvidenceColumnList.AddColumn("TypeOfWeapon", "TypeOfWeapon");
+            quickBookEvidenceColumnList.AddColumn("EvidenceSerialNumber", "EvidenceSerialNumber");
+            quickBookEvidenceColumnList.AddColumn("WeaponManufacturer", "WeaponManufacturer");
+            quickBookEvidenceColumnList.AddColumn("WeaponCaliber", "WeaponCaliber");
+            quickBookEvidenceColumnList.AddColumn("EvidenceCollectedBy", "EvidenceCollectedBy");
+
+
+            var projectRoot = Utils.GetProjectRoot();
+            var filePath = Path.Combine(projectRoot, "Helper/TestData/QuickBook/create quick book evidence.xlsx");
+
+            Console.WriteLine(filePath);
+            var dataSet = new DataSet(quickBookEvidenceColumnList);
+            var quickBookEvidenceData = dataSet.ReadData(filePath);
+
+            return quickBookEvidenceData;
+        }
+
+
+        public static List<Dictionary<string, string>> ReadQuickBookRiskAssessmentData()
+        {
+            // Read dataset
+            var quickBookRiskAssessmentColumnList = new ColumnList();
+            quickBookRiskAssessmentColumnList.AddColumn("Suspect", "Suspect");
+            quickBookRiskAssessmentColumnList.AddColumn("Victim", "Victim");
+            quickBookRiskAssessmentColumnList.AddColumn("FamilyViolenceLikelyToOccur", "FamilyViolenceLikelyToOccur");
+            quickBookRiskAssessmentColumnList.AddColumn("UsedOrThreatenedWithWeapon", "UsedOrThreatenedWithWeapon");
+            quickBookRiskAssessmentColumnList.AddColumn("ThreatenedToKill", "ThreatenedToKill");
+            quickBookRiskAssessmentColumnList.AddColumn("SuspectHasGun", "SuspectHasGun");
+            quickBookRiskAssessmentColumnList.AddColumn("GunDetailsInfo", "GunDetailsInfo");
+            quickBookRiskAssessmentColumnList.AddColumn("Strangulation", "Strangulation");
+            quickBookRiskAssessmentColumnList.AddColumn("Violence", "Violence");
+            quickBookRiskAssessmentColumnList.AddColumn("Jealousy", "Jealousy");
+            quickBookRiskAssessmentColumnList.AddColumn("Controlling", "Controlling");
+            quickBookRiskAssessmentColumnList.AddColumn("ViolenceIncreased", "ViolenceIncreased");
+            quickBookRiskAssessmentColumnList.AddColumn("ViolenceIncreasedDescription", "ViolenceIncreasedDescription");
+            quickBookRiskAssessmentColumnList.AddColumn("DestroyedItems", "DestroyedItems");
+            quickBookRiskAssessmentColumnList.AddColumn("HurtPets", "HurtPets");
+            quickBookRiskAssessmentColumnList.AddColumn("Unemployed", "Unemployed");
+            quickBookRiskAssessmentColumnList.AddColumn("Suicidal", "Suicidal");
+            quickBookRiskAssessmentColumnList.AddColumn("Spying", "Spying");
+            quickBookRiskAssessmentColumnList.AddColumn("ThreateningMessages", "ThreateningMessages");
+            quickBookRiskAssessmentColumnList.AddColumn("AlcoholAbuse", "AlcoholAbuse");
+            quickBookRiskAssessmentColumnList.AddColumn("DrugUse", "DrugUse");
+            quickBookRiskAssessmentColumnList.AddColumn("MightKillYou", "MightKillYou");
+            quickBookRiskAssessmentColumnList.AddColumn("ForcedSex", "ForcedSex");
+            quickBookRiskAssessmentColumnList.AddColumn("Separation", "Separation");
+            quickBookRiskAssessmentColumnList.AddColumn("RecentSeparation", "RecentSeparation");
+            quickBookRiskAssessmentColumnList.AddColumn("UnrelatedChild", "UnrelatedChild");
+            quickBookRiskAssessmentColumnList.AddColumn("PriorContacts", "PriorContacts");
+            quickBookRiskAssessmentColumnList.AddColumn("CourtAction", "CourtAction");
+            quickBookRiskAssessmentColumnList.AddColumn("AdditionalInfo", "AdditionalInfo");
+            quickBookRiskAssessmentColumnList.AddColumn("PriorProtectiveOrder", "PriorProtectiveOrder");
+            quickBookRiskAssessmentColumnList.AddColumn("DateTimeOfAssessment", "DateTimeOfAssessment");
+
+
+            var projectRoot = Utils.GetProjectRoot();
+            var filePath = Path.Combine(projectRoot, "Helper/TestData/QuickBook/create quick book risk assessment.xlsx");
+
+            Console.WriteLine(filePath);
+            var dataSet = new DataSet(quickBookRiskAssessmentColumnList);
+            var quickBookRiskAssessmentData = dataSet.ReadData(filePath);
+
+            return quickBookRiskAssessmentData;
         }
     }
 }
