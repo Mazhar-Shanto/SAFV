@@ -3,6 +3,7 @@ using OpenQA.Selenium;
 using SAFV.Drivers;
 using SAFV.Source.Components;
 using SAFV.Source.Components.CreateIncident;
+using SAFV.Source.Components.CreateIncident.Epo;
 using SAFV.Source.Components.CreateIncident.Offense;
 using SAFV.Source.Components.CreateIncident.People.Suspect;
 using SAFV.Source.Components.QuickBook;
@@ -32,6 +33,11 @@ namespace SAFV.Source.Pages
         public void GoToQuickBookEvidencePage()
         {
             Click(QuickBookMenuComponent.Evidence);
+        }
+
+        public void GoToQuickBookRiskAssessmentPage()
+        {
+            Click(QuickBookMenuComponent.RiskAssessment);
         }
 
         public string CreateNewQuickBookIncident(Dictionary<string, string> quickBookData, string count, string mainCase)
@@ -75,8 +81,9 @@ namespace SAFV.Source.Pages
             SendKeys(CreateQuickBookIncidentComponent.ZipCode, quickBookData["ZipCode"]);
             Toggle(CreateQuickBookIncidentComponent.DispatchedLocation, quickBookData["DispatchedLocation"]);
 
-            if (quickBookData["DispatchedLocation"].ToLower() == "yes" || quickBookData["DispatchedLocation"].ToLower() == "true" || quickBookData["DispatchedLocation"].ToLower() == "1")
+            if (quickBookData["DispatchedLocation"].ToLower() == "no" || quickBookData["DispatchedLocation"].ToLower() == "false" || quickBookData["DispatchedLocation"].ToLower() == "0")
             {
+                Click(CreateQuickBookIncidentComponent.ConfirmDispatchedLocationAdd);
                 Click(CreateQuickBookIncidentComponent.DispatchedLocationType);
                 SelectOption(CreateQuickBookIncidentComponent.LstDispatchedLocationType, quickBookData["DispatchedLocationType"]);
                 Click(CreateQuickBookIncidentComponent.DispatchedLocationAddressGroup);
@@ -122,12 +129,19 @@ namespace SAFV.Source.Pages
             Reporting.AddTestScreenshot(_driver, "Incident Test");
 
             SendKeys(QuickBookVictimComponent.FirstName, quickBookVictimData["FirstName"]);
+            Click(QuickBookVictimComponent.PageTitle);
             SendKeys(QuickBookVictimComponent.LastName, quickBookVictimData["LastName"]);
             Toggle(QuickBookVictimComponent.VictimWouldLikeToUsePseudonym, quickBookVictimData["VictimWouldLikeToUsePseudonym"]);
-            Click(QuickBookVictimComponent.ConfirmPseudonym);
-            SendKeys(QuickBookVictimComponent.VictimRealFirstName, quickBookVictimData["VictimRealFirstName"]);
-            SendKeys(QuickBookVictimComponent.VictimRealLastName, quickBookVictimData["VictimRealLastName"]);
-            SendKeys(QuickBookVictimComponent.VictimRealMiddleName, quickBookVictimData["VictimRealMiddleName"]);
+
+            if (quickBookVictimData["VictimWouldLikeToUsePseudonym"].ToLower() == "true" || quickBookVictimData["VictimWouldLikeToUsePseudonym"].ToLower() == "yes" || quickBookVictimData["VictimWouldLikeToUsePseudonym"].ToLower() == "1")
+            {
+                Click(QuickBookVictimComponent.ConfirmPseudonym);
+                SendKeys(QuickBookVictimComponent.VictimRealFirstName, quickBookVictimData["VictimRealFirstName"]);
+                SendKeys(QuickBookVictimComponent.VictimRealLastName, quickBookVictimData["VictimRealLastName"]);
+                SendKeys(QuickBookVictimComponent.VictimRealMiddleName, quickBookVictimData["VictimRealMiddleName"]);
+            }
+
+            Click(QuickBookVictimComponent.PageTitle);
             Click(QuickBookVictimComponent.Race);
             SelectOption(QuickBookVictimComponent.LstRace, quickBookVictimData["Race"]);
             Click(QuickBookVictimComponent.Sex);
@@ -135,7 +149,16 @@ namespace SAFV.Source.Pages
             SendKeys(QuickBookVictimComponent.DateOfBirth, quickBookVictimData["DateOfBirth"]);
 
             Click(QuickBookVictimComponent.Save);
-            Click(QuickBookVictimComponent.NoSyncConfirmation);
+
+            try
+            {
+                QuickBookVictimComponent.NoSyncConfirmation.Click();
+            }
+            catch (Exception ex)
+            {
+
+            }
+
             Click(QuickBookVictimComponent.Next);
         }
 
@@ -173,6 +196,7 @@ namespace SAFV.Source.Pages
                     SelectOption(QuickBookVictimRelocationComponent.LstTemporaryCounty, quickBookVictimRelocationData["TemporaryCounty"]);
                     SendKeys(QuickBookVictimRelocationComponent.HowLong, quickBookVictimRelocationData["HowLong"]);
                 }
+
                 Toggle(QuickBookVictimRelocationComponent.OmitLocationFromProtectionOrder, quickBookVictimRelocationData["OmitLocationFromProtectionOrder"]);
                 SendKeys(QuickBookVictimRelocationComponent.VictimsConcern, quickBookVictimRelocationData["VictimsConcern"]);
             }
@@ -191,7 +215,7 @@ namespace SAFV.Source.Pages
             Toggle(QuickBookVictimAddressPhoneComponent.PrimaryContact, quickBookVictimAddressData["PrimaryContact"]);
             Click(QuickBookVictimAddressPhoneComponent.SavePhoneNumber);
 
-            Click(QuickBookVictimAddressPhoneComponent.AddNewAddress);
+            /*Click(QuickBookVictimAddressPhoneComponent.AddNewAddress);
             Click(QuickBookVictimAddressPhoneComponent.AddressGroup);
             SelectOption(QuickBookVictimAddressPhoneComponent.LstAddressGroup, quickBookVictimAddressData["AddressGroup"]);
             SendKeys(QuickBookVictimAddressPhoneComponent.Address1, quickBookVictimAddressData["Address1"]);
@@ -201,7 +225,7 @@ namespace SAFV.Source.Pages
             Click(QuickBookVictimAddressPhoneComponent.County);
             SelectOption(QuickBookVictimAddressPhoneComponent.LstCounty, quickBookVictimAddressData["County"]);
             SendKeys(QuickBookVictimAddressPhoneComponent.ZipCode, quickBookVictimAddressData["ZipCode"]);
-            Click(QuickBookVictimAddressPhoneComponent.SaveAddress);
+            Click(QuickBookVictimAddressPhoneComponent.SaveAddress);*/
 
             Click(QuickBookVictimAddressPhoneComponent.Next);
         }
@@ -276,7 +300,18 @@ namespace SAFV.Source.Pages
             Click(QuickBookSuspectComponent.RelationshipToVictim);
             SelectOption(QuickBookSuspectComponent.LstRelationshipToVictim, quickBookSuspectData["RelationshipToVictim"]);
 
-            Click(QuickBookSuspectComponent.SaveAndNext);
+            Click(QuickBookSuspectComponent.Save);
+
+            try
+            {
+                QuickBookSuspectComponent.NoSyncConfirmation.Click();
+            }
+            catch (Exception ex) 
+            {
+
+            }
+
+            Click(QuickBookSuspectComponent.Next);
         }
 
         public void CreateQuickBookSuspectInfo(Dictionary<string, string> quickBookSuspectInfoData)
@@ -444,6 +479,57 @@ namespace SAFV.Source.Pages
             SendKeys(QuickBookRiskAssessmentComponent.DateTimeOfAssessment, quickBookRiskAssessmentData["DateTimeOfAssessment"]);
 
             Click(QuickBookRiskAssessmentComponent.SaveAndNext);
+        }
+
+        public void CreateQuickBookEpoRequest(Dictionary<string, string> quickBookEpoData)
+        {
+            Reporting.AddTestScreenshot(_driver, "Incident Test");
+
+            Click(QuickBookEpoComponent.CreateEpoRequest);
+
+            Click(QuickBookEpoComponent.OffenseGroup);
+            Click(QuickBookEpoComponent.LstOffenseGroup);
+            Toggle(QuickBookEpoComponent.RequestedByVictim, quickBookEpoData["RequestedByVictim"]);
+            Toggle(QuickBookEpoComponent.RequestedByGuardian, quickBookEpoData["RequestedByGuardian"]);
+
+            if (quickBookEpoData["RequestedByGuardian"].ToLower() == "true" || quickBookEpoData["RequestedByGuardian"].ToLower() == "yes" || quickBookEpoData["RequestedByGuardian"].ToLower() == "1")
+            {
+                SendKeys(QuickBookEpoComponent.GuardiansName, quickBookEpoData["GuardiansName"]);
+            }
+
+            Toggle(QuickBookEpoComponent.RequestedByOfficer, quickBookEpoData["RequestedByOfficer"]);
+            Toggle(QuickBookEpoComponent.RequestedByState, quickBookEpoData["RequestedByState"]);
+
+            if (quickBookEpoData["RequestedByState"].ToLower() == "true" || quickBookEpoData["RequestedByState"].ToLower() == "yes" || quickBookEpoData["RequestedByState"].ToLower() == "1")
+            {
+                SendKeys(QuickBookEpoComponent.StateAttorneyName, quickBookEpoData["StateAttorneyName"]);
+            }
+
+            Toggle(QuickBookEpoComponent.RequestedByMagistrate, quickBookEpoData["RequestedByMagistrate"]);
+
+            if (quickBookEpoData["RequestedByMagistrate"].ToLower() == "true" || quickBookEpoData["RequestedByMagistrate"].ToLower() == "yes" || quickBookEpoData["RequestedByMagistrate"].ToLower() == "1")
+            {
+                SendKeys(QuickBookEpoComponent.MagistratesName, quickBookEpoData["MagistratesName"]);
+            }
+
+            Toggle(QuickBookEpoComponent.HoldRequested, quickBookEpoData["HoldRequested"]);
+
+            if (quickBookEpoData["HoldRequested"].ToLower() == "true" || quickBookEpoData["HoldRequested"].ToLower() == "yes" || quickBookEpoData["HoldRequested"].ToLower() == "1")
+            {
+                Toggle(QuickBookEpoComponent.Hour24, quickBookEpoData["Hour24"]);
+                Toggle(QuickBookEpoComponent.Hour48, quickBookEpoData["Hour48"]);
+                SendKeys(QuickBookEpoComponent.ExplainHold, quickBookEpoData["ExplainHold"]);
+            }
+
+            Click(QuickBookEpoComponent.SaveEpo);
+
+            Click(QuickBookEpoComponent.EpoRequestDocuments);
+            Click(QuickBookEpoComponent.SelectAllForms);
+            Click(QuickBookEpoComponent.GenerateRequest);
+            Click(QuickBookEpoComponent.SendEpoRequest);
+            Click(QuickBookEpoComponent.JudicialOrganization);
+            SelectOption(QuickBookEpoComponent.LstJudicialOrganization, quickBookEpoData["JudicialOrganization"]);
+            Click(QuickBookEpoComponent.SendWithoutSigning);
         }
     }
 }

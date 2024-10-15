@@ -15,9 +15,9 @@ namespace SAFV.Source.Components.QuickBook.QuickBookVictim
         public static IWebElement AddInjury => WaitAndFindElement(By.XPath("//*[@id=\"injury_type\"]/div[3]/div/button"));
         public static IWebElement SaveInjury => WaitAndFindElement(By.Id("injury-form-submit-button"));
 
-        public static IWebElement Save => WaitAndFindElement(By.Id("//*[@id=\"ems-info-form\"]/div[2]/div/button[1]"));
-        public static IWebElement SaveAndNext => WaitAndFindElement(By.Id("//*[@id=\"ems-info-form\"]/div[2]/div/button[2]"));
-        public static IWebElement Cancel => WaitAndFindElement(By.Id("//*[@id=\"ems-info-form\"]/div[2]/div/button[3]"));
+        public static IWebElement Save => WaitAndFindElement(By.XPath("//*[@id=\"ems-info-form\"]/div[2]/div/button[1]"));
+        public static IWebElement SaveAndNext => WaitAndFindElement(By.XPath("//*[@id=\"ems-info-form\"]/div[2]/div/button[2]"));
+        public static IWebElement Cancel => WaitAndFindElement(By.XPath("//*[@id=\"ems-info-form\"]/div[2]/div/button[3]"));
 
         public static IWebElement Next => WaitAndFindElement(By.Id("victimNext"));
         public static IWebElement Back => WaitAndFindElement(By.Id("victimBack"));

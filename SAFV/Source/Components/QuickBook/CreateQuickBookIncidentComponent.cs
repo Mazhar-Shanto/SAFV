@@ -17,7 +17,7 @@ namespace SAFV.Source.Components.QuickBook
         public static IWebElement SearchMainCase => WaitAndFindElement(By.XPath("//*[@id=\"MasterIncidentId-list\"]/span/input"));
         public static IList<IWebElement> LstMainCase => WaitAndFindElements(By.XPath("//*[@id=\"MasterIncidentId_listbox\"]/li"));
         public static IWebElement DispatchedDate => WaitAndFindElement(By.Id("DispatchedDate"));
-        public static IWebElement DispatchedTime => WaitAndFindElement(By.Id("parentdivDispatchedTime"));
+        public static IWebElement DispatchedTime => WaitAndFindElement(By.Id("DispatchedTime"));
         public static IWebElement HowPoliceNotified => WaitAndFindElement(By.XPath("//*[@id=\"incident-quickbook-form\"]/div[9]/div/span[1]"));
         public static IList<IWebElement> LstHowPoliceNotified => WaitAndFindElements(By.XPath("//*[@id=\"ReasonForContactId_listbox\"]/li"));
         public static IWebElement WhatWasBeingReported => WaitAndFindElement(By.XPath("//*[@id=\"incident-quickbook-form\"]/div[10]/div/span"));

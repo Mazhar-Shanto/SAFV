@@ -32,9 +32,15 @@ namespace SAFV.Source.Components.QuickBook.QuickBookSuspect
         public static IWebElement RelationshipToVictim => WaitAndFindElement(By.XPath("//*[@id=\"createbasicinfoform\"]/div/div[1]/div[16]/div/div"));
         public static IList<IWebElement> LstRelationshipToVictim => WaitAndFindElements(By.XPath("//*[@id=\"Relation_RelationShipNames_listbox\"]/li"));
 
+        public static IWebElement Next => WaitAndFindElement(By.Id("suspectNext"));
+        public static IWebElement Back => WaitAndFindElement(By.Id("suspectBack"));
+
         public static IWebElement Save => WaitAndFindElement(By.Id("submit-btn"));
         public static IWebElement SaveAndNext => WaitAndFindElement(By.XPath("//*[@id=\"createbasicinfoform\"]/div/div[2]/button[2]"));
         public static IWebElement Cancel => WaitAndFindElement(By.XPath("//*[@id=\"createbasicinfoform\"]/div/div[2]/button[3]"));
+
+        public static IWebElement SyncConfirmation => WaitAndFindElement(By.Id("btnSyncConfirmation"));
+        public static IWebElement NoSyncConfirmation => WaitAndFindElement(By.Id("btnNoSyncConfirmation"));
 
         public QuickBookSuspectComponent(IWebDriver driver) : base(driver)
         {

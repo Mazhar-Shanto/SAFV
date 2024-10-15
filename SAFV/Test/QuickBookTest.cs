@@ -27,6 +27,7 @@ namespace SAFV.Test
             var quickBookSuspectInfoDataList = QuickBookDataReader.ReadQuickBookSuspectInfoData();
             var quickBookEvidenceDataList = QuickBookDataReader.ReadQuickBookEvidenceData();
             var quickBookRiskAssessmentDataList = QuickBookDataReader.ReadQuickBookRiskAssessmentData();
+            var quickBookEpoDataList = QuickBookDataReader.ReadQuickBookEpoData();
 
             int loginDataCount = loginDataList.Count();
 
@@ -46,6 +47,7 @@ namespace SAFV.Test
                 var quickBookSuspectInfoData = quickBookSuspectInfoDataList[i];
                 var quickBookEvidenceData = quickBookEvidenceDataList[i];
                 var quickBookRiskAssessmentData = quickBookRiskAssessmentDataList[i];
+                var quickBookEpoData = quickBookEpoDataList[i];
 
                 Reporting.CreateTest("CreateMainIncidentTest");
 
@@ -57,8 +59,8 @@ namespace SAFV.Test
                 loginPage.Login(loginData["Username"], loginData["Password"]);
                 quickBookPage.GoToQuickBookCreatePage();
 
-                string quickBookCaseNumberOld = quickBookLogData["QuickBookCaseCount"];
-                string quickBookCaseCountOld = quickBookLogData["QuickBookCaseNumber"];
+                string quickBookCaseCountOld = quickBookLogData["QuickBookCaseCount"];
+                string quickBookCaseNumberOld = quickBookLogData["QuickBookCaseNumber"];
                 string quickBookSupplementCountOld = quickBookLogData["QuickBookSupplementCount"];
                 string quickBookSupplementNumberOld = quickBookLogData["QuickBookSupplementNumber"];
                 string quickBookMainCaseForSupplement = quickBookLogData["QuickBookMainCaseForSupplement"];
@@ -68,7 +70,7 @@ namespace SAFV.Test
 
                 string quickBookCaseNumberNew = quickBookPage.CreateNewQuickBookIncident(quickBookIncidentData, quickBookCaseCountNew, quickBookMainCaseForSupplement);
 
-                WriteToExcel.WriteQuickBookLog(quickBookCaseNumberNew, quickBookCaseCountNew, quickBookSupplementCountOld, quickBookSupplementNumberOld, quickBookMainCaseForSupplement);
+                WriteToExcel.WriteQuickBookLog(quickBookCaseCountNew, quickBookCaseNumberNew, quickBookSupplementCountOld, quickBookSupplementNumberOld, quickBookMainCaseForSupplement);
 
                 quickBookPage.CreateQuickBookOffense(quickBookOffenseData);
                 quickBookPage.CreateQuickBookVictim(quickBookVictimData);
@@ -80,7 +82,9 @@ namespace SAFV.Test
                 quickBookPage.CreateQuickBookSuspectInfo(quickBookSuspectInfoData);
                 quickBookPage.GoToQuickBookEvidencePage();
                 quickBookPage.CreateQuickBookEvidence(quickBookEvidenceData);
+                quickBookPage.GoToQuickBookRiskAssessmentPage();
                 quickBookPage.CreateQuickBookRiskAssessment(quickBookRiskAssessmentData);
+                quickBookPage.CreateQuickBookEpoRequest(quickBookEpoData);
             }
         }
     }

@@ -6,6 +6,7 @@ namespace SAFV.Source.Components.QuickBook.QuickBookVictim
     public class QuickBookVictimComponent : BaseComponent
     {
         // Elements
+        public static IWebElement PageTitle => WaitAndFindElement(By.Id("seletedTabTitle"));
         public static IWebElement FirstName => WaitAndFindElement(By.Id("FirstName"));
         public static IList<IWebElement> LstFirstName => WaitAndFindElements(By.XPath("//*[@id=\"FirstNameautocomplete-list\"]/div"));
         public static IWebElement LastName => WaitAndFindElement(By.Id("LastName"));

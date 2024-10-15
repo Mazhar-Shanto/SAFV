@@ -75,10 +75,10 @@ namespace SAFV.Helper
         {
             // Read dataset
             var quickBookOffenseColumnList = new ColumnList();
-            quickBookOffenseColumnList.AddColumn("ReportDate", "ReportDate");
-            quickBookOffenseColumnList.AddColumn("IncidentCaseNumber", "IncidentCaseNumber");
-            quickBookOffenseColumnList.AddColumn("IncidentType", "IncidentType");
-            quickBookOffenseColumnList.AddColumn("ConfidentialMode", "ConfidentialMode");
+            quickBookOffenseColumnList.AddColumn("DateOfOffense", "DateOfOffense");
+            quickBookOffenseColumnList.AddColumn("TimeOfOffense", "TimeOfOffense");
+            quickBookOffenseColumnList.AddColumn("Location", "Location");
+            quickBookOffenseColumnList.AddColumn("OffenseType", "OffenseType");
 
 
             var projectRoot = Utils.GetProjectRoot();
@@ -204,17 +204,17 @@ namespace SAFV.Helper
         {
             // Read dataset
             var quickBookVictimMedicalEmsColumnList = new ColumnList();
-            quickBookVictimMedicalEmsColumnList.AddColumn("DidPersonComplainInjuries", "DidPersonComplainInjuries");
+            quickBookVictimMedicalEmsColumnList.AddColumn("DidPersonComplainOfInjuries", "DidPersonComplainOfInjuries");
             quickBookVictimMedicalEmsColumnList.AddColumn("DidYouObserveInjuries", "DidYouObserveInjuries");
             quickBookVictimMedicalEmsColumnList.AddColumn("IsPersonPregnant", "IsPersonPregnant");
             quickBookVictimMedicalEmsColumnList.AddColumn("NumberOfWeeks", "NumberOfWeeks");
             quickBookVictimMedicalEmsColumnList.AddColumn("OfficerCouldObservePersonPregnant", "OfficerCouldObservePersonPregnant");
             quickBookVictimMedicalEmsColumnList.AddColumn("MedicalTreatmentOfferedButRefused", "MedicalTreatmentOfferedButRefused");
-            quickBookVictimMedicalEmsColumnList.AddColumn("PersonSeekingOwnTreatment", "PersonSeekingOwnTreatment");
+            quickBookVictimMedicalEmsColumnList.AddColumn("PersonSeekingTheirOwnTreatment", "PersonSeekingTheirOwnTreatment");
             quickBookVictimMedicalEmsColumnList.AddColumn("DrWhoWillProvideTreatment", "DrWhoWillProvideTreatment");
             quickBookVictimMedicalEmsColumnList.AddColumn("FirstAidGivenAtScene", "FirstAidGivenAtScene");
             quickBookVictimMedicalEmsColumnList.AddColumn("FirstAidGivenBy", "FirstAidGivenBy");
-            quickBookVictimMedicalEmsColumnList.AddColumn("EMSParamedicsFire", "EMSParamedicsFire");
+            quickBookVictimMedicalEmsColumnList.AddColumn("EmsParamedicsFire", "EmsParamedicsFire");
             quickBookVictimMedicalEmsColumnList.AddColumn("EmsUnit", "EmsUnit");
             quickBookVictimMedicalEmsColumnList.AddColumn("EmsUnitTransportedPersonToHospital", "EmsUnitTransportedPersonToHospital");
             quickBookVictimMedicalEmsColumnList.AddColumn("TransportedTo", "TransportedTo");
@@ -359,6 +359,41 @@ namespace SAFV.Helper
             var quickBookRiskAssessmentData = dataSet.ReadData(filePath);
 
             return quickBookRiskAssessmentData;
+        }
+
+
+        public static List<Dictionary<string, string>> ReadQuickBookEpoData()
+        {
+            // Read dataset
+            var quickBookEpoColumnList = new ColumnList();
+            quickBookEpoColumnList.AddColumn("OffenseGroup", "OffenseGroup");
+            quickBookEpoColumnList.AddColumn("RequestedByVictim", "RequestedByVictim");
+            quickBookEpoColumnList.AddColumn("RequestedByGuardian", "RequestedByGuardian");
+            quickBookEpoColumnList.AddColumn("GuardiansName", "GuardiansName");
+            quickBookEpoColumnList.AddColumn("RequestedByOfficer", "RequestedByOfficer");
+            quickBookEpoColumnList.AddColumn("RequestedByState", "RequestedByState");
+            quickBookEpoColumnList.AddColumn("StateAttorneyName", "StateAttorneyName");
+            quickBookEpoColumnList.AddColumn("RequestedByMagistrate", "RequestedByMagistrate");
+            quickBookEpoColumnList.AddColumn("MagistratesName", "MagistratesName");
+            quickBookEpoColumnList.AddColumn("HoldRequested", "HoldRequested");
+            quickBookEpoColumnList.AddColumn("Hour24", "Hour24");
+            quickBookEpoColumnList.AddColumn("Hour48", "Hour48");
+            quickBookEpoColumnList.AddColumn("ExplainHold", "ExplainHold");
+            quickBookEpoColumnList.AddColumn("JudicialOrganization", "JudicialOrganization");
+            quickBookEpoColumnList.AddColumn("SignEpo", "SignEpo");
+            quickBookEpoColumnList.AddColumn("WitnessIsLocal", "WitnessIsLocal");
+            quickBookEpoColumnList.AddColumn("SignerName", "SignerName");
+            quickBookEpoColumnList.AddColumn("Judge", "Judge");
+
+
+            var projectRoot = Utils.GetProjectRoot();
+            var filePath = Path.Combine(projectRoot, "Helper/TestData/QuickBook/create quick book epo.xlsx");
+
+            Console.WriteLine(filePath);
+            var dataSet = new DataSet(quickBookEpoColumnList);
+            var quickBookEpoData = dataSet.ReadData(filePath);
+
+            return quickBookEpoData;
         }
     }
 }

@@ -41,10 +41,10 @@ namespace SAFV.Test
             }
         }
 
-        [Test]
+        /*[Test]
         public void a()
         {
-            string input = "EvidenceType\tEvidenceDisposition\tCollectedFromPerson\tPerson\tPersonNotListed\tPersonName\tWhereFound\tEvidenceDescription\tWasSeized\tTypeOfWeapon\tEvidenceSerialNumber\tWeaponManufacturer\tWeaponCaliber\tEvidenceCollectedBy";
+            string input = "DidPersonComplainOfInjuries\tDidYouObserveInjuries\tIsPersonPregnant\tNumberOfWeeks\tOfficerCouldObservePersonPregnant\tMedicalTreatmentOfferedButRefused\tPersonSeekingTheirOwnTreatment\tDrWhoWillProvideTreatment\tFirstAidGivenAtScene\tFirstAidGivenBy\tEmsParamedicsFire\tEmsUnit\tEmsUnitTransportedPersonToHospital\tTransportedTo";
 
             // Split the string into words, ignoring multiple spaces
             string[] words = input.Split(new[] { "\t" }, StringSplitOptions.RemoveEmptyEntries);
@@ -53,7 +53,7 @@ namespace SAFV.Test
             // Print each word on a new line
             foreach (string word in words)
             {
-                Console.WriteLine("quickBookEvidenceColumnList.AddColumn(\"" + word + "\", \"" + word + "\");");
+                Console.WriteLine("quickBookVictimMedicalEmsColumnList.AddColumn(\"" + word + "\", \"" + word + "\");");
                 count++;
             }
 
@@ -61,6 +61,6 @@ namespace SAFV.Test
             Console.WriteLine("");
             Console.WriteLine("");
             Console.WriteLine(count);
-        }
+        }*/
     }
 }
