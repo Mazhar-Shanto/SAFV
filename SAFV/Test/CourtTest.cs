@@ -46,7 +46,13 @@ namespace SAFV.Test
 
                 loginPage.GoToLoginPage();
 
-                loginPage.Login(loginData["JudgeUsername"], loginData["JudgePassword"]);
+                string pageTitle = _driver.Title;
+
+                if (pageTitle != null && !pageTitle.Contains("SAFV_Site"))
+                {
+                    loginPage.Login(loginData["JudgeUsername"], loginData["JudgePassword"]);
+                }
+
                 courtEpoPage.GoToCourtEpoPage();
 
                 string courtEpoCaseNumberOld = courtEpoLogData["EpoCaseNumber"];
@@ -93,7 +99,13 @@ namespace SAFV.Test
 
                 loginPage.GoToLoginPage();
 
-                loginPage.Login(loginData["JudgeUsername"], loginData["JudgePassword"]);
+                string pageTitle = _driver.Title;
+
+                if (pageTitle != null && !pageTitle.Contains("SAFV_Site"))
+                {
+                    loginPage.Login(loginData["JudgeUsername"], loginData["JudgePassword"]);
+                }
+
                 courtEpoPage.GoToCourtEpoPage();
                 courtEpoPage.AssignCourtEpo(courtEpoData["EpoCaseNumber"]);
             }
@@ -122,7 +134,13 @@ namespace SAFV.Test
 
                 loginPage.GoToLoginPage();
 
-                loginPage.Login(loginData["JudgeUsername"], loginData["JudgePassword"]);
+                string pageTitle = _driver.Title;
+
+                if (pageTitle != null && !pageTitle.Contains("SAFV_Site"))
+                {
+                    loginPage.Login(loginData["JudgeUsername"], loginData["JudgePassword"]);
+                }
+
                 courtEpoPage.GoToCourtEpoPage();
                 courtEpoPage.CourtEpoCompleteManually(courtEpoData["EpoCaseNumber"]);
             }
@@ -151,7 +169,13 @@ namespace SAFV.Test
 
                 loginPage.GoToLoginPage();
 
-                loginPage.Login(loginData["JudgeUsername"], loginData["JudgePassword"]);
+                string pageTitle = _driver.Title;
+
+                if (pageTitle != null && !pageTitle.Contains("SAFV_Site"))
+                {
+                    loginPage.Login(loginData["JudgeUsername"], loginData["JudgePassword"]);
+                }
+
                 courtEpoPage.GoToCourtEpoPage();
                 courtEpoPage.CourtEpoCancel(courtEpoData["EpoCaseNumber"]);
             }
@@ -180,7 +204,13 @@ namespace SAFV.Test
 
                 loginPage.GoToLoginPage();
 
-                loginPage.Login(loginData["JudgeUsername"], loginData["JudgePassword"]);
+                string pageTitle = _driver.Title;
+
+                if (pageTitle != null && !pageTitle.Contains("SAFV_Site"))
+                {
+                    loginPage.Login(loginData["JudgeUsername"], loginData["JudgePassword"]);
+                }
+
                 courtEpoPage.GoToCourtEpoPage();
                 courtEpoPage.AssignCourtEpo(courtEpoData["EpoCaseNumber"]);
                 courtEpoPage.GoToCourtEpoPage();
@@ -211,7 +241,13 @@ namespace SAFV.Test
 
                 loginPage.GoToLoginPage();
 
-                loginPage.Login(loginData["JudgeUsername"], loginData["JudgePassword"]);
+                string pageTitle = _driver.Title;
+
+                if (pageTitle != null && !pageTitle.Contains("SAFV_Site"))
+                {
+                    loginPage.Login(loginData["JudgeUsername"], loginData["JudgePassword"]);
+                }
+
                 courtEpoPage.GoToCourtEpoPage();
                 courtEpoPage.AssignCourtEpo(courtEpoData["EpoCaseNumber"]);
                 courtEpoPage.GoToCourtEpoSigningPage();
@@ -242,7 +278,13 @@ namespace SAFV.Test
 
                 loginPage.GoToLoginPage();
 
-                loginPage.Login(loginData["JudgeUsername"], loginData["JudgePassword"]);
+                string pageTitle = _driver.Title;
+
+                if (pageTitle != null && !pageTitle.Contains("SAFV_Site"))
+                {
+                    loginPage.Login(loginData["JudgeUsername"], loginData["JudgePassword"]);
+                }
+
                 courtEpoPage.GoToCourtEpoSigningPage();
                 courtEpoPage.CourtEpoJudgeAndSuspectSigning(courtEpoData["EpoCaseNumber"]);
             }

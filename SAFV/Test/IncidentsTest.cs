@@ -30,9 +30,14 @@ namespace SAFV.Test
                 LoginPage loginPage = new LoginPage(_driver);
                 IncidentsPage incidentsPage = new IncidentsPage(_driver);
 
-                loginPage.GoToLoginPage();
+                string pageTitle = _driver.Title;
 
-                loginPage.Login(loginData["Username"], loginData["Password"]);
+                if (pageTitle != null && !pageTitle.Contains("SAFV_Site"))
+                {
+                    loginPage.GoToLoginPage();
+                    loginPage.Login(loginData["Username"], loginData["Password"]);
+                }
+
                 incidentsPage.GoToIncidentCreatePage();
 
                 string caseCountOld = incidentCountData["CaseCount"];
@@ -73,9 +78,14 @@ namespace SAFV.Test
                 LoginPage loginPage = new LoginPage(_driver);
                 IncidentsPage incidentsPage = new IncidentsPage(_driver);
 
-                loginPage.GoToLoginPage();
+                string pageTitle = _driver.Title;
 
-                loginPage.Login(loginData["Username"], loginData["Password"]);
+                if (pageTitle != null && !pageTitle.Contains("SAFV_Site"))
+                {
+                    loginPage.GoToLoginPage();
+                    loginPage.Login(loginData["Username"], loginData["Password"]);
+                }
+
                 incidentsPage.GoToIncidentCreatePage();
 
                 string caseCountOld = incidentCountData["CaseCount"];
@@ -176,8 +186,14 @@ namespace SAFV.Test
                 EvidencePage evidencePage = new EvidencePage(_driver);
                 ReportPage reportPage = new ReportPage(_driver);
 
-                loginPage.GoToLoginPage();
-                loginPage.Login(loginData["Username"], loginData["Password"]);
+                string pageTitle = _driver.Title;
+
+                if (pageTitle != null && !pageTitle.Contains("SAFV_Site"))
+                {
+                    loginPage.GoToLoginPage();
+                    loginPage.Login(loginData["Username"], loginData["Password"]);
+                }
+
                 incidentsPage.GoToIncidentCreatePage();
 
                 string caseCountOld = incidentCountData["CaseCount"];
@@ -261,8 +277,14 @@ namespace SAFV.Test
                 PeoplePage peoplePage = new PeoplePage(_driver);
                 ReportPage reportPage = new ReportPage(_driver);
 
-                loginPage.GoToLoginPage();
-                loginPage.Login(loginData["Username"], loginData["Password"]);
+                string pageTitle = _driver.Title;
+
+                if (pageTitle != null && !pageTitle.Contains("SAFV_Site"))
+                {
+                    loginPage.GoToLoginPage();
+                    loginPage.Login(loginData["Username"], loginData["Password"]);
+                }
+
                 incidentsPage.GoToIncidentPage();
 
                 string caseCountOld = incidentCountData["CaseCount"];
@@ -271,10 +293,12 @@ namespace SAFV.Test
                 string supplementNumberOld = incidentCountData["SupplementNumber"];
                 string mainCaseForSupplement = incidentCountData["MainCaseForSupplement"];
                 incidentsPage.SearchIncident(caseNumberOld);
-                Thread.Sleep(2000);
+                Thread.Sleep(3000);
                 incidentsPage.OpenIncident();
                 reportPage.GoToReportPage();
                 reportPage.CreateReport();
+                _driver.Close();
+                _driver.SwitchTo().Window(_driver.WindowHandles[0]);
             }
         }
 
@@ -301,8 +325,14 @@ namespace SAFV.Test
                 PeoplePage peoplePage = new PeoplePage(_driver);
                 ReportPage reportPage = new ReportPage(_driver);
 
-                loginPage.GoToLoginPage();
-                loginPage.Login(loginData["Username"], loginData["Password"]);
+                string pageTitle = _driver.Title;
+
+                if (pageTitle != null && !pageTitle.Contains("SAFV_Site"))
+                {
+                    loginPage.GoToLoginPage();
+                    loginPage.Login(loginData["Username"], loginData["Password"]);
+                }
+
                 incidentsPage.GoToIncidentPage();
 
                 string caseCountOld = incidentCountData["CaseCount"];
@@ -311,7 +341,7 @@ namespace SAFV.Test
                 string supplementNumberOld = incidentCountData["SupplementNumber"];
                 string mainCaseForSupplement = incidentCountData["MainCaseForSupplement"];
                 incidentsPage.SearchIncident(caseNumberOld);
-                Thread.Sleep(2000);
+                Thread.Sleep(3000);
                 incidentsPage.OpenIncident();
                 reportPage.GoToReportPage();
                 reportPage.SendToDfps();
@@ -344,8 +374,14 @@ namespace SAFV.Test
                 IncidentsPage incidentsPage = new IncidentsPage(_driver);
                 PeoplePage peoplePage = new PeoplePage(_driver);
 
-                loginPage.GoToLoginPage();
-                loginPage.Login(loginData["Username"], loginData["Password"]);
+                string pageTitle = _driver.Title;
+
+                if (pageTitle != null && !pageTitle.Contains("SAFV_Site"))
+                {
+                    loginPage.GoToLoginPage();
+                    loginPage.Login(loginData["Username"], loginData["Password"]);
+                }
+
                 incidentsPage.GoToIncidentCreatePage();
 
                 string caseCountOld = incidentCountData["CaseCount"];
@@ -370,6 +406,8 @@ namespace SAFV.Test
                 {
                     Reporting.SetTestStatusFail();
                 }
+                _driver.Close();
+                _driver.SwitchTo().Window(_driver.WindowHandles[0]);
             }
         }
 
@@ -399,8 +437,14 @@ namespace SAFV.Test
                 IncidentsPage incidentsPage = new IncidentsPage(_driver);
                 PeoplePage peoplePage = new PeoplePage(_driver);
 
-                loginPage.GoToLoginPage();
-                loginPage.Login(loginData["Username"], loginData["Password"]);
+                string pageTitle = _driver.Title;
+
+                if (pageTitle != null && !pageTitle.Contains("SAFV_Site"))
+                {
+                    loginPage.GoToLoginPage();
+                    loginPage.Login(loginData["Username"], loginData["Password"]);
+                }
+
                 incidentsPage.GoToIncidentCreatePage();
 
                 string caseCountOld = incidentCountData["CaseCount"];
@@ -419,6 +463,8 @@ namespace SAFV.Test
                 peoplePage.CreatePeople(victimData);
                 if (peoplePage.VerifyMasterDataSync(victimData))
                 {
+                    _driver.Close();
+                    _driver.SwitchTo().Window(_driver.WindowHandles[0]);
                     peoplePage.UpdatePeople("Updated last name");
 
                     if (peoplePage.VerifyMasterDataLog(victimData["LastName"], "Updated last name"))

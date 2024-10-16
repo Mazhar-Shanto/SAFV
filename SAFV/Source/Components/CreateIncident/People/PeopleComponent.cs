@@ -12,7 +12,7 @@ namespace SAFV.Source.Components.CreateIncident.People
         public static IList<IWebElement> LstAllMainPeopleNew => WaitAndFindElements(By.XPath("//*[@id=\"module-container\"]/div/div[2]/table/tbody/tr/td[2]"));
         public static IWebElement AttachToSupplement => WaitAndFindElement(By.Id("pdf"));
         public static IWebElement SeeLog => WaitAndFindElement(By.Id("logs_menu"));
-        public static IWebElement ViewLogHistory => WaitAndFindElement(By.XPath("//*[@id=\"master-log_grid\"]/div[2]/table/tbody/tr[1]/td[7]/a"));
+        public static IWebElement ViewLogHistory => WaitAndFindElement(By.XPath("//*[@id=\"master-log_grid\"]/div[2]/table/tbody/tr[1]/td[7]/a[1]"));
         public static IWebElement PreviousDataLastName => WaitAndFindElement(By.Id("PreviousData_LastName"));
         public static IWebElement ChangedDataLastName => WaitAndFindElement(By.Id("ChangedData_LastName"));
         public static IWebElement AddPerson => WaitAndFindElement(By.XPath("//*[@id=\"module-container\"]/div/div[1]/div/div[2]/a"));

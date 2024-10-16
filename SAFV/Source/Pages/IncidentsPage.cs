@@ -18,7 +18,6 @@ namespace SAFV.Source.Pages
 
         public void GoToIncidentCreatePage()
         {
-            Console.WriteLine("Incident -- " + MenuComponent.Incidents.Text);
             Click(MenuComponent.Incidents);
             Click(MenuComponent.CreateNewIncidentButton);
         }

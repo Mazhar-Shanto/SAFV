@@ -17,6 +17,7 @@ namespace SAFV.Source.Pages.CourtEpo
 
         public void GoToCourtEpoVictimInfoPage()
         {
+            ScrollToTop();
             Click(CourtEpoMenuComponent.VictimInfo);
         }
 

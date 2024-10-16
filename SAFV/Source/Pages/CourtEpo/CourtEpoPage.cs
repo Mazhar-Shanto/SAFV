@@ -302,6 +302,8 @@ namespace SAFV.Source.Pages.CourtEpo
                 else
                 {
                     Reporting.SetStepStatusFail("Epo not found!!!", _driver);
+                    GoToCourtEpoSigningPage();
+                    Click(CourtEpoComponent.StartSigningOtherEpo);
                     return;
                 }
             }
@@ -369,6 +371,8 @@ namespace SAFV.Source.Pages.CourtEpo
                 else
                 {
                     Reporting.SetStepStatusFail("Epo not found!!!", _driver);
+                    GoToCourtEpoSigningPage();
+                    Click(CourtEpoComponent.StartSigningOtherEpo);
                     return;
                 }
             }

@@ -678,9 +678,9 @@ namespace SAFV.Source.Pages.CreateIncident
             Click(PeopleComponent.SeeMaster);
             _driver.SwitchTo().Window(_driver.WindowHandles[1]);
 
-            masterFirstName = PeopleComponent.FirstName.Text;
-            masterLastName = PeopleComponent.LastName.Text;
-            masterMiddletName = PeopleComponent.MiddleName.Text;
+            masterFirstName = PeopleComponent.FirstName.GetAttribute("value");
+            masterLastName = PeopleComponent.LastName.GetAttribute("value");
+            masterMiddletName = PeopleComponent.MiddleName.GetAttribute("value");
 
             if (peopleData["FirstName"] == masterFirstName && peopleData["LastName"] == masterLastName && peopleData["MiddleName"] == masterMiddletName)
             {
@@ -691,6 +691,9 @@ namespace SAFV.Source.Pages.CreateIncident
             else
             {
                 Reporting.SetStepStatusFail("Master data sync failed", _driver);
+                Console.WriteLine(peopleData["FirstName"] + " : " + masterFirstName);
+                Console.WriteLine(peopleData["LastName"] + " : " + masterLastName);
+                Console.WriteLine(peopleData["MiddleName"] + " : " + masterMiddletName);
 
                 return false;
             }
@@ -714,7 +717,7 @@ namespace SAFV.Source.Pages.CreateIncident
             Click(PeopleComponent.SeeLog);
             Click(PeopleComponent.ViewLogHistory);
 
-            if (oldData == PeopleComponent.PreviousDataLastName.Text && updateData == PeopleComponent.ChangedDataLastName.Text)
+            if (oldData == PeopleComponent.PreviousDataLastName.GetAttribute("value") && updateData == PeopleComponent.ChangedDataLastName.GetAttribute("value"))
             {
                 Reporting.SetStepStatusPass("Master data log successful", _driver);
 

@@ -11,7 +11,8 @@ namespace SAFV.Drivers
     {
         public IWebDriver _driver;
 
-        [SetUp]
+        [OneTimeSetUp]
+        //[SetUp]
         public void InitDriver()
         {
             var options = new ChromeOptions();
@@ -30,7 +31,6 @@ namespace SAFV.Drivers
         [TearDown]
         public void TearDown()
         {
-            // Dispose of the driver after each test
             if (_driver != null)
             {
                 if (TestContext.CurrentContext.Result.Outcome.Status.ToString() == "Failed")
@@ -44,6 +44,15 @@ namespace SAFV.Drivers
                     Reporting.SetTestStatusPass();
                 }
                 Reporting.Close();
+            }
+        }
+
+        [OneTimeTearDown]
+        public void OneTimeTearDown()
+        {
+            // Dispose of the driver after each test
+            if (_driver != null)
+            {
                 _driver.Quit();
                 _driver.Dispose();
                 _driver = null;

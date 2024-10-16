@@ -17,6 +17,7 @@ namespace SAFV.Source.Pages.CourtEpo
 
         public void GoToCourtEpoOtherInfoPage()
         {
+            ScrollToTop();
             Click(CourtEpoMenuComponent.OtherInfo);
         }
 

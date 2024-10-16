@@ -7,9 +7,11 @@ namespace SAFV.Source.Components.CreateIncident.Offense
         // Elements
         public static IWebElement CreateNewRA => WaitAndFindElement(By.XPath("//*[@id=\"module-container\"]/div/div[1]/div/div[2]/a"));
         public static IWebElement Suspect => WaitAndFindElement(By.XPath("//*[@id=\"risk-assessment-form\"]/div/div[1]/div/span[1]"));
-        public static IWebElement LstSuspect => WaitAndFindElement(By.XPath("//*[@id=\"IncidentPersonId_listbox\"]/li[1]"));
+        //public static IWebElement LstSuspect => WaitAndFindElement(By.XPath("//*[@id=\"IncidentPersonId_listbox\"]/li[1]"));
+        public static IWebElement LstSuspect => WaitAndFindElement(By.XPath("/html/body/div[5]/div/div[3]/ul/li[1]"));
         public static IWebElement Victim => WaitAndFindElement(By.XPath("//*[@id=\"risk-assessment-form\"]/div/div[2]/div/span[1]"));
-        public static IWebElement LstVictim => WaitAndFindElement(By.XPath("//*[@id=\"VictimId_listbox\"]/li[1]"));
+        //public static IWebElement LstVictim => WaitAndFindElement(By.XPath("//*[@id=\"VictimId_listbox\"]/li[1]"));
+        public static IWebElement LstVictim => WaitAndFindElement(By.XPath("/html/body/div[6]/div/div[3]/ul/li[1]"));
         public static IList<IWebElement> FamilyViolenceLikelyToOccur => WaitAndFindElements(By.XPath("//*[@id=\"risk-assessment-form\"]/div/div[3]/div/label"));
         public static IList<IWebElement> UsedOrThreatenedWithWeapon => WaitAndFindElements(By.XPath("//*[@id=\"risk-assessment-form\"]/div/div[4]/div/label"));
         public static IList<IWebElement> ThreatenedToKill => WaitAndFindElements(By.XPath("//*[@id=\"risk-assessment-form\"]/div/div[5]/div/label"));

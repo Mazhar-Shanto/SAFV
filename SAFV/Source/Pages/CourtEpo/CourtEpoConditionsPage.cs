@@ -15,6 +15,7 @@ namespace SAFV.Source.Pages.CourtEpo
 
         public void GoToCourtEpoConditionsPage()
         {
+            ScrollToTop();
             Click(CourtEpoMenuComponent.Conditions);
         }
 

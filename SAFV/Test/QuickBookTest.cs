@@ -54,9 +54,14 @@ namespace SAFV.Test
                 LoginPage loginPage = new LoginPage(_driver);
                 QuickBookPage quickBookPage = new QuickBookPage(_driver);
 
-                loginPage.GoToLoginPage();
+                string pageTitle = _driver.Title;
 
-                loginPage.Login(loginData["Username"], loginData["Password"]);
+                if (pageTitle != null && !pageTitle.Contains("SAFV_Site"))
+                {
+                    loginPage.GoToLoginPage();
+                    loginPage.Login(loginData["Username"], loginData["Password"]);
+                }
+
                 quickBookPage.GoToQuickBookCreatePage();
 
                 string quickBookCaseCountOld = quickBookLogData["QuickBookCaseCount"];

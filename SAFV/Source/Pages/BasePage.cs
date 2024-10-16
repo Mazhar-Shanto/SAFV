@@ -482,6 +482,7 @@ namespace SAFV.Source.Pages
                     if (headerText.ToLower().Contains(searchText))
                     {
                         Console.WriteLine(headerText);
+                        Thread.Sleep(3000);
                         break;
                     }
                     else
@@ -498,6 +499,13 @@ namespace SAFV.Source.Pages
 
                 maxTry--;
             }
+        }
+
+        public void ScrollToTop()
+        {
+            // Scroll to the top of the page
+            IJavaScriptExecutor js = (IJavaScriptExecutor)_driver;
+            js.ExecuteScript("window.scrollTo(0, 0);");
         }
 
         public BasePage(IWebDriver driver) : base(driver)
