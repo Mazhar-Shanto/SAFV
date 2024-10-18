@@ -189,8 +189,8 @@ namespace SAFV.Source.Pages.CourtEpo
             }
             else
             {
-                Reporting.SetStepStatusFail("Epo request not assigned.", _driver);
-                return;
+                Reporting.SetStepStatusWarning("Epo request not assigned.", _driver);
+                Click(CourtEpoComponent.SelectCourtEpo);
             }
 
             /*Click(CourtEpoComponent.GenerateDocs);
@@ -301,14 +301,13 @@ namespace SAFV.Source.Pages.CourtEpo
                 }
                 else
                 {
-                    Reporting.SetStepStatusFail("Epo not found!!!", _driver);
+                    Reporting.SetStepStatusWarning("Epo not found!!!", _driver);
                     GoToCourtEpoSigningPage();
                     Click(CourtEpoComponent.StartSigningOtherEpo);
-                    return;
                 }
             }
             
-            //Click(CourtEpoComponent.SignAndReview);
+            Click(CourtEpoComponent.SignAndReview);
             Click(CourtEpoComponent.Next);
 
             Thread.Sleep(2000);
@@ -370,14 +369,13 @@ namespace SAFV.Source.Pages.CourtEpo
                 }
                 else
                 {
-                    Reporting.SetStepStatusFail("Epo not found!!!", _driver);
+                    Reporting.SetStepStatusWarning("Epo not found!!!", _driver);
                     GoToCourtEpoSigningPage();
                     Click(CourtEpoComponent.StartSigningOtherEpo);
-                    return;
                 }
             }
 
-            //Click(CourtEpoComponent.SignAndReview);
+            Click(CourtEpoComponent.SignAndReview);
             Click(CourtEpoComponent.Next);
 
             Thread.Sleep(2000);

@@ -15,10 +15,14 @@ namespace SAFV.Drivers
         //[SetUp]
         public void InitDriver()
         {
-            var options = new ChromeOptions();
-            options.AddArgument("no-sandbox");
-            //options.AddArgument("test-type");
-            options.AddArgument("disable-notifications");
+            ChromeOptions options = new ChromeOptions();
+            options.AddArgument("disable-notifications");  // Disable notification
+            //options.AddArgument("--headless");  // Run in headless mode
+            //options.AddArgument("--disable-gpu");  // Disable GPU acceleration
+            options.AddArgument("--disable-extensions");  // Disable extensions
+            options.AddArgument("--disable-popup-blocking");  // Disable popups
+            options.AddArgument("--incognito");  // Use incognito mode
+            options.AddArgument("--no-sandbox");  // Disable sandbox (Chrome)
             options.AddUserProfilePreference("autofill.profile_enabled", false);
 
             new DriverManager().SetUpDriver(new ChromeConfig());

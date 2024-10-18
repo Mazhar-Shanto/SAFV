@@ -47,7 +47,7 @@ namespace SAFV.Source.Components.CourtEpo
         public static IWebElement SigningRequestButton => WaitAndFindElement(By.XPath("/html/body/div[1]/div[4]/div[2]/div/div[2]/div/div/form/div/div[2]/div/div/button"));
         public static IWebElement StartSigningButton => WaitAndFindElement(By.XPath("/html/body/div[1]/div[4]/div[2]/div/div[2]/div/div/div[3]/a"));
         public static IWebElement SignAndReview => WaitAndFindElement(By.XPath("/html/body/div[1]/div[4]/div[2]/div/div[2]/div/div/table/tbody/tr[1]/td[2]/a"));
-        public static IWebElement Next => WaitAndFindElement(By.XPath("signatureAction"));
+        public static IWebElement Next => WaitAndFindElement(By.Id("signatureAction"));
 
         public static IWebElement ContinueSuspectSigning => WaitAndFindElement(By.XPath("/html/body/div[6]/div[3]/button[1]"));
         public static IWebElement CancelSuspectSigning => WaitAndFindElement(By.XPath("/html/body/div[6]/div[3]/button[2]"));

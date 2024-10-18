@@ -65,7 +65,7 @@ namespace SAFV.Source.Pages
 
             // If we exit the loop without clicking, throw an exception
             Reporting.SetStepStatusFail($"Click <b style=\"color:blue;\">{label}</b> failed", _driver);
-            throw new Exception("Failed to click the element after multiple attempts");
+                throw new Exception("Failed to click the element after multiple attempts");
         }
 
         public void Toggle(IWebElement element, string s)

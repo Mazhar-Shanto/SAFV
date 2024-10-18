@@ -239,7 +239,7 @@ namespace SAFV.Source.Pages.CreateIncident
 
             Click(UseOfWeaponComponent.CreateNewUseOfWeapon);
             Click(UseOfWeaponComponent.Person);
-            Click(UseOfWeaponComponent.LstPerson);
+            Click(UseOfWeaponComponent.LstPerson.ElementAt(0));
             Click(UseOfWeaponComponent.WeaponType);
             SelectOption(UseOfWeaponComponent.LstWeaponType, useOfWeaponData["WeaponType"]);
 
