@@ -25,7 +25,8 @@ namespace SAFV.Source.Components.CourtEpo
         public static IWebElement Tracking => WaitAndFindElement(By.XPath("//*[@id=\"epo-cob-submit-form\"]/div/div[1]/div[2]/div[9]/div/span[1]"));
         public static IWebElement GpsMonitoring => WaitAndFindElement(By.XPath("//*[@id=\"epo-cob-submit-form\"]/div/div[1]/div[2]/div[10]/div/span[1]"));
         public static IWebElement GpsMonitoringDescription => WaitAndFindElement(By.Id("GPSMonitoringDesc"));
-        public static IWebElement HumanTrafficking => WaitAndFindElement(By.XPath("//*[@id=\"epo-cob-submit-form\"]/div/div[1]/div[2]/div[12]/div/span[1]"));
+        public static IWebElement HumanTrafficking => WaitAndFindElement(By.XPath("//*[@id=\"epo-cob-submit-form\"]/div/div[1]/div[2]/div[11]/div/span[1]"));
+        //public static IWebElement HumanTrafficking => WaitAndFindElement(By.XPath("//*[@id=\"epo-cob-submit-form\"]/div/div[1]/div[2]/div[12]/div/span[1]"));
         public static IWebElement VictimNotification => WaitAndFindElement(By.XPath("//*[@id=\"epo-cob-submit-form\"]/div/div[2]/div[2]/div/div/span[1]"));
         public static IWebElement CourtAppearance => WaitAndFindElement(By.XPath("//*[@id=\"epo-cob-submit-form\"]/div/div[3]/div[2]/div[1]/div/span[1]"));
         public static IWebElement VictimContact => WaitAndFindElement(By.XPath("//*[@id=\"epo-cob-submit-form\"]/div/div[3]/div[2]/div[2]/div/span[1]"));

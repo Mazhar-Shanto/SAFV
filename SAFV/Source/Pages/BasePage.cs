@@ -508,6 +508,24 @@ namespace SAFV.Source.Pages
             js.ExecuteScript("window.scrollTo(0, 0);");
         }
 
+        public void ScrollDwon()
+        {
+            // Scroll to the top of the page
+            IJavaScriptExecutor js = (IJavaScriptExecutor)_driver;
+            js.ExecuteScript("window.scrollTo(0, 500);");
+        }
+
+        public IWebElement GetShadowRootElement(IWebElement shadowHost, string element)
+        {
+            // Use JavaScript to access the shadow root and find the target element
+            IJavaScriptExecutor js = (IJavaScriptExecutor)_driver;
+            IWebElement signatureActionElement = (IWebElement)js.ExecuteScript(
+                $"return arguments[0].shadowRoot.querySelector('{element}')", shadowHost);
+
+            // Perform the click action on the element
+            return signatureActionElement;
+        }
+
         public BasePage(IWebDriver driver) : base(driver)
         {
             _driver = driver;

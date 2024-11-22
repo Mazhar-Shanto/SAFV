@@ -22,7 +22,8 @@ namespace SAFV.Source.Components
             {
                 try
                 {
-                    element = _wait.Until(driver => driver.FindElement(by));
+                    //element = _wait.Until(driver => driver.FindElement(by));
+                    element = _driver.FindElement(by);
 
                     //((IJavaScriptExecutor)_driver).ExecuteScript("arguments[0].scrollIntoView(true);", element);
 
@@ -60,7 +61,8 @@ namespace SAFV.Source.Components
             {
                 try
                 {
-                    elements = _wait.Until(driver => driver.FindElements(by));
+                    //elements = _wait.Until(driver => driver.FindElements(by));
+                    elements = _driver.FindElements(by);
                 }
                 catch (Exception)
                 {

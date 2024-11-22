@@ -42,10 +42,10 @@ namespace SAFV.Source.Pages.CourtEpo
             Toggle(CourtEpoConditionsComponent.Tracking, courtEpoConditionsData["Tracking"]);
             Toggle(CourtEpoConditionsComponent.GpsMonitoring, courtEpoConditionsData["GpsMonitoring"]);
 
-            if (courtEpoConditionsData["GpsMonitoring"].ToLower() == "yes" || courtEpoConditionsData["GpsMonitoring"].ToLower() == "true" || courtEpoConditionsData["GpsMonitoring"].ToLower() == "1")
+            /*if (courtEpoConditionsData["GpsMonitoring"].ToLower() == "yes" || courtEpoConditionsData["GpsMonitoring"].ToLower() == "true" || courtEpoConditionsData["GpsMonitoring"].ToLower() == "1")
             {
                 SendKeys(CourtEpoConditionsComponent.GpsMonitoringDescription, courtEpoConditionsData["GpsMonitoringDescription"]);
-            }
+            }*/
 
             Toggle(CourtEpoConditionsComponent.HumanTrafficking, courtEpoConditionsData["HumanTrafficking"]);
             Toggle(CourtEpoConditionsComponent.VictimNotification, courtEpoConditionsData["VictimNotification"]);

@@ -90,19 +90,20 @@ namespace SAFV.Source.Pages.CreateIncident
 
                         Click(SendEpoRequestComponent.CreateSigningRequest);
 
-                        Click(SignEpoComponent.ReviewEpoRequest);
-                        Click(SignEpoComponent.ApproveEpoRequest);
-                        Click(SignEpoComponent.GoToSignature);
+                        Click(GetShadowRootElement(SignEpoComponent.DocumentViewer, SignEpoComponent.ReviewEpoRequest));
+                        Click(GetShadowRootElement(SignEpoComponent.DocumentViewer, SignEpoComponent.ApproveEpoRequest));
+                        Click(GetShadowRootElement(SignEpoComponent.DocumentViewer, SignEpoComponent.GoToSignature));
 
-                        Thread.Sleep(2000);
-                        Click(SignEpoComponent.ClearSign);
-                        Draw(SignEpoComponent.SignatureCanvas, 60, 40, -60, 40);
-                        Draw(SignEpoComponent.SignatureCanvas, -60, 40, -60, 0);
-                        Draw(SignEpoComponent.SignatureCanvas, -60, 0, 60, 0);
-                        Draw(SignEpoComponent.SignatureCanvas, 60, 0, 0, -40);
-                        Draw(SignEpoComponent.SignatureCanvas, 0, -40, -40, -60);
-                        Click(SignEpoComponent.SetupAndSign);
-                        Click(SignEpoComponent.PlaceSignature);
+                        Thread.Sleep(5000);
+                        Click(GetShadowRootElement(SignEpoComponent.DocumentViewer, SignEpoComponent.Next));
+                        GetShadowRootElement(SignEpoComponent.DocumentViewer, SignEpoComponent.ClearSign);
+                        Draw(GetShadowRootElement(SignEpoComponent.DocumentViewer, SignEpoComponent.SignatureCanvas), 60, 40, -60, 40);
+                        Draw(GetShadowRootElement(SignEpoComponent.DocumentViewer, SignEpoComponent.SignatureCanvas), -60, 40, -60, 0);
+                        Draw(GetShadowRootElement(SignEpoComponent.DocumentViewer, SignEpoComponent.SignatureCanvas), -60, 0, 60, 0);
+                        Draw(GetShadowRootElement(SignEpoComponent.DocumentViewer, SignEpoComponent.SignatureCanvas), 60, 0, 0, -40);
+                        Draw(GetShadowRootElement(SignEpoComponent.DocumentViewer, SignEpoComponent.SignatureCanvas), 0, -40, -40, -60);
+                        Click(GetShadowRootElement(SignEpoComponent.DocumentViewer, SignEpoComponent.SetupAndSign));
+                        Click(GetShadowRootElement(SignEpoComponent.DocumentViewer, SignEpoComponent.PlaceSignature));
                         Click(SignEpoComponent.SubmitSignature);
                         Click(SignEpoComponent.Approve);
                     }

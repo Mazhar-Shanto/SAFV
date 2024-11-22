@@ -23,6 +23,11 @@ namespace SAFV.Source.Pages.CourtEpo
             Click(MenuComponent.Epo);
         }
 
+        public void ClickCourtEpoMenu()
+        {
+            Click(MenuComponent.Epo);
+        }
+
         public void GoToCourtEpoSigningPage()
         {
             Click(MenuComponent.Signing);
@@ -171,6 +176,8 @@ namespace SAFV.Source.Pages.CourtEpo
             Click(CourtEpoComponent.County);
             Click(CourtEpoComponent.LstCounty);
             Click(CourtEpoComponent.GenerateOrder);
+            Thread.Sleep(5000);
+            ScrollDwon();
             Click(CourtEpoComponent.CompleteEpoManually);
             Click(CourtEpoComponent.ConfirmCompleteEpoManually);
         }
@@ -193,7 +200,7 @@ namespace SAFV.Source.Pages.CourtEpo
                 Click(CourtEpoComponent.SelectCourtEpo);
             }
 
-            /*Click(CourtEpoComponent.GenerateDocs);
+            Click(CourtEpoComponent.GenerateDocs);
 
             try
             {
@@ -220,7 +227,9 @@ namespace SAFV.Source.Pages.CourtEpo
 
             Click(CourtEpoComponent.County);
             Click(CourtEpoComponent.LstCounty);
-            Click(CourtEpoComponent.GenerateOrder);*/
+            Click(CourtEpoComponent.GenerateOrder);
+            Thread.Sleep(5000);
+            ScrollDwon();
             Click(CourtEpoComponent.CancelEpo);
             Click(CourtEpoComponent.ConfirmCancelEpo);
         }
@@ -245,25 +254,34 @@ namespace SAFV.Source.Pages.CourtEpo
 
             Click(CourtEpoComponent.GenerateDocs);
 
-            if (CourtEpoComponent.AlertMessage.Text.ToLower().Contains("then try again"))
+            try
             {
-                if (CourtEpoComponent.AlertMessage.Text.ToLower().Contains("produce a condition of bond"))
+                if (CourtEpoComponent.AlertMessage.Text.ToLower().Contains("then try again"))
                 {
-                    Click(CreateCourtEpoComponent.ProduceConditionOfBond);
-                }
+                    if (CourtEpoComponent.AlertMessage.Text.ToLower().Contains("produce a condition of bond"))
+                    {
+                        Click(CreateCourtEpoComponent.ProduceConditionOfBond);
+                    }
 
-                if (CourtEpoComponent.AlertMessage.Text.ToLower().Contains("produce magistrate's protective order"))
-                {
-                    Click(CreateCourtEpoComponent.ProduceMagistrateProtectiveOrder);
-                }
+                    if (CourtEpoComponent.AlertMessage.Text.ToLower().Contains("produce magistrate's protective order"))
+                    {
+                        Click(CreateCourtEpoComponent.ProduceMagistrateProtectiveOrder);
+                    }
 
-                Click(CreateCourtEpoComponent.SaveCourtEpo);
-                Click(CourtEpoComponent.GenerateDocs);
+                    Click(CreateCourtEpoComponent.SaveCourtEpo);
+                    Click(CourtEpoComponent.GenerateDocs);
+                }
+            }
+            catch (Exception)
+            {
+                
             }
 
             Click(CourtEpoComponent.County);
             Click(CourtEpoComponent.LstCounty);
             Click(CourtEpoComponent.GenerateOrder);
+            Thread.Sleep(5000);
+            ScrollDwon();
             Click(CourtEpoComponent.RequestForSigning);
 
             if (signingOption.ToLower() == "judge")
@@ -281,7 +299,7 @@ namespace SAFV.Source.Pages.CourtEpo
             }
         }
 
-        public void CourtEpoJudgeSigning(string epoCaseNumber)
+        public void CourtEpoSigning(string epoCaseNumber)
         {
             Reporting.AddTestScreenshot(_driver, "Incident Test");
 
@@ -293,60 +311,110 @@ namespace SAFV.Source.Pages.CourtEpo
             }
             else
             {
-                SendKeys(CourtEpoComponent.OtherSearchBox, epoCaseNumber);
+                SendKeys(CourtEpoComponent.AssignedSearchBox, epoCaseNumber);
 
-                if (CourtEpoComponent.OtherEpoCount.Text.Contains("1 of 1"))
+                if (CourtEpoComponent.AssignedEpoCount.Text.Contains("1 of 1"))
                 {
-                    Click(CourtEpoComponent.StartSigningOtherEpo);
+                    Click(CourtEpoComponent.StartSigningAssignedEpo);
                 }
                 else
                 {
-                    Reporting.SetStepStatusWarning("Epo not found!!!", _driver);
+                    Reporting.SetStepStatusInfo("Epo not found!!!", _driver);
                     GoToCourtEpoSigningPage();
-                    Click(CourtEpoComponent.StartSigningOtherEpo);
+                    Click(CourtEpoComponent.StartSigningAssignedEpo);
                 }
             }
             
             Click(CourtEpoComponent.SignAndReview);
-            Click(CourtEpoComponent.Next);
+            Thread.Sleep(5000);
 
-            Thread.Sleep(2000);
-            Click(SignEpoComponent.ClearSign);
-            Draw(SignEpoComponent.SignatureCanvas, 60, 40, -60, 40);
-            Draw(SignEpoComponent.SignatureCanvas, -60, 40, -60, 0);
-            Draw(SignEpoComponent.SignatureCanvas, -60, 0, 60, 0);
-            Draw(SignEpoComponent.SignatureCanvas, 60, 0, 0, -40);
-            Draw(SignEpoComponent.SignatureCanvas, 0, -40, -40, -60);
-            Click(SignEpoComponent.SetupAndSign);
-            Click(SignEpoComponent.PlaceSignature);
+            bool keepSigning = true;
+
+            while (keepSigning)
+            {
+                try
+                {
+                    if (SignEpoComponent.Approve != null)
+                    {
+                        Click(SignEpoComponent.Approve);
+                    }
+                    else if (CourtEpoComponent.ContinueSuspectSigning != null)
+                    {
+                        Click(CourtEpoComponent.ContinueSuspectSigning);
+                    }
+                    else
+                    {
+                        Click(GetShadowRootElement(SignEpoComponent.DocumentViewer, SignEpoComponent.Next));
+
+                        Thread.Sleep(2000);
+                        Click(GetShadowRootElement(SignEpoComponent.DocumentViewer, SignEpoComponent.ClearSign));
+                        Draw(GetShadowRootElement(SignEpoComponent.DocumentViewer, SignEpoComponent.SignatureCanvas), 60, 40, -60, 40);
+                        Draw(GetShadowRootElement(SignEpoComponent.DocumentViewer, SignEpoComponent.SignatureCanvas), -60, 40, -60, 0);
+                        Draw(GetShadowRootElement(SignEpoComponent.DocumentViewer, SignEpoComponent.SignatureCanvas), -60, 0, 60, 0);
+                        Draw(GetShadowRootElement(SignEpoComponent.DocumentViewer, SignEpoComponent.SignatureCanvas), 60, 0, 0, -40);
+                        Draw(GetShadowRootElement(SignEpoComponent.DocumentViewer, SignEpoComponent.SignatureCanvas), 0, -40, -40, -60);
+                        Click(GetShadowRootElement(SignEpoComponent.DocumentViewer, SignEpoComponent.SetupAndSign));
+                        Click(GetShadowRootElement(SignEpoComponent.DocumentViewer, SignEpoComponent.PlaceSignature));
+                        Click(SignEpoComponent.SubmitSignature);
+                        Click(SignEpoComponent.Approve);
+                    }
+
+                    if (CourtEpoComponent.EpoRequestHeader != null)
+                    {
+                        if (CourtEpoComponent.EpoRequestHeader.Text.ToLower().Contains("successfully completed"))
+                        {
+                            Reporting.SetStepStatusPass("Test passed. Signing completed.", _driver);
+                            keepSigning = false;
+                        }
+                    }
+                }
+                catch (Exception)
+                {
+
+                }
+            }
+
+            /*Click(GetShadowRootElement(SignEpoComponent.DocumentViewer, SignEpoComponent.Next));
+
+            Thread.Sleep(5000);
+            Click(GetShadowRootElement(SignEpoComponent.DocumentViewer, SignEpoComponent.ClearSign));
+            Draw(GetShadowRootElement(SignEpoComponent.DocumentViewer, SignEpoComponent.SignatureCanvas), 60, 40, -60, 40);
+            Draw(GetShadowRootElement(SignEpoComponent.DocumentViewer, SignEpoComponent.SignatureCanvas), -60, 40, -60, 0);
+            Draw(GetShadowRootElement(SignEpoComponent.DocumentViewer, SignEpoComponent.SignatureCanvas), -60, 0, 60, 0);
+            Draw(GetShadowRootElement(SignEpoComponent.DocumentViewer, SignEpoComponent.SignatureCanvas), 60, 0, 0, -40);
+            Draw(GetShadowRootElement(SignEpoComponent.DocumentViewer, SignEpoComponent.SignatureCanvas), 0, -40, -40, -60);
+            Click(GetShadowRootElement(SignEpoComponent.DocumentViewer, SignEpoComponent.SetupAndSign));
+            Click(GetShadowRootElement(SignEpoComponent.DocumentViewer, SignEpoComponent.PlaceSignature));
             Click(SignEpoComponent.SubmitSignature);
             Click(SignEpoComponent.Approve);
 
-            Thread.Sleep(2000);
-            Click(SignEpoComponent.ClearSign);
-            Draw(SignEpoComponent.SignatureCanvas, 60, 40, -60, 40);
-            Draw(SignEpoComponent.SignatureCanvas, -60, 40, -60, 0);
-            Draw(SignEpoComponent.SignatureCanvas, -60, 0, 60, 0);
-            Draw(SignEpoComponent.SignatureCanvas, 60, 0, 0, -40);
-            Draw(SignEpoComponent.SignatureCanvas, 0, -40, -40, -60);
-            Click(SignEpoComponent.SetupAndSign);
-            Click(SignEpoComponent.PlaceSignature);
+            Thread.Sleep(5000);
+            Click(GetShadowRootElement(SignEpoComponent.DocumentViewer, SignEpoComponent.Next));
+            Click(GetShadowRootElement(SignEpoComponent.DocumentViewer, SignEpoComponent.ClearSign));
+            Draw(GetShadowRootElement(SignEpoComponent.DocumentViewer, SignEpoComponent.SignatureCanvas), 60, 40, -60, 40);
+            Draw(GetShadowRootElement(SignEpoComponent.DocumentViewer, SignEpoComponent.SignatureCanvas), -60, 40, -60, 0);
+            Draw(GetShadowRootElement(SignEpoComponent.DocumentViewer, SignEpoComponent.SignatureCanvas), -60, 0, 60, 0);
+            Draw(GetShadowRootElement(SignEpoComponent.DocumentViewer, SignEpoComponent.SignatureCanvas), 60, 0, 0, -40);
+            Draw(GetShadowRootElement(SignEpoComponent.DocumentViewer, SignEpoComponent.SignatureCanvas), 0, -40, -40, -60);
+            Click(GetShadowRootElement(SignEpoComponent.DocumentViewer, SignEpoComponent.SetupAndSign));
+            Click(GetShadowRootElement(SignEpoComponent.DocumentViewer, SignEpoComponent.PlaceSignature));
             Click(SignEpoComponent.SubmitSignature);
             Click(SignEpoComponent.Approve);
 
             Click(SignEpoComponent.Approve);
 
-            Thread.Sleep(2000);
-            Click(SignEpoComponent.ClearSign);
-            Draw(SignEpoComponent.SignatureCanvas, 60, 40, -60, 40);
-            Draw(SignEpoComponent.SignatureCanvas, -60, 40, -60, 0);
-            Draw(SignEpoComponent.SignatureCanvas, -60, 0, 60, 0);
-            Draw(SignEpoComponent.SignatureCanvas, 60, 0, 0, -40);
-            Draw(SignEpoComponent.SignatureCanvas, 0, -40, -40, -60);
-            Click(SignEpoComponent.SetupAndSign);
-            Click(SignEpoComponent.PlaceSignature);
+            Thread.Sleep(5000);
+            Click(GetShadowRootElement(SignEpoComponent.DocumentViewer, SignEpoComponent.Next));
+            Click(GetShadowRootElement(SignEpoComponent.DocumentViewer, SignEpoComponent.ClearSign));
+            Draw(GetShadowRootElement(SignEpoComponent.DocumentViewer, SignEpoComponent.SignatureCanvas), 60, 40, -60, 40);
+            Draw(GetShadowRootElement(SignEpoComponent.DocumentViewer, SignEpoComponent.SignatureCanvas), -60, 40, -60, 0);
+            Draw(GetShadowRootElement(SignEpoComponent.DocumentViewer, SignEpoComponent.SignatureCanvas), -60, 0, 60, 0);
+            Draw(GetShadowRootElement(SignEpoComponent.DocumentViewer, SignEpoComponent.SignatureCanvas), 60, 0, 0, -40);
+            Draw(GetShadowRootElement(SignEpoComponent.DocumentViewer, SignEpoComponent.SignatureCanvas), 0, -40, -40, -60);
+            Click(GetShadowRootElement(SignEpoComponent.DocumentViewer, SignEpoComponent.SetupAndSign));
+            Click(GetShadowRootElement(SignEpoComponent.DocumentViewer, SignEpoComponent.PlaceSignature));
             Click(SignEpoComponent.SubmitSignature);
-            Click(SignEpoComponent.Approve);
+            Click(SignEpoComponent.Approve);*/
         }
 
         public void CourtEpoJudgeAndSuspectSigning(string epoCaseNumber)
@@ -361,85 +429,90 @@ namespace SAFV.Source.Pages.CourtEpo
             }
             else
             {
-                SendKeys(CourtEpoComponent.OtherSearchBox, epoCaseNumber);
+                SendKeys(CourtEpoComponent.AssignedSearchBox, epoCaseNumber);
 
-                if (CourtEpoComponent.OtherEpoCount.Text.Contains("1 of 1"))
+                if (CourtEpoComponent.AssignedEpoCount.Text.Contains("1 of 1"))
                 {
-                    Click(CourtEpoComponent.StartSigningOtherEpo);
+                    Click(CourtEpoComponent.StartSigningAssignedEpo);
                 }
                 else
                 {
                     Reporting.SetStepStatusWarning("Epo not found!!!", _driver);
                     GoToCourtEpoSigningPage();
-                    Click(CourtEpoComponent.StartSigningOtherEpo);
+                    Click(CourtEpoComponent.StartSigningAssignedEpo);
                 }
             }
 
             Click(CourtEpoComponent.SignAndReview);
-            Click(CourtEpoComponent.Next);
+            Thread.Sleep(5000);
+            Click(GetShadowRootElement(SignEpoComponent.DocumentViewer, SignEpoComponent.Next));
 
-            Thread.Sleep(2000);
-            Click(SignEpoComponent.ClearSign);
-            Draw(SignEpoComponent.SignatureCanvas, 60, 40, -60, 40);
-            Draw(SignEpoComponent.SignatureCanvas, -60, 40, -60, 0);
-            Draw(SignEpoComponent.SignatureCanvas, -60, 0, 60, 0);
-            Draw(SignEpoComponent.SignatureCanvas, 60, 0, 0, -40);
-            Draw(SignEpoComponent.SignatureCanvas, 0, -40, -40, -60);
-            Click(SignEpoComponent.SetupAndSign);
-            Click(SignEpoComponent.PlaceSignature);
+            Thread.Sleep(5000);
+            Click(GetShadowRootElement(SignEpoComponent.DocumentViewer, SignEpoComponent.ClearSign));
+            Draw(GetShadowRootElement(SignEpoComponent.DocumentViewer, SignEpoComponent.SignatureCanvas), 60, 40, -60, 40);
+            Draw(GetShadowRootElement(SignEpoComponent.DocumentViewer, SignEpoComponent.SignatureCanvas), -60, 40, -60, 0);
+            Draw(GetShadowRootElement(SignEpoComponent.DocumentViewer, SignEpoComponent.SignatureCanvas), -60, 0, 60, 0);
+            Draw(GetShadowRootElement(SignEpoComponent.DocumentViewer, SignEpoComponent.SignatureCanvas), 60, 0, 0, -40);
+            Draw(GetShadowRootElement(SignEpoComponent.DocumentViewer, SignEpoComponent.SignatureCanvas), 0, -40, -40, -60);
+            Click(GetShadowRootElement(SignEpoComponent.DocumentViewer, SignEpoComponent.SetupAndSign));
+            Click(GetShadowRootElement(SignEpoComponent.DocumentViewer, SignEpoComponent.PlaceSignature));
             Click(SignEpoComponent.SubmitSignature);
             Click(SignEpoComponent.Approve);
 
-            Thread.Sleep(2000);
-            Click(SignEpoComponent.ClearSign);
-            Draw(SignEpoComponent.SignatureCanvas, 60, 40, -60, 40);
-            Draw(SignEpoComponent.SignatureCanvas, -60, 40, -60, 0);
-            Draw(SignEpoComponent.SignatureCanvas, -60, 0, 60, 0);
-            Draw(SignEpoComponent.SignatureCanvas, 60, 0, 0, -40);
-            Draw(SignEpoComponent.SignatureCanvas, 0, -40, -40, -60);
-            Click(SignEpoComponent.SetupAndSign);
-            Click(SignEpoComponent.PlaceSignature);
+            Thread.Sleep(5000);
+            Click(GetShadowRootElement(SignEpoComponent.DocumentViewer, SignEpoComponent.Next));
+            Click(GetShadowRootElement(SignEpoComponent.DocumentViewer, SignEpoComponent.ClearSign));
+            Draw(GetShadowRootElement(SignEpoComponent.DocumentViewer, SignEpoComponent.SignatureCanvas), 60, 40, -60, 40);
+            Draw(GetShadowRootElement(SignEpoComponent.DocumentViewer, SignEpoComponent.SignatureCanvas), -60, 40, -60, 0);
+            Draw(GetShadowRootElement(SignEpoComponent.DocumentViewer, SignEpoComponent.SignatureCanvas), -60, 0, 60, 0);
+            Draw(GetShadowRootElement(SignEpoComponent.DocumentViewer, SignEpoComponent.SignatureCanvas), 60, 0, 0, -40);
+            Draw(GetShadowRootElement(SignEpoComponent.DocumentViewer, SignEpoComponent.SignatureCanvas), 0, -40, -40, -60);
+            Click(GetShadowRootElement(SignEpoComponent.DocumentViewer, SignEpoComponent.SetupAndSign));
+            Click(GetShadowRootElement(SignEpoComponent.DocumentViewer, SignEpoComponent.PlaceSignature));
             Click(SignEpoComponent.SubmitSignature);
             Click(SignEpoComponent.Approve);
 
-            Thread.Sleep(2000);
-            Click(SignEpoComponent.ClearSign);
-            Draw(SignEpoComponent.SignatureCanvas, 60, 40, -60, 40);
-            Draw(SignEpoComponent.SignatureCanvas, -60, 40, -60, 0);
-            Draw(SignEpoComponent.SignatureCanvas, -60, 0, 60, 0);
-            Draw(SignEpoComponent.SignatureCanvas, 60, 0, 0, -40);
-            Draw(SignEpoComponent.SignatureCanvas, 0, -40, -40, -60);
-            Click(SignEpoComponent.SetupAndSign);
-            Click(SignEpoComponent.PlaceSignature);
+            Thread.Sleep(5000);
+            Click(GetShadowRootElement(SignEpoComponent.DocumentViewer, SignEpoComponent.Next));
+            Click(GetShadowRootElement(SignEpoComponent.DocumentViewer, SignEpoComponent.ClearSign));
+            Draw(GetShadowRootElement(SignEpoComponent.DocumentViewer, SignEpoComponent.SignatureCanvas), 60, 40, -60, 40);
+            Draw(GetShadowRootElement(SignEpoComponent.DocumentViewer, SignEpoComponent.SignatureCanvas), -60, 40, -60, 0);
+            Draw(GetShadowRootElement(SignEpoComponent.DocumentViewer, SignEpoComponent.SignatureCanvas), -60, 0, 60, 0);
+            Draw(GetShadowRootElement(SignEpoComponent.DocumentViewer, SignEpoComponent.SignatureCanvas), 60, 0, 0, -40);
+            Draw(GetShadowRootElement(SignEpoComponent.DocumentViewer, SignEpoComponent.SignatureCanvas), 0, -40, -40, -60);
+            Click(GetShadowRootElement(SignEpoComponent.DocumentViewer, SignEpoComponent.SetupAndSign));
+            Click(GetShadowRootElement(SignEpoComponent.DocumentViewer, SignEpoComponent.PlaceSignature));
             Click(SignEpoComponent.SubmitSignature);
             Click(SignEpoComponent.Approve);
 
             Click(CourtEpoComponent.ContinueSuspectSigning);
 
             Click(CourtEpoComponent.SignAndReview);
-            Click(CourtEpoComponent.Next);
+            Thread.Sleep(5000);
+            Click(GetShadowRootElement(SignEpoComponent.DocumentViewer, SignEpoComponent.Next));
 
-            Thread.Sleep(2000);
-            Click(SignEpoComponent.ClearSign);
-            Draw(SignEpoComponent.SignatureCanvas, 60, 40, -60, 40);
-            Draw(SignEpoComponent.SignatureCanvas, -60, 40, -60, 0);
-            Draw(SignEpoComponent.SignatureCanvas, -60, 0, 60, 0);
-            Draw(SignEpoComponent.SignatureCanvas, 60, 0, 0, -40);
-            Draw(SignEpoComponent.SignatureCanvas, 0, -40, -40, -60);
-            Click(SignEpoComponent.SetupAndSign);
-            Click(SignEpoComponent.PlaceSignature);
+            Thread.Sleep(5000);
+            Click(GetShadowRootElement(SignEpoComponent.DocumentViewer, SignEpoComponent.ClearSign));
+            Draw(GetShadowRootElement(SignEpoComponent.DocumentViewer, SignEpoComponent.SignatureCanvas), 60, 40, -60, 40);
+            Draw(GetShadowRootElement(SignEpoComponent.DocumentViewer, SignEpoComponent.SignatureCanvas), -60, 40, -60, 0);
+            Draw(GetShadowRootElement(SignEpoComponent.DocumentViewer, SignEpoComponent.SignatureCanvas), -60, 0, 60, 0);
+            Draw(GetShadowRootElement(SignEpoComponent.DocumentViewer, SignEpoComponent.SignatureCanvas), 60, 0, 0, -40);
+            Draw(GetShadowRootElement(SignEpoComponent.DocumentViewer, SignEpoComponent.SignatureCanvas), 0, -40, -40, -60);
+            Click(GetShadowRootElement(SignEpoComponent.DocumentViewer, SignEpoComponent.SetupAndSign));
+            Click(GetShadowRootElement(SignEpoComponent.DocumentViewer, SignEpoComponent.PlaceSignature));
             Click(SignEpoComponent.SubmitSignature);
             Click(SignEpoComponent.Approve);
 
-            Thread.Sleep(2000);
-            Click(SignEpoComponent.ClearSign);
-            Draw(SignEpoComponent.SignatureCanvas, 60, 40, -60, 40);
-            Draw(SignEpoComponent.SignatureCanvas, -60, 40, -60, 0);
-            Draw(SignEpoComponent.SignatureCanvas, -60, 0, 60, 0);
-            Draw(SignEpoComponent.SignatureCanvas, 60, 0, 0, -40);
-            Draw(SignEpoComponent.SignatureCanvas, 0, -40, -40, -60);
-            Click(SignEpoComponent.SetupAndSign);
-            Click(SignEpoComponent.PlaceSignature);
+            Thread.Sleep(5000);
+            Click(GetShadowRootElement(SignEpoComponent.DocumentViewer, SignEpoComponent.Next));
+            Click(GetShadowRootElement(SignEpoComponent.DocumentViewer, SignEpoComponent.ClearSign));
+            Draw(GetShadowRootElement(SignEpoComponent.DocumentViewer, SignEpoComponent.SignatureCanvas), 60, 40, -60, 40);
+            Draw(GetShadowRootElement(SignEpoComponent.DocumentViewer, SignEpoComponent.SignatureCanvas), -60, 40, -60, 0);
+            Draw(GetShadowRootElement(SignEpoComponent.DocumentViewer, SignEpoComponent.SignatureCanvas), -60, 0, 60, 0);
+            Draw(GetShadowRootElement(SignEpoComponent.DocumentViewer, SignEpoComponent.SignatureCanvas), 60, 0, 0, -40);
+            Draw(GetShadowRootElement(SignEpoComponent.DocumentViewer, SignEpoComponent.SignatureCanvas), 0, -40, -40, -60);
+            Click(GetShadowRootElement(SignEpoComponent.DocumentViewer, SignEpoComponent.SetupAndSign));
+            Click(GetShadowRootElement(SignEpoComponent.DocumentViewer, SignEpoComponent.PlaceSignature));
             Click(SignEpoComponent.SubmitSignature);
             Click(SignEpoComponent.Approve);
 

@@ -38,17 +38,22 @@ namespace SAFV.Drivers
 
         public static void SetStepStatusPass(string stepDescription, IWebDriver driver)
         {
-            Test.Log(Status.Pass, stepDescription, MediaEntityBuilder.CreateScreenCaptureFromBase64String(AddTestScreenshotBase64(driver)).Build());
+            Test.Log(Status.Pass, $"<p style=\"color:green;\"><b>{stepDescription}</b></p>", MediaEntityBuilder.CreateScreenCaptureFromBase64String(AddTestScreenshotBase64(driver)).Build());
+        }
+
+        public static void SetStepStatusInfo(string stepDescription, IWebDriver driver)
+        {
+            Test.Log(Status.Info, $"<p style=\"color:blue;\"><b>{stepDescription}</b></p>", MediaEntityBuilder.CreateScreenCaptureFromBase64String(AddTestScreenshotBase64(driver)).Build());
         }
 
         public static void SetStepStatusWarning(string stepDescription, IWebDriver driver)
         {
-            Test.Log(Status.Warning, stepDescription, MediaEntityBuilder.CreateScreenCaptureFromBase64String(AddTestScreenshotBase64(driver)).Build());
+            Test.Log(Status.Warning, $"<p style=\"color:gold;\"><b>{stepDescription}</b></p>", MediaEntityBuilder.CreateScreenCaptureFromBase64String(AddTestScreenshotBase64(driver)).Build());
         }
 
         public static void SetStepStatusFail(string stepDescription, IWebDriver driver)
         {
-            Test.Log(Status.Fail, stepDescription, MediaEntityBuilder.CreateScreenCaptureFromBase64String(AddTestScreenshotBase64(driver)).Build());
+            Test.Log(Status.Fail, $"<p style=\"color:red;\"><b>{stepDescription}</b></p>", MediaEntityBuilder.CreateScreenCaptureFromBase64String(AddTestScreenshotBase64(driver)).Build());
         }
 
         public static void SetTestStatusPass()

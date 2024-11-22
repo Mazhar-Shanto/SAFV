@@ -1,4 +1,5 @@
 ﻿using OpenQA.Selenium;
+using SAFV.Drivers;
 
 namespace SAFV.Source.Components.CourtEpo
 {
@@ -38,6 +39,7 @@ namespace SAFV.Source.Components.CourtEpo
         public static IWebElement RequestForSigning => WaitAndFindElement(By.XPath("//*[@id=\"master-container-row\"]/div[3]/div/a[2]"));
         public static IWebElement CopyEpo => WaitAndFindElement(By.Id("copy_epo"));
         public static IWebElement CancelEpo => WaitAndFindElement(By.XPath("//*[@id=\"master-container-row\"]/div[3]/div/a[4]"));
+        //public static IWebElement CancelEpo => WaitAndFindElement(By.XPath("//*[@id=\"court-epo-form\"]/div/div[30]/div/div/a[1]"));
         public static IWebElement ConfirmCancelEpo => WaitAndFindElement(By.XPath("/html/body/div[11]/div[3]/button[1]"));
 
         public static IWebElement SigningOption => WaitAndFindElement(By.XPath("/html/body/div[1]/div[4]/div[2]/div/div[2]/div/div/form/div/div[1]/div/span"));
@@ -47,20 +49,21 @@ namespace SAFV.Source.Components.CourtEpo
         public static IWebElement SigningRequestButton => WaitAndFindElement(By.XPath("/html/body/div[1]/div[4]/div[2]/div/div[2]/div/div/form/div/div[2]/div/div/button"));
         public static IWebElement StartSigningButton => WaitAndFindElement(By.XPath("/html/body/div[1]/div[4]/div[2]/div/div[2]/div/div/div[3]/a"));
         public static IWebElement SignAndReview => WaitAndFindElement(By.XPath("/html/body/div[1]/div[4]/div[2]/div/div[2]/div/div/table/tbody/tr[1]/td[2]/a"));
-        public static IWebElement Next => WaitAndFindElement(By.Id("signatureAction"));
 
+        public static IWebElement EpoRequestHeader => WaitAndFindElement(By.XPath("/html/body/div[1]/div[4]/div[2]/div/div[2]/div/div/div[1]/header"));
         public static IWebElement ContinueSuspectSigning => WaitAndFindElement(By.XPath("/html/body/div[6]/div[3]/button[1]"));
         public static IWebElement CancelSuspectSigning => WaitAndFindElement(By.XPath("/html/body/div[6]/div[3]/button[2]"));
 
         public static IWebElement OrganizationSearchBox => WaitAndFindElement(By.XPath("//*[@id=\"OrgSigningRequests\"]/div[1]/span/input"));
         public static IWebElement StartSigningOrganizationEpo => WaitAndFindElement(By.XPath("//*[@id=\"OrgSigningRequests\"]/div[3]/table/tbody/tr[1]/td[6]/a"));
         public static IWebElement OrganizationEpoCount => WaitAndFindElement(By.XPath("//*[@id=\"OrgSigningRequests\"]/div[4]/span"));
-        public static IWebElement OtherSearchBox => WaitAndFindElement(By.XPath("//*[@id=\"assigned_courte_epo\"]/div[1]/span/input"));
-        public static IWebElement StartSigningOtherEpo => WaitAndFindElement(By.XPath("//*[@id=\"assigned_courte_epo\"]/div[3]/table/tbody/tr[1]/td[6]/a"));
-        public static IWebElement OtherEpoCount => WaitAndFindElement(By.XPath("//*[@id=\"assigned_courte_epo\"]/div[4]/span"));
+        public static IWebElement AssignedSearchBox => WaitAndFindElement(By.XPath("//*[@id=\"assigned_courte_epo\"]/div[1]/span/input"));
+        public static IWebElement StartSigningAssignedEpo => WaitAndFindElement(By.XPath("//*[@id=\"assigned_courte_epo\"]/div[3]/table/tbody/tr[1]/td[6]/a"));
+        public static IWebElement AssignedEpoCount => WaitAndFindElement(By.XPath("//*[@id=\"assigned_courte_epo\"]/div[4]/span"));
 
         public static IWebElement SaveCourtEpo => WaitAndFindElement(By.XPath("//*[@id=\"court-epo-form\"]/div/div[30]/div/div/button"));
         public static IWebElement CancelCourtEpo => WaitAndFindElement(By.XPath("//*[@id=\"court-epo-form\"]/div/div[30]/div/div/a"));
+
 
         public CourtEpoComponent(IWebDriver driver) : base(driver)
         {
