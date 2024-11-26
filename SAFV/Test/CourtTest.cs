@@ -8,6 +8,7 @@ using SAFV.Source.Pages.CreateIncident;
 
 namespace SAFV.Test
 {
+    [TestFixture, Order(3)]
     internal class CourtTest : Driver
     {
         [Test, Order(23)]

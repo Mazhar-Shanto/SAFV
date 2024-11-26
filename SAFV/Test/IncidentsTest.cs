@@ -6,6 +6,7 @@ using SAFV.Source.Pages.CreateIncident;
 
 namespace SAFV.Test
 {
+    [TestFixture, Order(2)]
     internal class IncidentsTest : Driver
     {
         [Test, Order(1)]
@@ -207,7 +208,7 @@ namespace SAFV.Test
 
                 string caseNumberNew = incidentsPage.CreateNewIncident(incidentData, caseCountNew, mainCaseForSupplement);
 
-                WriteToExcel.WriteLog(caseCountNew, caseNumberNew, supplementCountOld, supplementNumberOld, mainCaseForSupplement);
+                WriteToExcel.WriteLog(caseCountNew, caseNumberNew, supplementCountOld, supplementNumberOld, caseNumberNew);
 
                 incidentInfoPage.CreateIncidentInfo(incidentInfoData);
                 peoplePage.GoToPeoplePage();

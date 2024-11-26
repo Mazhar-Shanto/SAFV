@@ -5,6 +5,7 @@ using SAFV.Helper.Log;
 
 namespace SAFV.Test
 {
+    [TestFixture, Order(1)]
     public class LoginTest : Driver
     {
         [Test, Order(0)]

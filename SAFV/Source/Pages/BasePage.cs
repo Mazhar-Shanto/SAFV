@@ -315,6 +315,8 @@ namespace SAFV.Source.Pages
         {
             int count = elementList.Count;
 
+            Thread.Sleep(500);
+
             for (int i = 0; i < count; i++)
             {
                 Console.WriteLine(elementList.ElementAt(i).Text.ToLower());
@@ -344,6 +346,8 @@ namespace SAFV.Source.Pages
         {
             int count = elementList.Count;
 
+            Thread.Sleep(500);
+
             for (int i = 0; i < count; i++)
             {
                 Console.WriteLine(elementList.ElementAt(i).Text.ToLower());
@@ -364,6 +368,8 @@ namespace SAFV.Source.Pages
         {
             int countEL = elementList.Count;
             int countValue = searchValue.Count;
+
+            Thread.Sleep(500);
 
             for (int i = 0; i < countValue; i++)
             {
@@ -388,6 +394,8 @@ namespace SAFV.Source.Pages
         {
             int countEL = elementList.Count;
             int countValue = searchValue.Count;
+
+            Thread.Sleep(500);
 
             for (int i = 0; i < countValue; i++)
             {
@@ -464,6 +472,8 @@ namespace SAFV.Source.Pages
 
         public void SelectChild(IList<IWebElement> elementList, string childLocator)
         {
+            Thread.Sleep(500);
+
             foreach (IWebElement element in elementList)
             {
                 element.FindElement(By.XPath(childLocator)).Click();

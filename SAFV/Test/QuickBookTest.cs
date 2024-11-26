@@ -8,6 +8,7 @@ using SAFV.Source.Pages.CreateIncident;
 
 namespace SAFV.Test
 {
+    [TestFixture, Order(5)]
     internal class QuickBookTest : Driver
     {
         [Test, Order(28)]
@@ -49,7 +50,7 @@ namespace SAFV.Test
                 var quickBookRiskAssessmentData = quickBookRiskAssessmentDataList[i];
                 var quickBookEpoData = quickBookEpoDataList[i];
 
-                Reporting.CreateTest("CreateMainIncidentTest");
+                Reporting.CreateTest("CreateQuickBookTest");
 
                 LoginPage loginPage = new LoginPage(_driver);
                 QuickBookPage quickBookPage = new QuickBookPage(_driver);

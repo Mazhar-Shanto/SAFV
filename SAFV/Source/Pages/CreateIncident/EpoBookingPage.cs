@@ -73,6 +73,9 @@ namespace SAFV.Source.Pages.CreateIncident
                 Click(EpoComponent.EpoRequestDocuments);
                 Click(GenerateEpoRequestComponent.SelectAllforms);
                 Click(GenerateEpoRequestComponent.GenerateRequestButton);
+                Thread.Sleep(5000);
+                ScrollDwon();
+                ScrollDwon();
                 Click(EpoComponent.SendEpoRequest);
                 Click(SendEpoRequestComponent.JudicialOrganization);
                 SelectOption(SendEpoRequestComponent.LstJudicialOrganization, epoData["JudicialOrganization"]);

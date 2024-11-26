@@ -6,6 +6,7 @@ using SAFV.Source.Pages.CreateIncident;
 
 namespace SAFV.Test
 {
+    [TestFixture, Order(4)]
     internal class SupplementsTest : Driver
     {
         [Test, Order(8)]
