@@ -24,7 +24,7 @@ namespace SAFV.Source.Pages.CreateIncident
             Click(IncidentMenuComponent.Offenses);
         }
 
-        public void CreateOffense(Dictionary<string, string> offenseData)
+        public void CreateOffense(Dictionary<string, string> offenseData, int offenseNumber)
         {
             Reporting.AddTestScreenshot(_driver, "Incident Test");
 
@@ -45,7 +45,7 @@ namespace SAFV.Source.Pages.CreateIncident
             Click(OffenseComponent.LstOffenseLocation);
             Click(OffenseComponent.OffenseType);
    //         Thread.Sleep(1000);
-            Click(OffenseComponent.LstOffenseType);
+            Click(OffenseComponent.LstOffenseType.ElementAt(offenseNumber));
 
             Click(OffenseComponent.SaveOffense);
         }
@@ -243,10 +243,9 @@ namespace SAFV.Source.Pages.CreateIncident
 
             Click(UseOfWeaponComponent.CreateNewUseOfWeapon);
             Click(UseOfWeaponComponent.Person);
-  //          Thread.Sleep(1000);
-            Click(UseOfWeaponComponent.LstPerson.ElementAt(0));
+            Thread.Sleep(1000);
+            Click(UseOfWeaponComponent.LstPerson);
             Click(UseOfWeaponComponent.WeaponType);
- //           Thread.Sleep(1000);
             SelectOption(UseOfWeaponComponent.LstWeaponType, useOfWeaponData["WeaponType"]);
 
             if (useOfWeaponData["WeaponType"].ToLower() == "other")

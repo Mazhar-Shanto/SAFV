@@ -52,7 +52,7 @@ namespace SAFV.Test
 
                 string caseNumberNew = incidentsPage.CreateNewIncident(incidentData, caseCountNew, mainCaseForSupplement);
 
-                WriteToExcel.WriteLog(caseCountNew, caseNumberNew, supplementCountOld, supplementNumberOld, mainCaseForSupplement);
+                WriteToExcel.WriteLog(caseCountNew, caseNumberNew, supplementCountOld, supplementNumberOld, caseNumberNew);
             }
         }
 
@@ -235,7 +235,7 @@ namespace SAFV.Test
                 locationPage.CreateLocation(locationData);
                 locationPage.CreateScene(sceneData);
                 offensePage.GoToOffensePage();
-                offensePage.CreateOffense(offenseData);
+                offensePage.CreateOffense(offenseData, 1);
                 offensePage.CreateOffenceScene(offenseSceneData);
                 offensePage.CreateBias(biasData);
                 offensePage.CreateManner(mannerData);

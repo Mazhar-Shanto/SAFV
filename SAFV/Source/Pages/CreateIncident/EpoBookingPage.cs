@@ -33,6 +33,7 @@ namespace SAFV.Source.Pages.CreateIncident
             Click(EpoComponent.CreateEpoRequest);
 
             Click(EpoComponent.OffenseGroup);
+            Thread.Sleep(1000);
             Click(EpoComponent.LstOffenseGroup);
             Toggle(EpoComponent.RequestedByVictim, epoData["RequestedByVictim"]);
             Toggle(EpoComponent.RequestedByGuardian, epoData["RequestedByGuardian"]);

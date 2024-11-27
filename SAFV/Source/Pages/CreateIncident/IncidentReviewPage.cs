@@ -30,5 +30,30 @@ namespace SAFV.Source.Pages.CreateIncident
             SendKeys(IncidentReviewComponent.Note, "Test note");
             Click(IncidentReviewComponent.Save);
         }
+
+        public void VerifyComment()
+        {
+            Reporting.AddTestScreenshot(_driver, "Incident Test");
+
+            bool comment = false;
+
+            //Click(IncidentReviewComponent.CommentButton);
+            foreach (var Note in IncidentReviewComponent.LstNote)
+            {
+                if (Note.Text == "Test note")
+                {
+                    comment = true;
+                }
+            }
+
+            if (comment)
+            {
+                Reporting.SetStepStatusPass("Comment done", _driver);
+            }
+            else
+            {
+                Reporting.SetStepStatusFail("Comment done", _driver);
+            }
+        }
     }
 }

@@ -110,6 +110,7 @@ namespace SAFV.Test
             var incidentCountDataList = IncidentDataReader.ReadIncidentCount();
             var witnessDataList = PeopleDataReader.ReadWitnessData();
             var suspectDataList = PeopleDataReader.ReadSuspectData();
+            var suspectInfoDataList = PeopleDataReader.ReadSuspectInfoData();
             var victimDataList = PeopleDataReader.ReadVictimData();
 
             int loginDataCount = loginDataList.Count();
@@ -121,6 +122,7 @@ namespace SAFV.Test
                 var incidentCountData = incidentCountDataList[i];
                 var witnessData = witnessDataList[i];
                 var suspectData = suspectDataList[i];
+                var suspectInfoData = suspectInfoDataList[i];
                 var victimData = victimDataList[i];
 
                 Reporting.CreateTest("CreatePeopleForSupplementTest");
@@ -151,6 +153,7 @@ namespace SAFV.Test
                 peoplePage.CreatePeople(witnessData);
                 peoplePage.GoToPeoplePage();
                 peoplePage.CreatePeople(suspectData);
+                peoplePage.CreateSuspectInfo(suspectInfoData);
                 peoplePage.GoToPeoplePage();
                 peoplePage.CreatePeople(victimData);
                 peoplePage.CreatePeopleMoreInfo(victimData);
@@ -305,12 +308,12 @@ namespace SAFV.Test
                 Thread.Sleep(3000);
                 incidentsPage.OpenIncident();
                 offensePage.GoToOffensePage();
-                offensePage.CreateOffense(offenseData);
+                offensePage.CreateOffense(offenseData, 2);
                 offensePage.CreateOffenceScene(offenseSceneData);
                 offensePage.CreateBias(biasData);
                 offensePage.CreateManner(mannerData);
                 offensePage.CreateRiskAssessment(offenseRiskAssessmentData);
-                offensePage.CreateUseOfWeapon(useOfWeaponData);
+                //offensePage.CreateUseOfWeapon(useOfWeaponData);
                 offensePage.CreateAggAssault(aggAssaultData);
                 offensePage.CreatePcNarrative();
             }
@@ -571,6 +574,7 @@ namespace SAFV.Test
 
                 Reporting.CreateTest("IncidentReviewForSupplementTest");
 
+                HomePage homePage = new HomePage(_driver);
                 LoginPage loginPage = new LoginPage(_driver);
                 IncidentsPage incidentsPage = new IncidentsPage(_driver);
                 IncidentReviewPage incidentReviewPage = new IncidentReviewPage(_driver);
@@ -589,12 +593,26 @@ namespace SAFV.Test
                 string supplementNumberOld = incidentCountData["SupplementNumber"];
                 string mainCaseForSupplement = incidentCountData["MainCaseForSupplement"];
 
+                homePage.Logout();
+
+                loginPage.Login(loginData["Username2"], loginData["Password2"]);
                 incidentsPage.GoToIncidentPage();
+                incidentsPage.ShowOtherOfficerIncidents();
                 incidentsPage.SearchIncident(supplementNumberOld);
                 Thread.Sleep(3000);
                 incidentsPage.OpenIncident();
                 incidentReviewPage.GoToIncidentReviewPage();
                 incidentReviewPage.AddComment();
+
+                homePage.Logout();
+
+                loginPage.Login(loginData["Username"], loginData["Password"]);
+                incidentsPage.GoToIncidentPage();
+                incidentsPage.SearchIncident(supplementNumberOld);
+                Thread.Sleep(3000);
+                incidentsPage.OpenIncident();
+                incidentReviewPage.GoToIncidentReviewPage();
+                incidentReviewPage.VerifyComment();
             }
         }
 
@@ -658,9 +676,10 @@ namespace SAFV.Test
                 homePage.Logout();
 
                 loginPage.Login(loginData["Username2"], loginData["Password2"]);
-                incidentsPage.GoToIncidentPage();
-                incidentsPage.SearchIncident(supplementNumberOld);
-                statusHistoryPage.GoToStatusHistoryPage();
+                /*incidentsPage.GoToIncidentPage();
+                incidentsPage.ShowOtherOfficerLockedIncidents();
+                incidentsPage.SearchLockedIncident(supplementNumberOld);
+                statusHistoryPage.GoToStatusHistoryPage();*/
 
                 if (status == "in-review")
                 {
@@ -676,11 +695,11 @@ namespace SAFV.Test
                 homePage.Logout();
 
                 loginPage.Login(loginData["Username"], loginData["Password"]);
-                incidentsPage.GoToIncidentPage();
+                /*incidentsPage.GoToIncidentPage();
                 incidentsPage.SearchIncident(supplementNumberOld);
                 Thread.Sleep(3000);
                 incidentsPage.OpenIncident();
-                statusHistoryPage.GoToStatusHistoryPage();
+                statusHistoryPage.GoToStatusHistoryPage();*/
                 status = statusHistoryPage.CheckStatus();
 
                 if (status == "rejected")
@@ -697,11 +716,12 @@ namespace SAFV.Test
                 homePage.Logout();
 
                 loginPage.Login(loginData["Username2"], loginData["Password2"]);
-                incidentsPage.GoToIncidentPage();
-                incidentsPage.SearchIncident(supplementNumberOld);
+                /*incidentsPage.GoToIncidentPage();
+                incidentsPage.ShowOtherOfficerLockedIncidents();
+                incidentsPage.SearchLockedIncident(supplementNumberOld);
                 Thread.Sleep(3000);
                 incidentsPage.OpenIncident();
-                statusHistoryPage.GoToStatusHistoryPage();
+                statusHistoryPage.GoToStatusHistoryPage();*/
                 status = statusHistoryPage.CheckStatus();
 
                 if (status == "in-review")
@@ -730,11 +750,11 @@ namespace SAFV.Test
                 homePage.Logout();
 
                 loginPage.Login(loginData["Username"], loginData["Password"]);
-                incidentsPage.GoToIncidentPage();
+                /*incidentsPage.GoToIncidentPage();
                 incidentsPage.SearchIncident(supplementNumberOld);
                 Thread.Sleep(3000);
                 incidentsPage.OpenIncident();
-                statusHistoryPage.GoToStatusHistoryPage();
+                statusHistoryPage.GoToStatusHistoryPage();*/
                 status = statusHistoryPage.CheckStatus();
 
                 if (status == "open")

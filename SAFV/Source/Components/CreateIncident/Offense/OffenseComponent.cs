@@ -16,7 +16,7 @@ namespace SAFV.Source.Components.CreateIncident.Offense
         public static IWebElement OffenseLocation => WaitAndFindElement(By.XPath("//*[@id=\"collapse_3_1\"]/div/div/div[5]/div/span[1]"));
         public static IWebElement LstOffenseLocation => WaitAndFindElement(By.XPath("//*[@id=\"IncidentLocationId_listbox\"]/li[1]"));
         public static IWebElement OffenseType => WaitAndFindElement(By.XPath("//*[@id=\"collapse_3_1\"]/div/div/div[6]/div/span[1]"));
-        public static IWebElement LstOffenseType => WaitAndFindElement(By.XPath("//*[@id=\"offenseType_listbox\"]/li[2]"));
+        public static IList<IWebElement> LstOffenseType => WaitAndFindElements(By.XPath("//*[@id=\"offenseType_listbox\"]/li"));
         public static IWebElement SaveOffense => WaitAndFindElement(By.XPath("//*[@id=\"offenceinformationcreateform\"]/div[2]/div/div/button"));
         public static IWebElement CancelOffense => WaitAndFindElement(By.XPath("//*[@id=\"offenceinformationcreateform\"]/div[2]/div/div/a"));
 

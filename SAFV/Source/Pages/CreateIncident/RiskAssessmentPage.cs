@@ -4,6 +4,7 @@ using SAFV.Source.Components;
 using SAFV.Source.Components.CreateIncident;
 using SAFV.Source.Components.CreateIncident.Offense;
 using SAFV.Source.Components.CreateIncident.Location;
+using System.Linq;
 
 namespace SAFV.Source.Pages.CreateIncident
 {
@@ -31,9 +32,11 @@ namespace SAFV.Source.Pages.CreateIncident
             Click(RiskAssessmentComponent.CreateNewRA);
 
             Click(RiskAssessmentComponent.Suspect);
-            Click(RiskAssessmentComponent.LstSuspect);
+            int suspectCount = RiskAssessmentComponent.LstSuspect.Count;
+            Click(RiskAssessmentComponent.LstSuspect.ElementAt(suspectCount-1));
             Click(RiskAssessmentComponent.Victim);
-            Click(RiskAssessmentComponent.LstVictim);
+            int victimCount = RiskAssessmentComponent.LstVictim.Count;
+            Click(RiskAssessmentComponent.LstVictim.ElementAt(victimCount-1));
 
             Radio(RiskAssessmentComponent.FamilyViolenceLikelyToOccur, riskAssessmentData["FamilyViolenceLikelyToOccur"]);
             Radio(RiskAssessmentComponent.UsedOrThreatenedWithWeapon, riskAssessmentData["UsedOrThreatenedWithWeapon"]);

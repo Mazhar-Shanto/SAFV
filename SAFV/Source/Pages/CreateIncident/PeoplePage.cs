@@ -669,6 +669,7 @@ namespace SAFV.Source.Pages.CreateIncident
 
         public bool VerifyMasterDataSync(Dictionary<string, string> peopleData)
         {
+            Thread.Sleep(2000);
             Reporting.AddTestScreenshot(_driver, "Incident Test");
 
             string masterFirstName;
@@ -715,6 +716,7 @@ namespace SAFV.Source.Pages.CreateIncident
             Click(PeopleComponent.SeeMaster);
             _driver.SwitchTo().Window(_driver.WindowHandles[1]);
             Click(PeopleComponent.SeeLog);
+            Thread.Sleep(2000);
             Click(PeopleComponent.ViewLogHistory);
 
             if (oldData == PeopleComponent.PreviousDataLastName.GetAttribute("value") && updateData == PeopleComponent.ChangedDataLastName.GetAttribute("value"))

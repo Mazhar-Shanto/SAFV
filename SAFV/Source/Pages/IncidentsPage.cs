@@ -35,9 +35,27 @@ namespace SAFV.Source.Pages
             Click(IncidentsComponent.CaseSearchButton);
         }
 
+        public void SearchLockedIncident(string caseNumber)
+        {
+            Click(IncidentsComponent.LockedCaseNumberFilter);
+            SendKeys(IncidentsComponent.LockedCaseSearchBox, caseNumber);
+            Click(IncidentsComponent.LockedCaseSearchButton);
+        }
+
         public void OpenIncident()
         {
+            Thread.Sleep(2000);
             Click(IncidentsComponent.SearchedIncident);
+        }
+
+        public void ShowOtherOfficerIncidents()
+        {
+            Click(IncidentsComponent.ShowOtherOfficerIncidentsButton);
+        }
+
+        public void ShowOtherOfficerLockedIncidents()
+        {
+            Click(IncidentsComponent.ShowOtherOfficerLockedIncidentsButton);
         }
 
         public string CreateNewIncident(Dictionary<string, string> incidentData, string count, string mainCase)

@@ -7,10 +7,12 @@ namespace SAFV.Source.Components.CreateIncident.Offense
         // Elements
         public static IWebElement CreateNewUseOfWeapon => WaitAndFindElement(By.XPath("//*[@id=\"weapon-information\"]/div[1]/div/div[2]/span/a"));
         public static IWebElement Person => WaitAndFindElement(By.XPath("//*[@id=\"weapon-info-submit-form\"]/div/div[1]/div/span[1]"));
-        public static IList<IWebElement> LstPerson => WaitAndFindElements(By.XPath("//*[@id=\"IncidentPersonId_listbox\"]/li[1]"));
+        //public static IList<IWebElement> LstPerson => WaitAndFindElements(By.XPath("//*[@id=\"IncidentPersonId_listbox\"]/li"));
+        public static IWebElement LstPerson => WaitAndFindElement(By.XPath("//*[@id=\"IncidentPersonId_listbox\"]/li[1]"));
         //public static IWebElement LstPerson => WaitAndFindElement(By.XPath("/html/body/div[10]/div/div[3]/ul/li[1]"));
         public static IWebElement WeaponType => WaitAndFindElement(By.XPath("//*[@id=\"weapon-info-submit-form\"]/div/div[1]/div/span[1]"));
         public static IList<IWebElement> LstWeaponType => WaitAndFindElements(By.XPath("//*[@id=\"IncidentWeaponTypeId_listbox\"]/li"));
+        //public static IWebElement LstWeaponType => WaitAndFindElement(By.XPath("//*[@id=\"IncidentWeaponTypeId_listbox\"]/li[1]"));
         public static IWebElement OtherDescription => WaitAndFindElement(By.Id("OtherDesc"));
         public static IWebElement NoEvidence => WaitAndFindElement(By.XPath("//*[@id=\"weapon-info-submit-form\"]/div/div[3]/div[1]/div/span[1]"));
         public static IWebElement NoEvidenceReason => WaitAndFindElement(By.Id("ReasonNoEvidence"));
