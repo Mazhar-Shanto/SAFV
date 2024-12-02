@@ -436,6 +436,7 @@ namespace SAFV.Source.Pages
 
         public void CreateQuickBookRiskAssessment(Dictionary<string, string> quickBookRiskAssessmentData)
         {
+            Thread.Sleep(5000);
             Reporting.AddTestScreenshot(_driver, "Incident Test");
 
             Radio(QuickBookRiskAssessmentComponent.FamilyViolenceLikelyToOccur, quickBookRiskAssessmentData["FamilyViolenceLikelyToOccur"]);
