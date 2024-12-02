@@ -139,6 +139,8 @@ namespace SAFV.Test
             var epoDataList = EpoDataReader.ReadEpoData();
             var evidenceDataList = EvidenceDataReader.ReadEvidenceData();
 
+            var courtEpoLogDataList = CourtEpoDataReader.ReadCourtEpoLogData();
+
             int loginDataCount = loginDataList.Count();
 
             //test
@@ -174,6 +176,8 @@ namespace SAFV.Test
                 var epoData = epoDataList[i];
                 var evidenceData = evidenceDataList[i];
 
+                var courtEpoLogData = courtEpoLogDataList[i];
+
                 Reporting.CreateTest("CreateNewIncidentFullCycleTest");
 
                 LoginPage loginPage = new LoginPage(_driver);
@@ -207,6 +211,9 @@ namespace SAFV.Test
                 string caseCountNew = caseCountInt.ToString();
 
                 string caseNumberNew = incidentsPage.CreateNewIncident(incidentData, caseCountNew, mainCaseForSupplement);
+
+                string courtEpoCaseNumber = caseNumberNew;
+                string courtEpoCaseCount = courtEpoLogData["EpoCaseCount"];
 
                 WriteToExcel.WriteLog(caseCountNew, caseNumberNew, supplementCountOld, supplementNumberOld, caseNumberNew);
 
@@ -248,7 +255,7 @@ namespace SAFV.Test
                 epoBookingPage.GoToEpoBookingPage();
                 epoBookingPage.CreateEpoRequest(epoData);
 
-                WriteToExcel.WriteEpoLog(caseNumberNew);
+                WriteToExcel.WriteCourtEpoLog(courtEpoCaseNumber, courtEpoCaseCount);
 
                 evidencePage.GoToEvidencePage();
                 evidencePage.CreateEvidence(evidenceData);

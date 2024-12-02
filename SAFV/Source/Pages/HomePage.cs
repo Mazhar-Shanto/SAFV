@@ -27,6 +27,20 @@ namespace SAFV.Source.Pages
             }
         }
 
+        public bool CheckMenuItems(string name)
+        {
+            bool menuFound = false;
+            foreach (var menuItem in MenuComponent.LstMenu)
+            {
+                if (menuItem.Text.Contains(name))
+                {
+                    menuFound = true;
+                }
+            }
+
+            return menuFound;
+        }
+
         public void VisitAllCasesGrid()
         {
             // Placeholder for navigating to the cases grid
