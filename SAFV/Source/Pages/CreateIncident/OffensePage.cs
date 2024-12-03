@@ -33,18 +33,16 @@ namespace SAFV.Source.Pages.CreateIncident
             //VerifyPageLabel(OffenseComponent.AddOffense, OffenseComponent.TabTitle.Text.ToLower(), "offense");
 
             Click(OffenseComponent.Suspect);
-   //         Thread.Sleep(1000);
-            Click(OffenseComponent.LstSuspect);
+            int suspectCount = OffenseComponent.LstSuspect.Count - 1;
+            Click(OffenseComponent.LstSuspect.ElementAt(suspectCount));
             Click(OffenseComponent.Victim);
-   //         Thread.Sleep(1000);
-            Click(OffenseComponent.LstVictim);
+            int victimCount = OffenseComponent.LstVictim.Count - 1;
+            Click(OffenseComponent.LstVictim.ElementAt(victimCount));
             SendKeys(OffenseComponent.DateOfOffense, offenseData["DateOfOffense"]);
             SendKeys(OffenseComponent.TimeOfOffense, offenseData["TimeOfOffense"]);
             Click(OffenseComponent.OffenseLocation);
-   //         Thread.Sleep(1000);
             Click(OffenseComponent.LstOffenseLocation);
             Click(OffenseComponent.OffenseType);
-   //         Thread.Sleep(1000);
             Click(OffenseComponent.LstOffenseType.ElementAt(offenseNumber));
 
             Click(OffenseComponent.SaveOffense);

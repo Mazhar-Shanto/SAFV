@@ -57,6 +57,7 @@ namespace SAFV.Source.Pages.CreateIncident
 
         public string CheckStatus() //Dictionary<string, string> evidenceData
         {
+            Thread.Sleep(3000);
             Reporting.AddTestScreenshot(_driver, "Incident Test");
 
             if (StatusHistoryComponent.Status.Text.ToLower() == "status")

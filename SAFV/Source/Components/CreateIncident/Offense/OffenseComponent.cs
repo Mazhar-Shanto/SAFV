@@ -8,9 +8,9 @@ namespace SAFV.Source.Components.CreateIncident.Offense
         public static IWebElement TabTitle => WaitAndFindElement(By.Id("seletedTabTitle"));
         public static IWebElement AddOffense => WaitAndFindElement(By.XPath("//*[@id=\"module-container\"]/div/div[1]/div/div[2]/a"));
         public static IWebElement Suspect => WaitAndFindElement(By.XPath("//*[@id=\"collapse_3_1\"]/div/div/div[1]/div/span[1]"));
-        public static IWebElement LstSuspect => WaitAndFindElement(By.XPath("//*[@id=\"IncidentPersonId_listbox\"]/li[1]"));
+        public static IList<IWebElement> LstSuspect => WaitAndFindElements(By.XPath("//*[@id=\"IncidentPersonId_listbox\"]/li"));
         public static IWebElement Victim => WaitAndFindElement(By.XPath("//*[@id=\"collapse_3_1\"]/div/div/div[2]/div/span[1]"));
-        public static IWebElement LstVictim => WaitAndFindElement(By.XPath("//*[@id=\"VictimId_listbox\"]/li[1]"));
+        public static IList<IWebElement> LstVictim => WaitAndFindElements(By.XPath("//*[@id=\"VictimId_listbox\"]/li"));
         public static IWebElement DateOfOffense => WaitAndFindElement(By.Id("DateOfOff"));
         public static IWebElement TimeOfOffense => WaitAndFindElement(By.Id("TimeOfOff"));
         public static IWebElement OffenseLocation => WaitAndFindElement(By.XPath("//*[@id=\"collapse_3_1\"]/div/div/div[5]/div/span[1]"));
