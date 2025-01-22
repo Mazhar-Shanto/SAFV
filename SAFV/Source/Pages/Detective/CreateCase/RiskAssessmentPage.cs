@@ -1,9 +1,9 @@
 ﻿using OpenQA.Selenium;
 using SAFV.Drivers;
 using SAFV.Source.Components;
-using SAFV.Source.Components.CreateIncident;
+using SAFV.Source.Components.Detective.CreateCase;
 
-namespace SAFV.Source.Pages.CreateIncident
+namespace SAFV.Source.Pages.Detective.CreateCase
 {
     public class RiskAssessmentPage : IncidentsPage
     {
@@ -19,7 +19,7 @@ namespace SAFV.Source.Pages.CreateIncident
         public void GoToRiskAssessmentPage()
         {
             Console.WriteLine("Incident -- " + MenuComponent.Incidents.Text);
-            Click(IncidentMenuComponent.RiskAssesment);
+            Click(CaseMenuComponent.RiskAssesment);
         }
 
         public void CreateRiskAssessment(Dictionary<string, string> riskAssessmentData)

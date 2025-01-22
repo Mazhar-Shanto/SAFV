@@ -33,8 +33,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="Helper\TestData\CreateCase\" />
     <Folder Include="Report\Incident Test\" />
     <Folder Include="Source\Components\CreateIncident\People\Victim\" />
+    <Folder Include="Source\Components\Detective\CreateCase\People\Victim\" />
     <Folder Include="Source\Pages\QuickBook\" />
   </ItemGroup>
 

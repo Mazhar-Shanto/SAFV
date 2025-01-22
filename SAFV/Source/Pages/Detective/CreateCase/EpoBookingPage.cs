@@ -1,10 +1,10 @@
 ﻿using OpenQA.Selenium;
 using SAFV.Drivers;
 using SAFV.Source.Components;
-using SAFV.Source.Components.CreateIncident;
-using SAFV.Source.Components.CreateIncident.Epo;
+using SAFV.Source.Components.Detective.CreateCase;
+using SAFV.Source.Components.Detective.CreateCase.Epo;
 
-namespace SAFV.Source.Pages.CreateIncident
+namespace SAFV.Source.Pages.Detective.CreateCase
 {
     public class EpoBookingPage : IncidentsPage
     {
@@ -21,7 +21,7 @@ namespace SAFV.Source.Pages.CreateIncident
         public void GoToEpoBookingPage()
         {
             Console.WriteLine("Incident -- " + MenuComponent.Incidents.Text);
-            Click(IncidentMenuComponent.EpoBooking);
+            Click(CaseMenuComponent.EpoBooking);
         }
 
         public void CreateEpoRequest(Dictionary<string, string> epoData)

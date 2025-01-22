@@ -1,6 +1,6 @@
 ﻿using OpenQA.Selenium;
 
-namespace SAFV.Source.Components.CreateIncident
+namespace SAFV.Source.Components.Detective.CreateCase
 {
     public class RiskAssessmentComponent : BaseComponent
     {

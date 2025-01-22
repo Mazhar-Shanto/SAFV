@@ -11,6 +11,10 @@ namespace SAFV.Source.Components
         public static IWebElement IncidentsPage => WaitAndFindElement(By.XPath("//*[@id=\"remove-scroll\"]/div/ul/li[4]/ul/li[1]/a"));
         public static IWebElement CreateNewIncidentButton => WaitAndFindElement(By.XPath("//*[@id=\"remove-scroll\"]/div/ul/li[4]/ul/li[2]/a"));
         public static IWebElement CreateQuickBook => WaitAndFindElement(By.XPath("//*[@id=\"remove-scroll\"]/div/ul/li[4]/ul/li[3]/a"));
+        public static IWebElement Cases => WaitAndFindElement(By.XPath("//*[@id=\"remove-scroll\"]/div/ul/li[5]/a"));
+        public static IWebElement CasesPage => WaitAndFindElement(By.XPath("//*[@id=\"remove-scroll\"]/div/ul/li[5]/ul/li[1]/a"));
+        public static IWebElement CreateNewCaseButton => WaitAndFindElement(By.XPath("//*[@id=\"remove-scroll\"]/div/ul/li[5]/ul/li[2]/a"));
+        public static IWebElement CreateCaseFromIncidentButton => WaitAndFindElement(By.XPath("//*[@id=\"remove-scroll\"]/div/ul/li[5]/ul/li[3]/a"));
         //public static IWebElement Courts => WaitAndFindElement(By.XPath("//*[@id=\"remove-scroll\"]/div/ul/li[6]/a"));
         public static IWebElement Signing => WaitAndFindElement(By.XPath("//*[@id=\"remove-scroll\"]/div/ul/li[5]/a"));
         public static IWebElement Courts => WaitAndFindElement(By.XPath("//*[@id=\"remove-scroll\"]/div/ul/li[6]/a"));
