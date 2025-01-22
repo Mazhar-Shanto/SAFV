@@ -32,7 +32,7 @@ namespace SAFV.Source.Pages
             bool menuFound = false;
             foreach (var menuItem in MenuComponent.LstMenu)
             {
-                if (menuItem.Text.Contains(name))
+                 if (menuItem.Text.Contains(name))
                 {
                     menuFound = true;
                 }

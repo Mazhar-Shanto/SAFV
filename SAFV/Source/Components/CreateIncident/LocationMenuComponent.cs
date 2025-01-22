@@ -7,6 +7,7 @@ namespace SAFV.Source.Components.CreateIncident
         // Elements
         public static IWebElement LocationInfo => WaitAndFindElement(By.XPath("//*[@id=\"incident-info-side-bar\"]/li[1]"));
         public static IWebElement Scene => WaitAndFindElement(By.XPath("//*[@id=\"incident-info-side-bar\"]/li[2]"));
+        //public static IWebElement Scene => WaitAndFindElement(By.Id("scene_tab"));
 
         public LocationMenuComponent(IWebDriver driver) : base(driver)
         {

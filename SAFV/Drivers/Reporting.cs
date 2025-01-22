@@ -25,7 +25,7 @@ namespace SAFV.Drivers
             Reporter.Config.ReportName = "Regression Testing";
             Reporter.Config.Theme = AventStack.ExtentReports.Reporter.Config.Theme.Standard;
             Extent.AttachReporter(Reporter);
-            Extent.AddSystemInfo("Application Under Test", "DRE");
+            Extent.AddSystemInfo("Application Under Test", "SAFV");
             Extent.AddSystemInfo("Environment", "QA");
             Extent.AddSystemInfo("Machine", Environment.MachineName);
             Extent.AddSystemInfo("OS", Environment.OSVersion.VersionString);

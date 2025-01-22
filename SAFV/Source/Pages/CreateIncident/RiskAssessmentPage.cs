@@ -32,11 +32,13 @@ namespace SAFV.Source.Pages.CreateIncident
             Click(RiskAssessmentComponent.CreateNewRA);
 
             Click(RiskAssessmentComponent.Suspect);
-            int suspectCount = RiskAssessmentComponent.LstSuspect.Count;
-            Click(RiskAssessmentComponent.LstSuspect.ElementAt(suspectCount-1));
+            int suspectCount = RiskAssessmentComponent.LstSuspect.Count - 1;
+            Console.WriteLine("----------Suspect Count----------" + suspectCount);
+            Click(RiskAssessmentComponent.LstSuspect.ElementAt(suspectCount));
             Click(RiskAssessmentComponent.Victim);
-            int victimCount = RiskAssessmentComponent.LstVictim.Count;
-            Click(RiskAssessmentComponent.LstVictim.ElementAt(victimCount-1));
+            int victimCount = RiskAssessmentComponent.LstVictim.Count - 1;
+            Console.WriteLine("----------Suspect Count----------" + suspectCount);
+            Click(RiskAssessmentComponent.LstVictim.ElementAt(victimCount));
 
             Radio(RiskAssessmentComponent.FamilyViolenceLikelyToOccur, riskAssessmentData["FamilyViolenceLikelyToOccur"]);
             Radio(RiskAssessmentComponent.UsedOrThreatenedWithWeapon, riskAssessmentData["UsedOrThreatenedWithWeapon"]);

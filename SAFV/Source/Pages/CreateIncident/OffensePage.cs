@@ -34,10 +34,12 @@ namespace SAFV.Source.Pages.CreateIncident
 
             Click(OffenseComponent.Suspect);
             int suspectCount = OffenseComponent.LstSuspect.Count - 1;
+            Console.WriteLine("-------------------------Suspect Count-------------------------" + suspectCount);
             Click(OffenseComponent.LstSuspect.ElementAt(suspectCount));
             Click(OffenseComponent.Victim);
             int victimCount = OffenseComponent.LstVictim.Count - 1;
             Click(OffenseComponent.LstVictim.ElementAt(victimCount));
+            Console.WriteLine("-------------------------Victim Count-------------------------" + victimCount);
             SendKeys(OffenseComponent.DateOfOffense, offenseData["DateOfOffense"]);
             SendKeys(OffenseComponent.TimeOfOffense, offenseData["TimeOfOffense"]);
             Click(OffenseComponent.OffenseLocation);

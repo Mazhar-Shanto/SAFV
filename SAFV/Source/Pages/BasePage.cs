@@ -114,21 +114,21 @@ namespace SAFV.Source.Pages
                     {
                         // Log or handle ElementClickInterceptedException
                         Console.WriteLine("ElementClickInterceptedException caught: " + e.Message);
-                        Reporting.SetStepStatusFail($"Toggle <b style=\"color:blue;\">{label}</b> from <b>{previousState}</b> to <b>{s}</b>failed", _driver);
+                        Reporting.SetStepStatusWarning($"Toggle <b style=\"color:blue;\">{label}</b> from <b>{previousState}</b> to <b>{s}</b> failed", _driver);
                         Thread.Sleep(2000); // Wait before retrying
                     }
                     catch (StaleElementReferenceException e)
                     {
                         // Log or handle StaleElementReferenceException
                         Console.WriteLine("StaleElementReferenceException caught: " + e.Message);
-                        Reporting.SetStepStatusFail($"Toggle <b style=\"color:blue;\">{label}</b> from <b>{previousState}</b> to <b>{s}</b>failed", _driver);
+                        Reporting.SetStepStatusWarning($"Toggle <b style=\"color:blue;\">{label}</b> from <b>{previousState}</b> to <b>{s}</b> failed", _driver);
                         Thread.Sleep(2000); // Wait before retrying
                     }
                     catch (Exception e)
                     {
                         // Log or handle other exceptions
                         Console.WriteLine("Exception caught: " + e.Message);
-                        Reporting.SetStepStatusFail($"Toggle <b style=\"color:blue;\">{label}</b> from <b>{previousState}</b> to <b>{s}</b>failed", _driver);
+                        Reporting.SetStepStatusWarning($"Toggle <b style=\"color:blue;\">{label}</b> from <b>{previousState}</b> to <b>{s}</b> failed", _driver);
                         Thread.Sleep(2000); // Wait before retrying
                     }
 
@@ -136,7 +136,7 @@ namespace SAFV.Source.Pages
                 }
 
                 // If we exit the loop without clicking, throw an exception
-                Reporting.SetStepStatusFail($"Toggle <b style=\"color:blue;\">{label}</b> from <b>{previousState}</b> to <b>{s}</b>failed", _driver);
+                Reporting.SetStepStatusFail($"Toggle <b style=\"color:blue;\">{label}</b> from <b>{previousState}</b> to <b>{s}</b> failed", _driver);
                 throw new Exception("Failed to toggle the element after multiple attempts");
             }
             else
@@ -185,21 +185,21 @@ namespace SAFV.Source.Pages
                 {
                     // Log or handle ElementClickInterceptedException
                     Console.WriteLine("ElementClickInterceptedException caught: " + e.Message);
-                    Reporting.SetStepStatusFail($"Select radio option <b>{selectedOption}</b> from <b style=\"color:blue;\">{label}</b> failed", _driver);
+                    Reporting.SetStepStatusWarning($"Select radio option <b>{selectedOption}</b> from <b style=\"color:blue;\">{label}</b> failed", _driver);
                     Thread.Sleep(2000); // Wait before retrying
                 }
                 catch (StaleElementReferenceException e)
                 {
                     // Log or handle StaleElementReferenceException
                     Console.WriteLine("StaleElementReferenceException caught: " + e.Message);
-                    Reporting.SetStepStatusFail($"Select radio option <b>{selectedOption}</b> from <b style=\"color:blue;\">{label}</b> failed", _driver);
+                    Reporting.SetStepStatusWarning($"Select radio option <b>{selectedOption}</b> from <b style=\"color:blue;\">{label}</b> failed", _driver);
                     Thread.Sleep(2000); // Wait before retrying
                 }
                 catch (Exception e)
                 {
                     // Log or handle other exceptions
                     Console.WriteLine("Exception caught: " + e.Message);
-                    Reporting.SetStepStatusFail($"Select radio option <b>{selectedOption}</b> from <b style=\"color:blue;\">{label}</b> failed", _driver);
+                    Reporting.SetStepStatusWarning($"Select radio option <b>{selectedOption}</b> from <b style=\"color:blue;\">{label}</b> failed", _driver);
                     Thread.Sleep(2000); // Wait before retrying
                 }
 
@@ -238,21 +238,21 @@ namespace SAFV.Source.Pages
                 {
                     // Log or handle ElementNotInteractableException
                     Console.WriteLine("ElementNotInteractableException caught: " + e.Message);
-                    Reporting.SetStepStatusFail($"Input value <b>{value}</b> to <b style=\"color:blue;\">{label}</b> failed", _driver);
+                    Reporting.SetStepStatusWarning($"Input value <b>{value}</b> to <b style=\"color:blue;\">{label}</b> failed", _driver);
                     Thread.Sleep(2000); // Wait before retrying
                 }
                 catch (StaleElementReferenceException e)
                 {
                     // Log or handle StaleElementReferenceException
                     Console.WriteLine("StaleElementReferenceException caught: " + e.Message);
-                    Reporting.SetStepStatusFail($"Input value <b>{value}</b> to <b style=\"color:blue;\">{label}</b> failed", _driver);
+                    Reporting.SetStepStatusWarning($"Input value <b>{value}</b> to <b style=\"color:blue;\">{label}</b> failed", _driver);
                     Thread.Sleep(2000); // Wait before retrying
                 }
                 catch (Exception e)
                 {
                     // Log or handle other exceptions
                     Console.WriteLine("Exception caught: " + e.Message);
-                    Reporting.SetStepStatusFail($"Input value <b>{value}</b> to <b style=\"color:blue;\">{label}</b> failed", _driver);
+                    Reporting.SetStepStatusWarning($"Input value <b>{value}</b> to <b style=\"color:blue;\">{label}</b> failed", _driver);
                     Thread.Sleep(2000); // Wait before retrying
                 }
 
@@ -444,21 +444,21 @@ namespace SAFV.Source.Pages
                 {
                     // Log or handle ElementNotInteractableException
                     Console.WriteLine("ElementNotInteractableException caught: " + e.Message);
-                    Reporting.SetStepStatusFail($"Select option <b>{value}</b> from <b style=\"color:blue;\">{label}</b> failed", _driver);
+                    Reporting.SetStepStatusWarning($"Select option <b>{value}</b> from <b style=\"color:blue;\">{label}</b> failed", _driver);
                     Thread.Sleep(2000); // Wait before retrying
                 }
                 catch (StaleElementReferenceException e)
                 {
                     // Log or handle StaleElementReferenceException
                     Console.WriteLine("StaleElementReferenceException caught: " + e.Message);
-                    Reporting.SetStepStatusFail($"Select option <b>{value}</b> from <b style=\"color:blue;\">{label}</b> failed", _driver);
+                    Reporting.SetStepStatusWarning($"Select option <b>{value}</b> from <b style=\"color:blue;\">{label}</b> failed", _driver);
                     Thread.Sleep(2000); // Wait before retrying
                 }
                 catch (Exception e)
                 {
                     // Log or handle other exceptions
                     Console.WriteLine("Exception caught: " + e.Message);
-                    Reporting.SetStepStatusFail($"Select option <b>{value}</b> from <b style=\"color:blue;\">{label}</b> failed", _driver);
+                    Reporting.SetStepStatusWarning($"Select option <b>{value}</b> from <b style=\"color:blue;\">{label}</b> failed", _driver);
                     Thread.Sleep(2000); // Wait before retrying
                 }
 

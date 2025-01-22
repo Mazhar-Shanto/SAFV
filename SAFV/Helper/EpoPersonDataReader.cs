@@ -1,5 +1,4 @@
-﻿using OpenQA.Selenium.DevTools.V126.Network;
-using SAFV.Helper.TestData;
+﻿using SAFV.Helper.TestData;
 using SAFV.Utility;
 
 namespace SAFV.Helper

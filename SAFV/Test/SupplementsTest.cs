@@ -745,6 +745,7 @@ namespace SAFV.Test
                 incidentsPage.ShowOtherOfficerLockedIncidents();
                 incidentsPage.SearchLockedIncident(supplementNumberOld);
                 statusHistoryPage.GoToStatusHistoryPage();*/
+                status = statusHistoryPage.CheckStatus();
 
                 if (status == "in-review")
                 {

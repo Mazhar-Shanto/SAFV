@@ -5,7 +5,6 @@ using SAFV.Source.Components.CreateIncident;
 using SAFV.Source.Components.CreateIncident.Offense;
 using SAFV.Source.Components.CreateIncident.Location;
 using SAFV.Source.Components.CreateIncident.Epo;
-using OpenQA.Selenium.DevTools.V126.Debugger;
 
 namespace SAFV.Source.Pages.CreateIncident
 {
@@ -19,6 +18,7 @@ namespace SAFV.Source.Pages.CreateIncident
             _driver = driver;
 
         }
+
 
         public void GoToEpoBookingPage()
         {
