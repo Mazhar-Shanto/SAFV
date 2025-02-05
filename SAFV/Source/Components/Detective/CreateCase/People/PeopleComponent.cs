@@ -5,6 +5,9 @@ namespace SAFV.Source.Components.Detective.CreateCase.People
     public class PeopleComponent : BaseComponent
     {
         // Elements
+        public static IList<IWebElement> LstViewOrigin => WaitAndFindElements(By.XPath("(//a[contains(text(),'View Origin')])"));
+
+
         public static IWebElement TabTitle => WaitAndFindElement(By.Id("seletedTabTitle"));
         public static IWebElement SeeMaster => WaitAndFindElement(By.XPath("//*[@id=\"person-page\"]/div/div[1]/div/div/div/header/div[3]/div/div/a[1]"));
         public static IWebElement SelectAllMainPeople => WaitAndFindElement(By.XPath("//*[@id=\"master_case_people-grid\"]/table/thead/tr/th[6]/input"));

@@ -22,6 +22,11 @@ namespace SAFV.Source.Pages.Detective.CreateCase
             Click(CaseMenuComponent.RiskAssesment);
         }
 
+        public int RiskAssessmentOriginCount()
+        {
+            return RiskAssessmentComponent.LstViewOrigin.Count;
+        }
+
         public void CreateRiskAssessment(Dictionary<string, string> riskAssessmentData)
         {
             Reporting.AddTestScreenshot(_driver, "Incident Test");

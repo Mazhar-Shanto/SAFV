@@ -15,11 +15,13 @@ namespace SAFV.Source.Components.Detective.CreateCase
         public static IWebElement SearchMainCase => WaitAndFindElement(By.XPath("//*[@id=\"MasterIncidentId-list\"]/span/input"));
         public static IList<IWebElement> LstMainCase => WaitAndFindElements(By.XPath("//*[@id=\"MasterIncidentId_listbox\"]/li"));
 
-        public static IWebElement SearchIncidents => WaitAndFindElement(By.XPath("//*[@id=\"incident-creation-form\"]/div[8]/div/div/input"));
-        public static IList<IWebElement> LstIncidents => WaitAndFindElements(By.XPath("//*[@id=\"OriginIncidentIds_listbox\"]/li"));
+        public static IWebElement Incidents => WaitAndFindElement(By.XPath("//*[@id=\"incident-creation-form\"]/div[9]/div/div[1]/span"));
+        public static IWebElement SearchIncidents => WaitAndFindElement(By.XPath("//*[@id=\"OriginIncidentId-list\"]/span/input"));
+        public static IList<IWebElement> LstIncidents => WaitAndFindElements(By.XPath("//*[@id=\"OriginIncidentId_listbox\"]/li"));
+        public static IWebElement AddToList => WaitAndFindElement(By.XPath("//*[@id=\"incident-creation-form\"]/div[9]/div/div[2]/button"));
 
         public static IWebElement CreateButton => WaitAndFindElement(By.XPath("//*[@id=\"incident-creation-form\"]/div[8]/input"));
-        public static IWebElement CreateCaseFromIncidents => WaitAndFindElement(By.XPath("//*[@id=\"incident-creation-form\"]/div[9]/input"));
+        public static IWebElement CreateCaseFromIncidents => WaitAndFindElement(By.XPath("//*[@id=\"incident-creation-form\"]/div[11]/button"));
 
         public CreateCaseComponent(IWebDriver driver) : base(driver)
         {

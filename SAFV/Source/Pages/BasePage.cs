@@ -4,9 +4,6 @@ using SAFV.Source.Components;
 using OpenQA.Selenium.Interactions;
 using SAFV.Drivers;
 using SAFV.Utility;
-using SAFV.Source.Components.CreateIncident.People;
-using AngleSharp.Dom;
-using System.Xml.Linq;
 
 namespace SAFV.Source.Pages
 {
@@ -72,7 +69,7 @@ namespace SAFV.Source.Pages
         {
             int maxTry = 5;
             string label = "";
-            string previousState = element.GetAttribute("aria-checked");
+            string previousState = element.GetDomAttribute("aria-checked");
 
             if (s.ToLower() == "yes" || s == "true" || s == "active" || s == "1")
             {
@@ -401,7 +398,7 @@ namespace SAFV.Source.Pages
             {
                 for (int j = 0; j < countEL; j++)
                 {
-                    string value = elementList.ElementAt(j).GetAttribute("value");
+                    string value = elementList.ElementAt(j).GetDomAttribute("value");
                     if (value.Contains(searchValue.ElementAt(i)))
                     {
                         Actions actions = new Actions(_driver);

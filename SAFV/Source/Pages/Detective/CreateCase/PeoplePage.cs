@@ -733,6 +733,23 @@ namespace SAFV.Source.Pages.Detective.CreateCase
             }
         }
 
+        public void UpdatePeopleWithoutSync(string updateData)
+        {
+            Reporting.AddTestScreenshot(_driver, "Incident Test");
+
+            SendKeys(PeopleComponent.LastName, updateData);
+            Click(PeopleComponent.SavePeople);
+        }
+
+        public string CheckOriginData()
+        {
+            Reporting.AddTestScreenshot(_driver, "Incident Test");
+
+            Click(PeopleComponent.LstViewOrigin.ElementAt(4));
+
+            return PeopleComponent.LastName.Text;
+        }
+
         public bool AttachPeopleFromMainCase()
         {
             Reporting.AddTestScreenshot(_driver, "Incident Test");
@@ -743,6 +760,11 @@ namespace SAFV.Source.Pages.Detective.CreateCase
             bool allPeoplePresent = PeopleComponent.LstAllMainPeopleNew.All(people => PeopleComponent.LstAllMainPeopleOld.Contains(people));
 
             return allPeoplePresent;
+        }
+
+        public int PeopleOriginCount()
+        {
+            return PeopleComponent.LstViewOrigin.Count;
         }
     }
 }

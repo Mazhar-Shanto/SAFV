@@ -5,6 +5,7 @@ namespace SAFV.Source.Components.Detective.CreateCase
     public class RiskAssessmentComponent : BaseComponent
     {
         // Elements
+        public static IList<IWebElement> LstViewOrigin => WaitAndFindElements(By.XPath("(//a[contains(text(),'View Origin')])"));
         public static IWebElement CreateNewRA => WaitAndFindElement(By.XPath("//*[@id=\"module-container\"]/div/div[1]/div/div[2]/a"));
         public static IWebElement Suspect => WaitAndFindElement(By.XPath("//*[@id=\"risk-assessment-form\"]/div/div[1]/div/span[1]"));
         public static IList<IWebElement> LstSuspect => WaitAndFindElements(By.XPath("/html/body/div[5]/div/div[3]/ul/li"));

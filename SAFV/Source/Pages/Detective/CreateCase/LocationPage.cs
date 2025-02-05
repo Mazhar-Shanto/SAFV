@@ -23,6 +23,11 @@ namespace SAFV.Source.Pages.Detective.CreateCase
             Click(CaseMenuComponent.Locations);
         }
 
+        public int LocationOriginCount()
+        {
+            return LocationComponent.LstViewOrigin.Count;
+        }
+
         public void CreateLocation(Dictionary<string, string> locationData)
         {
             Reporting.AddTestScreenshot(_driver, "Incident Test");

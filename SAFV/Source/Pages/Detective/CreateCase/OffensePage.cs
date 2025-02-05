@@ -24,6 +24,11 @@ namespace SAFV.Source.Pages.Detective.CreateCase
             Click(CaseMenuComponent.Offenses);
         }
 
+        public int OffenseOriginCount()
+        {
+            return OffenseComponent.LstViewOrigin.Count;
+        }
+
         public void CreateOffense(Dictionary<string, string> offenseData, int offenseNumber)
         {
             Reporting.AddTestScreenshot(_driver, "Incident Test");

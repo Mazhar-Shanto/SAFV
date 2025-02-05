@@ -6,6 +6,7 @@ namespace SAFV.Source.Components.Detective.CreateCase.Offense
     {
         // Elements
         public static IWebElement TabTitle => WaitAndFindElement(By.Id("seletedTabTitle"));
+        public static IList<IWebElement> LstViewOrigin => WaitAndFindElements(By.XPath("(//a[contains(text(),'View Origin')])"));
         public static IWebElement AddOffense => WaitAndFindElement(By.XPath("//*[@id=\"module-container\"]/div/div[1]/div/div[2]/a"));
         public static IWebElement Suspect => WaitAndFindElement(By.XPath("//*[@id=\"collapse_3_1\"]/div/div/div[1]/div/span[1]"));
         public static IList<IWebElement> LstSuspect => WaitAndFindElements(By.XPath("//*[@id=\"DetectivePersonId_listbox\"]/li"));

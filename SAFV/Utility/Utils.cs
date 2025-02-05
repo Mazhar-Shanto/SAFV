@@ -92,7 +92,7 @@ namespace SAFV.Utility
             {
                 try
                 {
-                    label = element.GetAttribute("value");
+                    label = element.GetDomAttribute("value");
                 }
                 catch (Exception)
                 {

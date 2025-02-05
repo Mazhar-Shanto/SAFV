@@ -19,6 +19,7 @@ namespace SAFV.Source.Components.CreateIncident
         public static IWebElement Reports => WaitAndFindElement(By.XPath("//*[@id=\"remove-scroll\"]/div/ul/li[5]/ul/li[13]/a"));
         public static IWebElement IncidentReview => WaitAndFindElement(By.XPath("//*[@id=\"remove-scroll\"]/div/ul/li[5]/ul/li[14]/a"));
         public static IWebElement StatusHistory => WaitAndFindElement(By.XPath("//*[@id=\"remove-scroll\"]/div/ul/li[5]/ul/li[15]/a"));
+        public static IWebElement LinkedIncident => WaitAndFindElement(By.XPath("//*[@id=\"remove-scroll\"]/div/ul/li[5]/ul/li[15]/a"));
 
         public IncidentMenuComponent(IWebDriver driver) : base(driver)
         {

@@ -28,7 +28,7 @@ namespace SAFV.Test
                 var caseData = caseDataList[i];
                 var caseCountData = caseCountDataList[i];
 
-                Reporting.CreateTest("CreateCaseFromIncidentTest");
+                Reporting.CreateTest("CreateMainCaseTest");
 
                 LoginPage loginPage = new LoginPage(_driver);
                 CasesPage casesPage = new CasesPage(_driver);
@@ -57,6 +57,8 @@ namespace SAFV.Test
                 WriteToExcel.WriteDetectiveCaseLog(caseCountNew, caseNumberNew, supplementCountOld, supplementNumberOld, caseNumberNew);
             }
         }
+
+
         [Test, Order(30)]
         public void CreateConfidentialCaseTest()
         {

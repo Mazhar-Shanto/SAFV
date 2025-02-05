@@ -4,6 +4,7 @@ namespace SAFV.Source.Components.Detective.CreateCase
 {
     internal class EvidenceComponent : BaseComponent
     {
+        public static IList<IWebElement> LstViewOrigin => WaitAndFindElements(By.XPath("(//a[contains(text(),'View Origin')])"));
         public static IWebElement AddEvidence => WaitAndFindElement(By.XPath("//*[@id=\"module-container\"]/div/div[1]/div/div[2]/a")); 
         public static IWebElement EvidenceType => WaitAndFindElement(By.XPath("//*[@id=\"createincidentevidenceform\"]/div/div[1]/div/span[1]"));
         public static IList<IWebElement> LstEvidenceType => WaitAndFindElements(By.XPath("//*[@id=\"EvidenceTypeId_listbox\"]/li"));

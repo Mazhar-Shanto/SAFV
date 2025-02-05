@@ -22,6 +22,11 @@ namespace SAFV.Source.Pages.Detective.CreateCase
             Click(CaseMenuComponent.Evidence);
         }
 
+        public int EvidenceOriginCount()
+        {
+            return EvidenceComponent.LstViewOrigin.Count;
+        }
+
         public void CreateEvidence(Dictionary<string, string> evidenceData)
         {
             Reporting.AddTestScreenshot(_driver, "Incident Test");

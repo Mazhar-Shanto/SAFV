@@ -1,5 +1,6 @@
 ﻿using OpenQA.Selenium;
 using SAFV.Drivers;
+using SAFV.Helper;
 using SAFV.Source.Components;
 using SAFV.Source.Components.Detective;
 using SAFV.Source.Components.Detective.CreateCase;
@@ -106,8 +107,23 @@ namespace SAFV.Source.Pages.Detective
             {
                 Click(CreateCaseComponent.MainCase);
                 SendKeys(CreateCaseComponent.SearchMainCase, mainCase);
-                Thread.Sleep(2000);
+                Thread.Sleep(500);
                 SelectOption(CreateCaseComponent.LstMainCase, mainCase);
+            }
+
+            string[] incidents = caseData["Incidents"]
+                .Split([";"], StringSplitOptions.RemoveEmptyEntries)
+                .Select(incident => incident.Trim())
+                .ToArray();
+
+
+            foreach (string incident in incidents)
+            {
+                Click(CreateCaseComponent.Incidents);
+                SendKeys(CreateCaseComponent.SearchIncidents, incident);
+                Thread.Sleep(2000);
+                SelectOption(CreateCaseComponent.LstIncidents, incident);
+                Click(CreateCaseComponent.AddToList);
             }
 
             Click(CreateCaseComponent.CreateCaseFromIncidents);

@@ -57,5 +57,39 @@ namespace SAFV.Helper.Detective
 
             return logData;
         }
+
+        public static List<Dictionary<string, string>> ReadLinkedCaseData(string caseType)
+        {
+            // Read dataset
+            var caseColumnList = new ColumnList();
+            caseColumnList.AddColumn("ReportDate", "ReportDate");
+            caseColumnList.AddColumn("DetectiveCaseNumber", "DetectiveCaseNumber");
+            caseColumnList.AddColumn("IncidentType", "IncidentType");
+            caseColumnList.AddColumn("ConfidentialMode", "ConfidentialMode");
+            caseColumnList.AddColumn("CaseType", "CaseType");
+            caseColumnList.AddColumn("Incidents", "Incidents");
+
+            var projectRoot = Utils.GetProjectRoot();
+            var filePath = "";
+            if (caseType == "Main")
+            {
+                filePath = Path.Combine(projectRoot, "Helper/TestData/LinkedIncident/create case from incidents data - main.xlsx");
+            }
+            else if (caseType == "Supplement")
+            {
+                caseColumnList.AddColumn("MainCase", "MainCase");
+                filePath = Path.Combine(projectRoot, "Helper/TestData/LinkedIncident/create case data - supplement.xlsx");
+            }
+            else if (caseType == "Confidential")
+            {
+                filePath = Path.Combine(projectRoot, "Helper/TestData/LinkedIncident/create case data - confidential.xlsx");
+            }
+
+            Console.WriteLine(filePath);
+            var dataSet = new DataSet(caseColumnList);
+            var caseData = dataSet.ReadData(filePath);
+
+            return caseData;
+        }
     }
 }

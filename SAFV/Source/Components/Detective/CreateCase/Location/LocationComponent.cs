@@ -6,6 +6,7 @@ namespace SAFV.Source.Components.Detective.CreateCase.Location
     {
         // Elements
         public static IWebElement TabTitle => WaitAndFindElement(By.Id("seletedTabTitle"));
+        public static IList<IWebElement> LstViewOrigin => WaitAndFindElements(By.XPath("(//a[contains(text(),'View Origin')])"));
         public static IWebElement AddLocation => WaitAndFindElement(By.XPath("//*[@id=\"module-container\"]/div/div[1]/div/div[2]/a"));
         public static IWebElement SelectAllMainLocation => WaitAndFindElement(By.XPath("//*[@id=\"master_case_location-grid\"]/table/thead/tr/th[9]/input"));
         public static IWebElement AttachToSupplement => WaitAndFindElement(By.Id("pdf"));
