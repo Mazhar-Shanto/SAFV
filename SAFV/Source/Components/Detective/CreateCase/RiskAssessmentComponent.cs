@@ -11,7 +11,7 @@ namespace SAFV.Source.Components.Detective.CreateCase
         public static IList<IWebElement> LstSuspect => WaitAndFindElements(By.XPath("/html/body/div[5]/div/div[3]/ul/li"));
         //public static IList<IWebElement> LstSuspect => WaitAndFindElements(By.XPath("//*[@id=\"IncidentPersonId_listbox\"]/li"));
         public static IWebElement Victim => WaitAndFindElement(By.XPath("//*[@id=\"risk-assessment-form\"]/div/div[2]/div/span[1]"));
-        //public static IWebElement LstVictim => WaitAndFindElement(By.XPath("//*[@id=\"VictimId_listbox\"]/li[1]"));
+        //public static IList<IWebElement> LstVictim => WaitAndFindElements(By.XPath("//*[@id=\"VictimId_listbox\"]/li[1]"));
         public static IList<IWebElement> LstVictim => WaitAndFindElements(By.XPath("/html/body/div[6]/div/div[3]/ul/li"));
         public static IList<IWebElement> FamilyViolenceLikelyToOccur => WaitAndFindElements(By.XPath("//*[@id=\"risk-assessment-form\"]/div/div[3]/div/label"));
         public static IList<IWebElement> UsedOrThreatenedWithWeapon => WaitAndFindElements(By.XPath("//*[@id=\"risk-assessment-form\"]/div/div[4]/div/label"));
